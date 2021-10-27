@@ -1,13 +1,10 @@
 spring:
   application:
     name: restaurant
-  datasource:
-    url: ${RESTAURANT_DB_URL:jdbc:postgresql://localhost:5432}/${RESTAURANT_DB_NAME:postgres}
-    username: ${RESTAURANT_DB_USER:postgres}
-    password: ${RESTAURANT_DB_PASS:1234}
-    driver-class-name: org.postgresql.Driver
   liquibase:
-    change-log: classpath:/db.changelog/changelog-master.xml
+    enabled: false
+  autoconfigure:
+    exclude: org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
 keycloak:
   realm: ${KEYCLOAK_REALM:peprestaurant}
   auth-server-url: ${KEYCLOAK_SERVER_URL:http://localhost:8081/auth}
