@@ -8,25 +8,18 @@
 		<version>2.5.1</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.pep.restaurant</groupId>
-	<artifactId>restaurant</artifactId>
+	<groupId>com.pep.restaurant.ms.bff</groupId>
+	<artifactId>pep-restaurant-ms-bff</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>pep-restaurant-backend</name>
-	<description>Restaurant app</description>
+	<name>pep-restaurant-ms-bff</name>
+	<description>Pep Restaurant Microservice Bff</description>
 	<properties>
 
 		<java.version>11</java.version>
 
 		<!--dependencies version-->
-		<spring-boot-starter-jdbc.version>2.5.3</spring-boot-starter-jdbc.version>
-		<spring-boot-starter-data-jpa.version>2.4.2</spring-boot-starter-data-jpa.version>
 		<spring-boot-starter-security.version>2.3.2.RELEASE</spring-boot-starter-security.version>
 		<spring-security-test.version>5.4.1</spring-security-test.version>
-		<liquibase-core.version>4.2.2</liquibase-core.version>
-		<postgresql.version.version>42.2.20</postgresql.version.version>
-		<javax.persistence-api.version>2.2</javax.persistence-api.version>
-		<hibernate-annotations.version>3.5.6-Final</hibernate-annotations.version>
-		<h2.version>1.4.200</h2.version>
 		<mapstruct.version>1.4.1.Final</mapstruct.version>
 		<checkstyle.version>8.40</checkstyle.version>
 		<junit.version>4.13.2</junit.version>
@@ -51,42 +44,6 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
-		</dependency>
-
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-jdbc</artifactId>
-			<version>${spring-boot-starter-jdbc.version}</version>
-		</dependency>
-
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-data-jpa</artifactId>
-			<version>${spring-boot-starter-data-jpa.version}</version>
-		</dependency>
-
-		<dependency>
-			<groupId>org.liquibase</groupId>
-			<artifactId>liquibase-core</artifactId>
-			<version>${liquibase-core.version}</version>
-		</dependency>
-
-		<dependency>
-			<groupId>org.postgresql</groupId>
-			<artifactId>postgresql</artifactId>
-			<version>${postgresql.version}</version>
-		</dependency>
-
-		<dependency>
-			<groupId>javax.persistence</groupId>
-			<artifactId>javax.persistence-api</artifactId>
-			<version>${javax.persistence-api.version}</version>
-		</dependency>
-
-		<dependency>
-			<groupId>org.hibernate</groupId>
-			<artifactId>hibernate-annotations</artifactId>
-			<version>${hibernate-annotations.version}</version>
 		</dependency>
 
 		<dependency>
@@ -131,13 +88,6 @@
 		</dependency>
 
 		<dependency>
-			<groupId>com.h2database</groupId>
-			<artifactId>h2</artifactId>
-			<scope>test</scope>
-			<version>${h2.version}</version>
-		</dependency>
-
-		<dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-test</artifactId>
 			<version>${spring-security-test.version}</version>
@@ -149,6 +99,7 @@
 			<artifactId>springfox-boot-starter</artifactId>
 			<version>${springfox-boot-starter.version}</version>
 		</dependency>
+
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-test</artifactId>
@@ -171,7 +122,7 @@
 	</dependencyManagement>
 
 	<build>
-		<finalName>pep-restaurant-backend</finalName>
+		<finalName>pep-restaurant-ms-bff</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
