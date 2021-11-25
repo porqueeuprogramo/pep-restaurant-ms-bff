@@ -1,0 +1,653 @@
+openapi: 3.0.3
+info:
+  title: Restaurant BFF OpenAPI document
+  version: 0.0.1
+paths:
+  # USER API
+  /user/{userId}:
+    get:
+      summary: Get User By id.
+      description: Retrieves a user by passing an id.
+      operationId: getUser
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: "user got."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UserDTO"
+    put:
+      summary: Edit User By id.
+      description: Edit a user by passing an id.
+      operationId: editUser
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UserDTO"
+      responses:
+        "200":
+          description: "user edited."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UserDTO"
+    delete:
+      summary: Delete User By id.
+      description: Delete a user by passing an id.
+      operationId: deleteUser
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: "user deleted."
+          content:
+            application/json:
+              schema:
+                type: string
+  # RESTAURANT API
+  /restaurant/{restaurantId}:
+    get:
+      summary: Get Restaurant By id.
+      description: Retrieves a restaurant by passing an id.
+      operationId: getRestaurant
+      parameters:
+        - name: restaurantId
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        "200":
+          description: "Restaurant got."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/RestaurantDTO"
+    put:
+      summary: Edit Restaurant By id.
+      description: Edit restaurant by passing an id.
+      operationId: editRestaurant
+      parameters:
+        - name: restaurantId
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/RestaurantDTO"
+      responses:
+        "200":
+          description: "Restaurant edited."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/RestaurantDTO"
+    delete:
+      summary: Delete Restaurant By id.
+      description: Retrieves the deleted restaurant.
+      operationId: deleteRestaurant
+      parameters:
+        - name: restaurantId
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        "200":
+          description: "Restaurant deleted."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/RestaurantDTO"
+  /restaurant:
+    post:
+      summary: Create Restaurant.
+      description: Create Restaurant.
+      operationId: createRestaurant
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/RestaurantDTO"
+      responses:
+        "200":
+          description: "Restaurant created."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/RestaurantDTO"
+    get:
+      summary: Get All Restaurants.
+      description: Get All Restaurants.
+      operationId: getAllRestaurants
+      responses:
+        "200":
+          description: "Restaurants got."
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/RestaurantDTO"
+  /restaurant/add/employee/{restaurantId}/{employeeId}:
+    put:
+      summary: Add Employee to Restaurant.
+      description: Add Employee to Restaurant.
+      operationId: addEmployee
+      parameters:
+        - name: restaurantId
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: employeeId
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        "200":
+          description: "Restaurant with employee added."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/RestaurantDTO"
+  /restaurant/remove/employee/{restaurantId}/{employeeId}:
+    put:
+      summary: Remove Employee from Restaurant.
+      description: Remove Employee from Restaurant.
+      operationId: removeEmployee
+      parameters:
+        - name: restaurantId
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: employeeId
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        "200":
+          description: "Restaurant with employee removed."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/RestaurantDTO"
+  #EMPLOYEE API
+  /employee/{employeeId}:
+    get:
+      summary: Get Employee By id.
+      description: Retrieves an employee by passing an id.
+      operationId: getEmployee
+      parameters:
+        - name: employeeId
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        "200":
+          description: "Employee got."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/EmployeeDTO"
+    put:
+      summary: Edit Employee By id.
+      description: Edit employee by passing an id.
+      operationId: editEmployee
+      parameters:
+        - name: employeeId
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/EmployeeDTO"
+      responses:
+        "200":
+          description: "Restaurant edited."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/EmployeeDTO"
+    delete:
+      summary: Delete Employee By id.
+      description: Retrieves the deleted employee.
+      operationId: deleteEmployee
+      parameters:
+        - name: employeeId
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        "200":
+          description: "Employee deleted."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/EmployeeDTO"
+  /employee:
+    post:
+      summary: Create Employee.
+      description: Create Employee.
+      operationId: createEmployee
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/EmployeeDTO"
+      responses:
+        "200":
+          description: "Employee created."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/EmployeeDTO"
+    get:
+      summary: Get All Employees.
+      description: Get All Employees.
+      operationId: getAllEmployees
+      responses:
+        "200":
+          description: "Employees got."
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/EmployeeDTO"
+  /employee/add/restaurant/{employeeId}/{restaurantId}:
+    put:
+      summary: Add Restaurant to Employee.
+      description: Add Restaurant to Employee.
+      operationId: addRestaurant
+      parameters:
+        - name: employeeId
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: restaurantId
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        "200":
+          description: "Employee with restaurant added."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/EmployeeDTO"
+  /employee/remove/restaurant/{employeeId}/{restaurantId}:
+    put:
+      summary: Remove Restaurant from Employee.
+      description: Remove Restaurant from Employee.
+      operationId: removeRestaurant
+      parameters:
+        - name: employeeId
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: restaurantId
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        "200":
+          description: "Employee with restaurant removed."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/EmployeeDTO"
+  # SCHEDULE API
+  /schedule/{scheduleId}:
+    get:
+      summary: Get Schedule By id.
+      description: Retrieves a schedule by passing an id.
+      operationId: getSchedule
+      parameters:
+        - name: scheduleId
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        "200":
+          description: "Schedule got."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ScheduleDTO"
+    put:
+      summary: Edit Schedule By id.
+      description: Edit schedule by passing an id.
+      operationId: editSchedule
+      parameters:
+        - name: scheduleId
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ScheduleDTO"
+      responses:
+        "200":
+          description: "Schedule edited."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ScheduleDTO"
+    delete:
+      summary: Delete Schedule By id.
+      description: Retrieves the deleted schedule.
+      operationId: deleteSchedule
+      parameters:
+        - name: scheduleId
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        "200":
+          description: "Schedule deleted."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ScheduleDTO"
+  /schedule:
+    post:
+      summary: Create Schedule.
+      description: Create Schedule.
+      operationId: createSchedule
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ScheduleDTO"
+      responses:
+        "200":
+          description: "Schedule created."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ScheduleDTO"
+    get:
+      summary: Get All Schedule.
+      description: Get All Schedule.
+      operationId: getAllSchedules
+      responses:
+        "200":
+          description: "Schedules got."
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/ScheduleDTO"
+  /schedule/add/employee/{scheduleId}/{employeeId}:
+    put:
+      summary: Add Employee to Schedule.
+      description: Add Employee to Schedule.
+      operationId: addEmployeeToSchedule
+      parameters:
+        - name: scheduleId
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: employeeId
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        "200":
+          description: "Schedule with employee added."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ScheduleDTO"
+  /schedule/remove/employee/{scheduleId}/{employeeId}:
+    put:
+      summary: Remove Employee from Schedule.
+      description: Remove Employee from Schedule.
+      operationId: removeEmployeeFromSchedule
+      parameters:
+        - name: scheduleId
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: employeeId
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        "200":
+          description: "Schedule with employee removed."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ScheduleDTO"
+  # MENU API
+  /menu/{menuId}:
+    get:
+      summary: Get Menu By id.
+      description: Retrieves a menu by passing an id.
+      operationId: getMenu
+      parameters:
+        - name: menuId
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        "200":
+          description: "Menu got."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/MenuDTO"
+    put:
+      summary: Edit Menu By id.
+      description: Edit menu by passing an id.
+      operationId: editMenu
+      parameters:
+        - name: menuId
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/MenuDTO"
+      responses:
+        "200":
+          description: "Menu edited."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/MenuDTO"
+    delete:
+      summary: Delete Menu By id.
+      description: Retrieves the deleted menu.
+      operationId: deleteMenu
+      parameters:
+        - name: menuId
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        "200":
+          description: "Menu deleted."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/MenuDTO"
+  /menu:
+    post:
+      summary: Create Menu.
+      description: Create Menu.
+      operationId: createMenu
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/MenuDTO"
+      responses:
+        "200":
+          description: "Menu created."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/MenuDTO"
+    get:
+      summary: Get All Menu.
+      description: Get All Menu.
+      operationId: getAllMenus
+      responses:
+        "200":
+          description: "Menus got."
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/MenuDTO"
+
+servers:
+  - url: http://localhost:8080/api
+
+components:
+  schemas:
+    MenuDTO:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        language:
+          type: string
+    ScheduleDTO:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        type:
+          $ref: "#/components/schemas/ScheduleType"
+        employeeList:
+          type: array
+          nullable: false
+          items:
+            $ref: "#/components/schemas/EmployeeDTO"
+    ScheduleType:
+      type: string
+      enum:
+        - PARTTIME
+        - FULLTIME
+        - INTERNSHIP
+    EmployeeDTO:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        role:
+          type: string
+        restaurantList:
+          type: setOfRestaurantDTO
+        schedule:
+          $ref: "#/components/schemas/ScheduleDTO"
+    RestaurantDTO:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        location:
+          type: string
+        capacity:
+          type: integer
+        menu:
+          $ref: "#/components/schemas/MenuDTO"
+        employeeList:
+          type: setOfEmployeeDTO
+    UserDTO:
+      type: object
+      properties:
+        id:
+          type: string
+        username:
+          type: string
+        firstName:
+          type: string
+        lastName:
+          type: string
+        email:
+          type: string
+        password:
+          type: string

@@ -1,6 +1,6 @@
 # README #
 
-This is a bff microservice of porqueeuprogramo restaurant (java spring maven) application.
+This is the bff microservice of porqueeuprogramo restaurant (java spring maven) application.
 
 
 ### How do I get repository ###

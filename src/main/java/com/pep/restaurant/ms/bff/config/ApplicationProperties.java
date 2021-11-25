@@ -9,9 +9,13 @@ public class ApplicationProperties {
 
     private final Keycloak keycloak = new Keycloak();
 
+    private final MsManager msManager = new MsManager();
+
     public Keycloak getKeycloak(){
         return keycloak;
     }
+
+    public MsManager getMsManager(){ return msManager; }
 
     public static class Keycloak{
 
@@ -122,6 +126,28 @@ public class ApplicationProperties {
         public void setClientSecret(final String clientSecret) {
             this.clientSecret = clientSecret;
         }
+    }
+
+    public static class MsManager{
+
+        private String url = "http://localhost:8082/pep/restaurant/manager";
+
+        /**
+         * Get Ms Manager Url.
+         * @return Ms Manager Url.
+         */
+        public String getUrl() {
+            return url;
+        }
+
+        /**
+         * Set Ms Manager Url.
+         * @param url Ms Manager Url.
+         */
+        public void setUrl(final String url) {
+            this.url = url;
+        }
+
     }
 
 
