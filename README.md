@@ -16,7 +16,7 @@ This is the bff microservice of porqueeuprogramo restaurant (java spring maven) 
 
 ### How do I set up docker? ###
 
-* change localhost on application yml to your local ip
+* change localhost on application yml and application properties to your local ip
 * mvn clean install
 
 * docker build -t pep-restaurant-ms-bff.jar .
