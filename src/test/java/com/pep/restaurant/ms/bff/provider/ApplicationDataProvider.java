@@ -1,15 +1,10 @@
-package com.pep.restaurant.ms.bff;
+package com.pep.restaurant.ms.bff.provider;
 
 import com.pep.restaurant.ms.bff.domain.Employee;
 import com.pep.restaurant.ms.bff.domain.Menu;
 import com.pep.restaurant.ms.bff.domain.Restaurant;
 import com.pep.restaurant.ms.bff.domain.Schedule;
-import com.pep.restaurant.ms.bff.web.api.model.RestaurantDTO;
-import com.pep.restaurant.ms.bff.web.api.model.EmployeeDTO;
-import com.pep.restaurant.ms.bff.web.api.model.ScheduleDTO;
-import com.pep.restaurant.ms.bff.web.api.model.MenuDTO;
-import com.pep.restaurant.ms.bff.web.api.model.ScheduleType;
-import com.pep.restaurant.ms.bff.web.api.model.UserDTO;
+import com.pep.restaurant.ms.bff.web.api.model.*;
 
 import java.util.Collections;
 import java.util.Set;

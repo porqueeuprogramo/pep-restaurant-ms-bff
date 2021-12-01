@@ -3,6 +3,8 @@ spring:
     name: pep-restaurant-ms-bff
   liquibase:
     enabled: false
+  profiles:
+    active: test
 keycloak:
   realm: ${KEYCLOAK_REALM:peprestaurant}
   auth-server-url: ${KEYCLOAK_SERVER_URL:http://localhost:8081/auth}
@@ -20,3 +22,5 @@ application:
     password: ${KEYCLOAK_PASSWORD:1234}
     clientId: ${KEYCLOAK_CLIENT_ID:peprestaurant}
     clientSecret: ${KEYCLOAK_CLIENT_SECRET:afb48af0-a6b9-44b7-ba43-328f3e5a6555}
+  msManager:
+    url: http://localhost:8082/pep/restaurant/manager

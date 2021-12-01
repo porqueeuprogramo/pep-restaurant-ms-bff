@@ -3,35 +3,32 @@ package com.pep.restaurant.ms.bff.client;
 import ch.qos.logback.classic.Logger;
 import ch.qos.logback.classic.spi.ILoggingEvent;
 import ch.qos.logback.core.read.ListAppender;
-import com.pep.restaurant.ms.bff.ApplicationDataProvider;
 import com.pep.restaurant.ms.bff.config.ApplicationProperties;
 import com.pep.restaurant.ms.bff.domain.Restaurant;
+import com.pep.restaurant.ms.bff.provider.ApplicationDataProvider;
 import com.pep.restaurant.ms.bff.service.mapper.RestaurantMapper;
 import com.pep.restaurant.ms.bff.web.api.model.RestaurantDTO;
-import org.junit.Assert;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.junit.MockitoJUnitRunner;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.Collections;
 import java.util.List;
 
-import static org.mockito.Mockito.when;
-import static org.mockito.Mockito.anyString;
-import static org.mockito.Mockito.any;
-import static org.mockito.Mockito.anyMap;
+import static org.mockito.Mockito.*;
 
-@RunWith(MockitoJUnitRunner.class)
+@ExtendWith(SpringExtension.class)
 public class RestaurantClientTest {
 
     @InjectMocks
@@ -70,12 +67,12 @@ public class RestaurantClientTest {
         Restaurant restaurantResult = restaurantClient.getRestaurant(1L);
 
         //Then
-        Assert.assertEquals(restaurant.getId(), restaurantResult.getId());
-        Assert.assertEquals(restaurant.getName(), restaurantResult.getName());
-        Assert.assertEquals(restaurant.getLocation(), restaurantResult.getLocation());
-        Assert.assertEquals(restaurant.getCapacity(), restaurantResult.getCapacity());
-        Assert.assertEquals(restaurant.getMenu().getLanguage(), restaurantResult.getMenu().getLanguage());
-        Assert.assertEquals(0, restaurantResult.getEmployeeList().size());
+        Assertions.assertEquals(restaurant.getId(), restaurantResult.getId());
+        Assertions.assertEquals(restaurant.getName(), restaurantResult.getName());
+        Assertions.assertEquals(restaurant.getLocation(), restaurantResult.getLocation());
+        Assertions.assertEquals(restaurant.getCapacity(), restaurantResult.getCapacity());
+        Assertions.assertEquals(restaurant.getMenu().getLanguage(), restaurantResult.getMenu().getLanguage());
+        Assertions.assertEquals(0, restaurantResult.getEmployeeList().size());
     }
 
     @Test
@@ -108,7 +105,7 @@ public class RestaurantClientTest {
         Restaurant restaurantResult = restaurantClient.getRestaurant(1L);
 
         //Then
-        Assert.assertEquals("[CLIENT, RESTAURANTS, RETRIEVED] Restaurant id not found",
+        Assertions.assertEquals("[CLIENT, RESTAURANTS, RETRIEVED] Restaurant id not found",
                 logsList.get(0).getMessage());
     }
 
@@ -132,12 +129,12 @@ public class RestaurantClientTest {
         Restaurant restaurantResult = restaurantClient.createRestaurant(restaurant);
 
         //Then
-        Assert.assertEquals(restaurant.getId(), restaurantResult.getId());
-        Assert.assertEquals(restaurant.getName(), restaurantResult.getName());
-        Assert.assertEquals(restaurant.getLocation(), restaurantResult.getLocation());
-        Assert.assertEquals(restaurant.getCapacity(), restaurantResult.getCapacity());
-        Assert.assertEquals(restaurant.getMenu().getLanguage(), restaurantResult.getMenu().getLanguage());
-        Assert.assertEquals(0, restaurantResult.getEmployeeList().size());
+        Assertions.assertEquals(restaurant.getId(), restaurantResult.getId());
+        Assertions.assertEquals(restaurant.getName(), restaurantResult.getName());
+        Assertions.assertEquals(restaurant.getLocation(), restaurantResult.getLocation());
+        Assertions.assertEquals(restaurant.getCapacity(), restaurantResult.getCapacity());
+        Assertions.assertEquals(restaurant.getMenu().getLanguage(), restaurantResult.getMenu().getLanguage());
+        Assertions.assertEquals(0, restaurantResult.getEmployeeList().size());
     }
 
     @Test
@@ -169,7 +166,7 @@ public class RestaurantClientTest {
         Restaurant restaurantResult = restaurantClient.createRestaurant(restaurant);
 
         //Then
-        Assert.assertEquals("[CLIENT, RESTAURANTS, PERSISTED] Restaurant was not created!!",
+        Assertions.assertEquals("[CLIENT, RESTAURANTS, PERSISTED] Restaurant was not created!!",
                 logsList.get(0).getMessage());
 
     }
@@ -193,12 +190,12 @@ public class RestaurantClientTest {
         Restaurant restaurantResult = restaurantClient.editRestaurant(1L, restaurant);
 
         //Then
-        Assert.assertEquals(restaurant.getId(), restaurantResult.getId());
-        Assert.assertEquals(restaurant.getName(), restaurantResult.getName());
-        Assert.assertEquals(restaurant.getLocation(), restaurantResult.getLocation());
-        Assert.assertEquals(restaurant.getCapacity(), restaurantResult.getCapacity());
-        Assert.assertEquals(restaurant.getMenu().getLanguage(), restaurantResult.getMenu().getLanguage());
-        Assert.assertEquals(0, restaurantResult.getEmployeeList().size());
+        Assertions.assertEquals(restaurant.getId(), restaurantResult.getId());
+        Assertions.assertEquals(restaurant.getName(), restaurantResult.getName());
+        Assertions.assertEquals(restaurant.getLocation(), restaurantResult.getLocation());
+        Assertions.assertEquals(restaurant.getCapacity(), restaurantResult.getCapacity());
+        Assertions.assertEquals(restaurant.getMenu().getLanguage(), restaurantResult.getMenu().getLanguage());
+        Assertions.assertEquals(0, restaurantResult.getEmployeeList().size());
     }
 
     @Test
@@ -230,7 +227,7 @@ public class RestaurantClientTest {
         Restaurant restaurantResult = restaurantClient.editRestaurant(1L, restaurant);
 
         //Then
-        Assert.assertEquals("[CLIENT, RESTAURANTS, EDITED] Restaurant was not edited!!",
+        Assertions.assertEquals("[CLIENT, RESTAURANTS, EDITED] Restaurant was not edited!!",
                 logsList.get(0).getMessage());
     }
 
@@ -253,12 +250,12 @@ public class RestaurantClientTest {
         Restaurant restaurantResult = restaurantClient.addEmployee(1L, 1L);
 
         //Then
-        Assert.assertEquals(restaurant.getId(), restaurantResult.getId());
-        Assert.assertEquals(restaurant.getName(), restaurantResult.getName());
-        Assert.assertEquals(restaurant.getLocation(), restaurantResult.getLocation());
-        Assert.assertEquals(restaurant.getCapacity(), restaurantResult.getCapacity());
-        Assert.assertEquals(restaurant.getMenu().getLanguage(), restaurantResult.getMenu().getLanguage());
-        Assert.assertEquals(0, restaurantResult.getEmployeeList().size());
+        Assertions.assertEquals(restaurant.getId(), restaurantResult.getId());
+        Assertions.assertEquals(restaurant.getName(), restaurantResult.getName());
+        Assertions.assertEquals(restaurant.getLocation(), restaurantResult.getLocation());
+        Assertions.assertEquals(restaurant.getCapacity(), restaurantResult.getCapacity());
+        Assertions.assertEquals(restaurant.getMenu().getLanguage(), restaurantResult.getMenu().getLanguage());
+        Assertions.assertEquals(0, restaurantResult.getEmployeeList().size());
     }
 
     @Test
@@ -290,7 +287,7 @@ public class RestaurantClientTest {
         Restaurant restaurantResult = restaurantClient.addEmployee(1L, 1L);
 
         //Then
-        Assert.assertEquals("[CLIENT, RESTAURANTS, EDITED] Employee was not added to Restaurant!!",
+        Assertions.assertEquals("[CLIENT, RESTAURANTS, EDITED] Employee was not added to Restaurant!!",
                 logsList.get(0).getMessage());
     }
 
@@ -313,12 +310,12 @@ public class RestaurantClientTest {
         Restaurant restaurantResult = restaurantClient.removeEmployee(1L, 1L);
 
         //Then
-        Assert.assertEquals(restaurant.getId(), restaurantResult.getId());
-        Assert.assertEquals(restaurant.getName(), restaurantResult.getName());
-        Assert.assertEquals(restaurant.getLocation(), restaurantResult.getLocation());
-        Assert.assertEquals(restaurant.getCapacity(), restaurantResult.getCapacity());
-        Assert.assertEquals(restaurant.getMenu().getLanguage(), restaurantResult.getMenu().getLanguage());
-        Assert.assertEquals(0, restaurantResult.getEmployeeList().size());
+        Assertions.assertEquals(restaurant.getId(), restaurantResult.getId());
+        Assertions.assertEquals(restaurant.getName(), restaurantResult.getName());
+        Assertions.assertEquals(restaurant.getLocation(), restaurantResult.getLocation());
+        Assertions.assertEquals(restaurant.getCapacity(), restaurantResult.getCapacity());
+        Assertions.assertEquals(restaurant.getMenu().getLanguage(), restaurantResult.getMenu().getLanguage());
+        Assertions.assertEquals(0, restaurantResult.getEmployeeList().size());
     }
 
     @Test
@@ -350,7 +347,7 @@ public class RestaurantClientTest {
         Restaurant restaurantResult = restaurantClient.removeEmployee(1L, 1L);
 
         //Then
-        Assert.assertEquals("[CLIENT, RESTAURANTS, EDITED] Employee was not removed from Restaurant!!",
+        Assertions.assertEquals("[CLIENT, RESTAURANTS, EDITED] Employee was not removed from Restaurant!!",
                 logsList.get(0).getMessage());
     }
 
@@ -373,12 +370,12 @@ public class RestaurantClientTest {
         Restaurant restaurantResult = restaurantClient.deleteRestaurant(1L);
 
         //Then
-        Assert.assertEquals(restaurant.getId(), restaurantResult.getId());
-        Assert.assertEquals(restaurant.getName(), restaurantResult.getName());
-        Assert.assertEquals(restaurant.getLocation(), restaurantResult.getLocation());
-        Assert.assertEquals(restaurant.getCapacity(), restaurantResult.getCapacity());
-        Assert.assertEquals(restaurant.getMenu().getLanguage(), restaurantResult.getMenu().getLanguage());
-        Assert.assertEquals(0, restaurantResult.getEmployeeList().size());
+        Assertions.assertEquals(restaurant.getId(), restaurantResult.getId());
+        Assertions.assertEquals(restaurant.getName(), restaurantResult.getName());
+        Assertions.assertEquals(restaurant.getLocation(), restaurantResult.getLocation());
+        Assertions.assertEquals(restaurant.getCapacity(), restaurantResult.getCapacity());
+        Assertions.assertEquals(restaurant.getMenu().getLanguage(), restaurantResult.getMenu().getLanguage());
+        Assertions.assertEquals(0, restaurantResult.getEmployeeList().size());
     }
 
     @Test
@@ -410,7 +407,7 @@ public class RestaurantClientTest {
         Restaurant restaurantResult = restaurantClient.deleteRestaurant(1L);
 
         //Then
-        Assert.assertEquals("[CLIENT, RESTAURANTS, DELETED] Restaurant id not found",
+        Assertions.assertEquals("[CLIENT, RESTAURANTS, DELETED] Restaurant id not found",
                 logsList.get(0).getMessage());
 
     }
@@ -435,12 +432,12 @@ public class RestaurantClientTest {
         List<Restaurant> restaurantResult = restaurantClient.getAllRestaurants();
 
         //Then
-        Assert.assertEquals(restaurant.getId(), restaurantResult.get(0).getId());
-        Assert.assertEquals(restaurant.getName(), restaurantResult.get(0).getName());
-        Assert.assertEquals(restaurant.getLocation(), restaurantResult.get(0).getLocation());
-        Assert.assertEquals(restaurant.getCapacity(), restaurantResult.get(0).getCapacity());
-        Assert.assertEquals(restaurant.getMenu().getLanguage(), restaurantResult.get(0).getMenu().getLanguage());
-        Assert.assertEquals(0, restaurantResult.get(0).getEmployeeList().size());
+        Assertions.assertEquals(restaurant.getId(), restaurantResult.get(0).getId());
+        Assertions.assertEquals(restaurant.getName(), restaurantResult.get(0).getName());
+        Assertions.assertEquals(restaurant.getLocation(), restaurantResult.get(0).getLocation());
+        Assertions.assertEquals(restaurant.getCapacity(), restaurantResult.get(0).getCapacity());
+        Assertions.assertEquals(restaurant.getMenu().getLanguage(), restaurantResult.get(0).getMenu().getLanguage());
+        Assertions.assertEquals(0, restaurantResult.get(0).getEmployeeList().size());
     }
 
     @Test
@@ -472,7 +469,7 @@ public class RestaurantClientTest {
         List<Restaurant> restaurantResult = restaurantClient.getAllRestaurants();
 
         //Then
-        Assert.assertEquals("[CLIENT, RESTAURANTS, RETRIEVED] Restaurant list not found",
+        Assertions.assertEquals("[CLIENT, RESTAURANTS, RETRIEVED] Restaurant list not found",
                 logsList.get(0).getMessage());
 
     }

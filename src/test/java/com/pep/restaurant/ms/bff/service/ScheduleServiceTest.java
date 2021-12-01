@@ -1,15 +1,14 @@
 package com.pep.restaurant.ms.bff.service;
 
-import com.pep.restaurant.ms.bff.ApplicationDataProvider;
-import com.pep.restaurant.ms.bff.client.ScheduleClient;
 import com.pep.restaurant.ms.bff.client.ScheduleClient;
 import com.pep.restaurant.ms.bff.domain.Schedule;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import com.pep.restaurant.ms.bff.provider.ApplicationDataProvider;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
-import org.mockito.junit.MockitoJUnitRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.Collections;
 import java.util.List;
@@ -17,7 +16,7 @@ import java.util.List;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-@RunWith(MockitoJUnitRunner.class)
+@ExtendWith(SpringExtension.class)
 public class ScheduleServiceTest {
 
     @InjectMocks

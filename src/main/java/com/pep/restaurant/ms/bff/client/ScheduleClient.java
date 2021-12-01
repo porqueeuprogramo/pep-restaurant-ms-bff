@@ -6,6 +6,7 @@ import com.pep.restaurant.ms.bff.logging.Logger;
 import com.pep.restaurant.ms.bff.logging.enumeration.LogTag;
 import com.pep.restaurant.ms.bff.service.mapper.ScheduleMapper;
 import com.pep.restaurant.ms.bff.web.api.model.ScheduleDTO;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -37,6 +38,7 @@ public class ScheduleClient {
     private final ScheduleMapper scheduleMapper;
     private final ApplicationProperties applicationProperties;
 
+    @Autowired
     public ScheduleClient(final RestTemplate restTemplate,
                           final ScheduleMapper scheduleMapper,
                           final ApplicationProperties applicationProperties) {

@@ -6,6 +6,7 @@ import com.pep.restaurant.ms.bff.logging.Logger;
 import com.pep.restaurant.ms.bff.logging.enumeration.LogTag;
 import com.pep.restaurant.ms.bff.service.mapper.EmployeeMapper;
 import com.pep.restaurant.ms.bff.web.api.model.EmployeeDTO;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -36,6 +37,7 @@ public class EmployeeClient {
     private final EmployeeMapper employeeMapper;
     private final ApplicationProperties applicationProperties;
 
+    @Autowired
     public EmployeeClient(final RestTemplate restTemplate,
                           final EmployeeMapper employeeMapper,
                           final ApplicationProperties applicationProperties) {

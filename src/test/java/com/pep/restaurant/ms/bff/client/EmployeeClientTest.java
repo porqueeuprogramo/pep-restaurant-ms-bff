@@ -3,23 +3,23 @@ package com.pep.restaurant.ms.bff.client;
 import ch.qos.logback.classic.Logger;
 import ch.qos.logback.classic.spi.ILoggingEvent;
 import ch.qos.logback.core.read.ListAppender;
-import com.pep.restaurant.ms.bff.ApplicationDataProvider;
 import com.pep.restaurant.ms.bff.config.ApplicationProperties;
 import com.pep.restaurant.ms.bff.domain.Employee;
+import com.pep.restaurant.ms.bff.provider.ApplicationDataProvider;
 import com.pep.restaurant.ms.bff.service.mapper.EmployeeMapper;
 import com.pep.restaurant.ms.bff.web.api.model.EmployeeDTO;
-import org.junit.Assert;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.junit.MockitoJUnitRunner;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
@@ -28,7 +28,7 @@ import java.util.List;
 
 import static org.mockito.Mockito.*;
 
-@RunWith(MockitoJUnitRunner.class)
+@ExtendWith(SpringExtension.class)
 public class EmployeeClientTest {
 
     @InjectMocks
@@ -67,10 +67,10 @@ public class EmployeeClientTest {
         Employee employeeResult = employeeClient.getEmployee(1L);
 
         //Then
-        Assert.assertEquals(employee.getId(), employeeResult.getId());
-        Assert.assertEquals(employee.getRole(), employeeResult.getRole());
-        Assert.assertEquals(employee.getRestaurantList().size(), employeeResult.getRestaurantList().size());
-        Assert.assertNotNull(employeeResult.getSchedule());
+        Assertions.assertEquals(employee.getId(), employeeResult.getId());
+        Assertions.assertEquals(employee.getRole(), employeeResult.getRole());
+        Assertions.assertEquals(employee.getRestaurantList().size(), employeeResult.getRestaurantList().size());
+        Assertions.assertNotNull(employeeResult.getSchedule());
 
     }
 
@@ -104,7 +104,7 @@ public class EmployeeClientTest {
         Employee employeeResult = employeeClient.getEmployee(1L);
 
         //Then
-        Assert.assertEquals("[CLIENT, EMPLOYEES, RETRIEVED] Employee id not found",
+        Assertions.assertEquals("[CLIENT, EMPLOYEES, RETRIEVED] Employee id not found",
                 logsList.get(0).getMessage());
 
     }
@@ -128,10 +128,10 @@ public class EmployeeClientTest {
         Employee employeeResult = employeeClient.createEmployee(employee);
 
         //Then
-        Assert.assertEquals(employee.getId(), employeeResult.getId());
-        Assert.assertEquals(employee.getRole(), employeeResult.getRole());
-        Assert.assertEquals(employee.getRestaurantList().size(), employeeResult.getRestaurantList().size());
-        Assert.assertNotNull(employeeResult.getSchedule());
+        Assertions.assertEquals(employee.getId(), employeeResult.getId());
+        Assertions.assertEquals(employee.getRole(), employeeResult.getRole());
+        Assertions.assertEquals(employee.getRestaurantList().size(), employeeResult.getRestaurantList().size());
+        Assertions.assertNotNull(employeeResult.getSchedule());
 
     }
 
@@ -164,7 +164,7 @@ public class EmployeeClientTest {
         Employee employeeResult = employeeClient.createEmployee(employee);
 
         //Then
-        Assert.assertEquals("[CLIENT, EMPLOYEES, PERSISTED] Employee was not created!!", logsList.get(0).getMessage());
+        Assertions.assertEquals("[CLIENT, EMPLOYEES, PERSISTED] Employee was not created!!", logsList.get(0).getMessage());
 
     }
 
@@ -187,10 +187,10 @@ public class EmployeeClientTest {
         Employee employeeResult = employeeClient.editEmployee(1L, employee);
 
         //Then
-        Assert.assertEquals(employee.getId(), employeeResult.getId());
-        Assert.assertEquals(employee.getRole(), employeeResult.getRole());
-        Assert.assertEquals(employee.getRestaurantList().size(), employeeResult.getRestaurantList().size());
-        Assert.assertNotNull(employeeResult.getSchedule());
+        Assertions.assertEquals(employee.getId(), employeeResult.getId());
+        Assertions.assertEquals(employee.getRole(), employeeResult.getRole());
+        Assertions.assertEquals(employee.getRestaurantList().size(), employeeResult.getRestaurantList().size());
+        Assertions.assertNotNull(employeeResult.getSchedule());
 
     }
 
@@ -223,7 +223,7 @@ public class EmployeeClientTest {
         Employee employeeResult = employeeClient.editEmployee(1L, employee);
 
         //Then
-        Assert.assertEquals("[CLIENT, EMPLOYEES, EDITED] Employee was not edited!!",
+        Assertions.assertEquals("[CLIENT, EMPLOYEES, EDITED] Employee was not edited!!",
                 logsList.get(0).getMessage());
 
     }
@@ -247,10 +247,10 @@ public class EmployeeClientTest {
         Employee employeeResult = employeeClient.addRestaurant(1L, 1L);
 
         //Then
-        Assert.assertEquals(employee.getId(), employeeResult.getId());
-        Assert.assertEquals(employee.getRole(), employeeResult.getRole());
-        Assert.assertEquals(employee.getRestaurantList().size(), employeeResult.getRestaurantList().size());
-        Assert.assertNotNull(employeeResult.getSchedule());
+        Assertions.assertEquals(employee.getId(), employeeResult.getId());
+        Assertions.assertEquals(employee.getRole(), employeeResult.getRole());
+        Assertions.assertEquals(employee.getRestaurantList().size(), employeeResult.getRestaurantList().size());
+        Assertions.assertNotNull(employeeResult.getSchedule());
 
     }
 
@@ -283,7 +283,7 @@ public class EmployeeClientTest {
         Employee employeeResult = employeeClient.addRestaurant(1L, 1L);
 
         //Then
-        Assert.assertEquals("[CLIENT, EMPLOYEES, EDITED] Employee was not added to Employee!!",
+        Assertions.assertEquals("[CLIENT, EMPLOYEES, EDITED] Employee was not added to Employee!!",
                 logsList.get(0).getMessage());
 
     }
@@ -307,10 +307,10 @@ public class EmployeeClientTest {
         Employee employeeResult = employeeClient.removeRestaurant(1L, 1L);
 
         //Then
-        Assert.assertEquals(employee.getId(), employeeResult.getId());
-        Assert.assertEquals(employee.getRole(), employeeResult.getRole());
-        Assert.assertEquals(employee.getRestaurantList().size(), employeeResult.getRestaurantList().size());
-        Assert.assertNotNull(employeeResult.getSchedule());
+        Assertions.assertEquals(employee.getId(), employeeResult.getId());
+        Assertions.assertEquals(employee.getRole(), employeeResult.getRole());
+        Assertions.assertEquals(employee.getRestaurantList().size(), employeeResult.getRestaurantList().size());
+        Assertions.assertNotNull(employeeResult.getSchedule());
 
     }
 
@@ -343,7 +343,7 @@ public class EmployeeClientTest {
         Employee employeeResult = employeeClient.removeRestaurant(1L, 1L);
 
         //Then
-        Assert.assertEquals("[CLIENT, EMPLOYEES, EDITED] Employee was not removed from Employee!!",
+        Assertions.assertEquals("[CLIENT, EMPLOYEES, EDITED] Employee was not removed from Employee!!",
                 logsList.get(0).getMessage());
 
     }
@@ -367,10 +367,10 @@ public class EmployeeClientTest {
         Employee employeeResult = employeeClient.deleteEmployee(1L);
 
         //Then
-        Assert.assertEquals(employee.getId(), employeeResult.getId());
-        Assert.assertEquals(employee.getRole(), employeeResult.getRole());
-        Assert.assertEquals(employee.getRestaurantList().size(), employeeResult.getRestaurantList().size());
-        Assert.assertNotNull(employeeResult.getSchedule());
+        Assertions.assertEquals(employee.getId(), employeeResult.getId());
+        Assertions.assertEquals(employee.getRole(), employeeResult.getRole());
+        Assertions.assertEquals(employee.getRestaurantList().size(), employeeResult.getRestaurantList().size());
+        Assertions.assertNotNull(employeeResult.getSchedule());
 
     }
 
@@ -403,7 +403,7 @@ public class EmployeeClientTest {
         Employee employeeResult = employeeClient.deleteEmployee(1L);
 
         //Then
-        Assert.assertEquals("[CLIENT, EMPLOYEES, DELETED] Employee id not found",
+        Assertions.assertEquals("[CLIENT, EMPLOYEES, DELETED] Employee id not found",
                 logsList.get(0).getMessage());
 
     }
@@ -428,10 +428,10 @@ public class EmployeeClientTest {
         List<Employee> employeeResult = employeeClient.getAllEmployees();
 
         //Then
-        Assert.assertEquals(employee.getId(), employeeResult.get(0).getId());
-        Assert.assertEquals(employee.getRole(), employeeResult.get(0).getRole());
-        Assert.assertEquals(employee.getRestaurantList().size(), employeeResult.get(0).getRestaurantList().size());
-        Assert.assertNotNull(employeeResult.get(0).getSchedule());
+        Assertions.assertEquals(employee.getId(), employeeResult.get(0).getId());
+        Assertions.assertEquals(employee.getRole(), employeeResult.get(0).getRole());
+        Assertions.assertEquals(employee.getRestaurantList().size(), employeeResult.get(0).getRestaurantList().size());
+        Assertions.assertNotNull(employeeResult.get(0).getSchedule());
 
     }
 
@@ -464,7 +464,7 @@ public class EmployeeClientTest {
         List<Employee> employeeResult = employeeClient.getAllEmployees();
 
         //Then
-        Assert.assertEquals("[CLIENT, EMPLOYEES, RETRIEVED] Employee list not found",
+        Assertions.assertEquals("[CLIENT, EMPLOYEES, RETRIEVED] Employee list not found",
                 logsList.get(0).getMessage());
 
 
