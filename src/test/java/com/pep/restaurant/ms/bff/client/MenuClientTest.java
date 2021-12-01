@@ -3,23 +3,23 @@ package com.pep.restaurant.ms.bff.client;
 import ch.qos.logback.classic.Logger;
 import ch.qos.logback.classic.spi.ILoggingEvent;
 import ch.qos.logback.core.read.ListAppender;
-import com.pep.restaurant.ms.bff.ApplicationDataProvider;
 import com.pep.restaurant.ms.bff.config.ApplicationProperties;
 import com.pep.restaurant.ms.bff.domain.Menu;
+import com.pep.restaurant.ms.bff.provider.ApplicationDataProvider;
 import com.pep.restaurant.ms.bff.service.mapper.MenuMapper;
 import com.pep.restaurant.ms.bff.web.api.model.MenuDTO;
-import org.junit.Assert;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.junit.MockitoJUnitRunner;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
@@ -28,7 +28,7 @@ import java.util.List;
 
 import static org.mockito.Mockito.*;
 
-@RunWith(MockitoJUnitRunner.class)
+@ExtendWith(SpringExtension.class)
 public class MenuClientTest {
 
     @InjectMocks
@@ -67,8 +67,8 @@ public class MenuClientTest {
         Menu menuResult = menuClient.getMenu(1L);
 
         //Then
-        Assert.assertEquals(menu.getId(), menuResult.getId());
-        Assert.assertEquals(menu.getLanguage(), menuResult.getLanguage());
+        Assertions.assertEquals(menu.getId(), menuResult.getId());
+        Assertions.assertEquals(menu.getLanguage(), menuResult.getLanguage());
 
     }
 
@@ -102,7 +102,7 @@ public class MenuClientTest {
         Menu menuResult = menuClient.getMenu(1L);
 
         //Then
-        Assert.assertEquals("[CLIENT, MENUS, RETRIEVED] Menu id not found",
+        Assertions.assertEquals("[CLIENT, MENUS, RETRIEVED] Menu id not found",
                 logsList.get(0).getMessage());
 
     }
@@ -126,8 +126,8 @@ public class MenuClientTest {
         Menu menuResult = menuClient.createMenu(menu);
 
         //Then
-        Assert.assertEquals(menu.getId(), menuResult.getId());
-        Assert.assertEquals(menu.getLanguage(), menuResult.getLanguage());
+        Assertions.assertEquals(menu.getId(), menuResult.getId());
+        Assertions.assertEquals(menu.getLanguage(), menuResult.getLanguage());
 
     }
 
@@ -160,7 +160,7 @@ public class MenuClientTest {
         Menu menuResult = menuClient.createMenu(menu);
 
         //Then
-        Assert.assertEquals("[CLIENT, MENUS, PERSISTED] Menu was not created!!",
+        Assertions.assertEquals("[CLIENT, MENUS, PERSISTED] Menu was not created!!",
                 logsList.get(0).getMessage());
 
     }
@@ -184,8 +184,8 @@ public class MenuClientTest {
         Menu menuResult = menuClient.editMenu(1L, menu);
 
         //Then
-        Assert.assertEquals(menu.getId(), menuResult.getId());
-        Assert.assertEquals(menu.getLanguage(), menuResult.getLanguage());
+        Assertions.assertEquals(menu.getId(), menuResult.getId());
+        Assertions.assertEquals(menu.getLanguage(), menuResult.getLanguage());
 
     }
 
@@ -218,7 +218,7 @@ public class MenuClientTest {
         Menu menuResult = menuClient.editMenu(1L, menu);
 
         //Then
-        Assert.assertEquals("[CLIENT, MENUS, EDITED] Menu was not edited!!",
+        Assertions.assertEquals("[CLIENT, MENUS, EDITED] Menu was not edited!!",
                 logsList.get(0).getMessage());
 
     }
@@ -242,8 +242,8 @@ public class MenuClientTest {
         Menu menuResult = menuClient.deleteMenu(1L);
 
         //Then
-        Assert.assertEquals(menu.getId(), menuResult.getId());
-        Assert.assertEquals(menu.getLanguage(), menuResult.getLanguage());
+        Assertions.assertEquals(menu.getId(), menuResult.getId());
+        Assertions.assertEquals(menu.getLanguage(), menuResult.getLanguage());
 
     }
 
@@ -276,7 +276,7 @@ public class MenuClientTest {
         Menu menuResult = menuClient.deleteMenu(1L);
 
         //Then
-        Assert.assertEquals("[CLIENT, MENUS, DELETED] Menu id not found",
+        Assertions.assertEquals("[CLIENT, MENUS, DELETED] Menu id not found",
                 logsList.get(0).getMessage());
 
     }
@@ -301,8 +301,8 @@ public class MenuClientTest {
         List<Menu> menuResult = menuClient.getAllMenus();
 
         //Then
-        Assert.assertEquals(menu.getId(), menuResult.get(0).getId());
-        Assert.assertEquals(menu.getLanguage(), menuResult.get(0).getLanguage());
+        Assertions.assertEquals(menu.getId(), menuResult.get(0).getId());
+        Assertions.assertEquals(menu.getLanguage(), menuResult.get(0).getLanguage());
 
     }
 
@@ -335,7 +335,7 @@ public class MenuClientTest {
         List<Menu> menuResult = menuClient.getAllMenus();
 
         //Then
-        Assert.assertEquals("[CLIENT, MENUS, RETRIEVED] Menu list not found",
+        Assertions.assertEquals("[CLIENT, MENUS, RETRIEVED] Menu list not found",
                 logsList.get(0).getMessage());
 
     }

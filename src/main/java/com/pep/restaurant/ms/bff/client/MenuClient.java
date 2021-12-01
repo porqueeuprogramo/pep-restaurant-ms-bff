@@ -6,6 +6,7 @@ import com.pep.restaurant.ms.bff.logging.Logger;
 import com.pep.restaurant.ms.bff.logging.enumeration.LogTag;
 import com.pep.restaurant.ms.bff.service.mapper.MenuMapper;
 import com.pep.restaurant.ms.bff.web.api.model.MenuDTO;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -33,6 +34,7 @@ public class MenuClient {
     private final MenuMapper menuMapper;
     private final ApplicationProperties applicationProperties;
 
+    @Autowired
     public MenuClient(final RestTemplate restTemplate,
                       final MenuMapper menuMapper,
                       final ApplicationProperties applicationProperties) {

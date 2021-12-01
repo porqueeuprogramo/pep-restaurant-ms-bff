@@ -1,4 +1,4 @@
-package com.pep.restaurant.ms.bff;
+package com.pep.restaurant.ms.bff.provider;
 
 import org.keycloak.representations.idm.CredentialRepresentation;
 import org.keycloak.representations.idm.UserRepresentation;

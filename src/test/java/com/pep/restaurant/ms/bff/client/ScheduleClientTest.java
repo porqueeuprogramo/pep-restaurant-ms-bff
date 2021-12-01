@@ -3,35 +3,32 @@ package com.pep.restaurant.ms.bff.client;
 import ch.qos.logback.classic.Logger;
 import ch.qos.logback.classic.spi.ILoggingEvent;
 import ch.qos.logback.core.read.ListAppender;
-import com.pep.restaurant.ms.bff.ApplicationDataProvider;
 import com.pep.restaurant.ms.bff.config.ApplicationProperties;
 import com.pep.restaurant.ms.bff.domain.Schedule;
+import com.pep.restaurant.ms.bff.provider.ApplicationDataProvider;
 import com.pep.restaurant.ms.bff.service.mapper.ScheduleMapper;
 import com.pep.restaurant.ms.bff.web.api.model.ScheduleDTO;
-import org.junit.Assert;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.junit.MockitoJUnitRunner;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.Collections;
 import java.util.List;
 
-import static org.mockito.Mockito.when;
-import static org.mockito.Mockito.anyString;
-import static org.mockito.Mockito.any;
-import static org.mockito.Mockito.anyMap;
+import static org.mockito.Mockito.*;
 
-@RunWith(MockitoJUnitRunner.class)
+@ExtendWith(SpringExtension.class)
 public class ScheduleClientTest {
 
     @InjectMocks
@@ -70,9 +67,9 @@ public class ScheduleClientTest {
         Schedule scheduleResult = scheduleClient.getSchedule(1L);
 
         //Then
-        Assert.assertEquals(schedule.getId(), scheduleResult.getId());
-        Assert.assertEquals(schedule.getType().name(), scheduleResult.getType().name());
-        Assert.assertEquals(schedule.getEmployeeList().size(), scheduleResult.getEmployeeList().size());
+        Assertions.assertEquals(schedule.getId(), scheduleResult.getId());
+        Assertions.assertEquals(schedule.getType().name(), scheduleResult.getType().name());
+        Assertions.assertEquals(schedule.getEmployeeList().size(), scheduleResult.getEmployeeList().size());
 
     }
 
@@ -106,7 +103,7 @@ public class ScheduleClientTest {
         Schedule scheduleResult = scheduleClient.getSchedule(1L);
 
         //Then
-        Assert.assertEquals("[CLIENT, SCHEDULES, RETRIEVED] Schedule id not found",
+        Assertions.assertEquals("[CLIENT, SCHEDULES, RETRIEVED] Schedule id not found",
                 logsList.get(0).getMessage());
 
     }
@@ -130,9 +127,9 @@ public class ScheduleClientTest {
         Schedule scheduleResult = scheduleClient.createSchedule(schedule);
 
         //Then
-        Assert.assertEquals(schedule.getId(), scheduleResult.getId());
-        Assert.assertEquals(schedule.getType().name(), scheduleResult.getType().name());
-        Assert.assertEquals(schedule.getEmployeeList().size(), scheduleResult.getEmployeeList().size());
+        Assertions.assertEquals(schedule.getId(), scheduleResult.getId());
+        Assertions.assertEquals(schedule.getType().name(), scheduleResult.getType().name());
+        Assertions.assertEquals(schedule.getEmployeeList().size(), scheduleResult.getEmployeeList().size());
 
     }
 
@@ -165,7 +162,7 @@ public class ScheduleClientTest {
         Schedule scheduleResult = scheduleClient.createSchedule(schedule);
 
         //Then
-        Assert.assertEquals("[CLIENT, SCHEDULES, PERSISTED] Schedule was not created!!",
+        Assertions.assertEquals("[CLIENT, SCHEDULES, PERSISTED] Schedule was not created!!",
                 logsList.get(0).getMessage());
 
     }
@@ -190,9 +187,9 @@ public class ScheduleClientTest {
         Schedule scheduleResult = scheduleClient.editSchedule(1L, schedule);
 
         //Then
-        Assert.assertEquals(schedule.getId(), scheduleResult.getId());
-        Assert.assertEquals(schedule.getType().name(), scheduleResult.getType().name());
-        Assert.assertEquals(schedule.getEmployeeList().size(), scheduleResult.getEmployeeList().size());
+        Assertions.assertEquals(schedule.getId(), scheduleResult.getId());
+        Assertions.assertEquals(schedule.getType().name(), scheduleResult.getType().name());
+        Assertions.assertEquals(schedule.getEmployeeList().size(), scheduleResult.getEmployeeList().size());
 
     }
 
@@ -225,7 +222,7 @@ public class ScheduleClientTest {
         Schedule scheduleResult = scheduleClient.editSchedule(1L, schedule);
 
         //Then
-        Assert.assertEquals("[CLIENT, SCHEDULES, EDITED] Schedule was not edited!!",
+        Assertions.assertEquals("[CLIENT, SCHEDULES, EDITED] Schedule was not edited!!",
                 logsList.get(0).getMessage());
 
     }
@@ -249,9 +246,9 @@ public class ScheduleClientTest {
         Schedule scheduleResult = scheduleClient.addEmployee(1L, 1L);
 
         //Then
-        Assert.assertEquals(schedule.getId(), scheduleResult.getId());
-        Assert.assertEquals(schedule.getType().name(), scheduleResult.getType().name());
-        Assert.assertEquals(schedule.getEmployeeList().size(), scheduleResult.getEmployeeList().size());
+        Assertions.assertEquals(schedule.getId(), scheduleResult.getId());
+        Assertions.assertEquals(schedule.getType().name(), scheduleResult.getType().name());
+        Assertions.assertEquals(schedule.getEmployeeList().size(), scheduleResult.getEmployeeList().size());
 
     }
 
@@ -284,7 +281,7 @@ public class ScheduleClientTest {
         Schedule scheduleResult = scheduleClient.addEmployee(1L, 1L);
 
         //Then
-        Assert.assertEquals("[CLIENT, SCHEDULES, EDITED] Employee was not added to Schedule!!",
+        Assertions.assertEquals("[CLIENT, SCHEDULES, EDITED] Employee was not added to Schedule!!",
                 logsList.get(0).getMessage());
 
     }
@@ -308,9 +305,9 @@ public class ScheduleClientTest {
         Schedule scheduleResult = scheduleClient.removeEmployee(1L, 1L);
 
         //Then
-        Assert.assertEquals(schedule.getId(), scheduleResult.getId());
-        Assert.assertEquals(schedule.getType().name(), scheduleResult.getType().name());
-        Assert.assertEquals(schedule.getEmployeeList().size(), scheduleResult.getEmployeeList().size());
+        Assertions.assertEquals(schedule.getId(), scheduleResult.getId());
+        Assertions.assertEquals(schedule.getType().name(), scheduleResult.getType().name());
+        Assertions.assertEquals(schedule.getEmployeeList().size(), scheduleResult.getEmployeeList().size());
 
     }
 
@@ -343,7 +340,7 @@ public class ScheduleClientTest {
         Schedule scheduleResult = scheduleClient.removeEmployee(1L, 1L);
 
         //Then
-        Assert.assertEquals("[CLIENT, SCHEDULES, EDITED] Employee was not removed from Schedule!!",
+        Assertions.assertEquals("[CLIENT, SCHEDULES, EDITED] Employee was not removed from Schedule!!",
                 logsList.get(0).getMessage());
 
     }
@@ -367,9 +364,9 @@ public class ScheduleClientTest {
         Schedule scheduleResult = scheduleClient.deleteSchedule(1L);
 
         //Then
-        Assert.assertEquals(schedule.getId(), scheduleResult.getId());
-        Assert.assertEquals(schedule.getType().name(), scheduleResult.getType().name());
-        Assert.assertEquals(schedule.getEmployeeList().size(), scheduleResult.getEmployeeList().size());
+        Assertions.assertEquals(schedule.getId(), scheduleResult.getId());
+        Assertions.assertEquals(schedule.getType().name(), scheduleResult.getType().name());
+        Assertions.assertEquals(schedule.getEmployeeList().size(), scheduleResult.getEmployeeList().size());
 
     }
 
@@ -402,7 +399,7 @@ public class ScheduleClientTest {
         Schedule scheduleResult = scheduleClient.deleteSchedule(1L);
 
         //Then
-        Assert.assertEquals("[CLIENT, SCHEDULES, DELETED] Schedule id not found",
+        Assertions.assertEquals("[CLIENT, SCHEDULES, DELETED] Schedule id not found",
                 logsList.get(0).getMessage());
 
     }
@@ -427,9 +424,9 @@ public class ScheduleClientTest {
         List<Schedule> scheduleResult = scheduleClient.getAllSchedules();
 
         //Then
-        Assert.assertEquals(schedule.getId(), scheduleResult.get(0).getId());
-        Assert.assertEquals(schedule.getType().name(), scheduleResult.get(0).getType().name());
-        Assert.assertEquals(schedule.getEmployeeList().size(), scheduleResult.get(0).getEmployeeList().size());
+        Assertions.assertEquals(schedule.getId(), scheduleResult.get(0).getId());
+        Assertions.assertEquals(schedule.getType().name(), scheduleResult.get(0).getType().name());
+        Assertions.assertEquals(schedule.getEmployeeList().size(), scheduleResult.get(0).getEmployeeList().size());
 
     }
 
@@ -462,7 +459,7 @@ public class ScheduleClientTest {
         List<Schedule> scheduleResult = scheduleClient.getAllSchedules();
 
         //Then
-        Assert.assertEquals("[CLIENT, SCHEDULES, RETRIEVED] Schedule list not found",
+        Assertions.assertEquals("[CLIENT, SCHEDULES, RETRIEVED] Schedule list not found",
                 logsList.get(0).getMessage());
 
     }

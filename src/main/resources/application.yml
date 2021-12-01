@@ -7,18 +7,12 @@ spring:
     exclude: org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
   jackson:
     default-property-inclusion: NON_NULL
+  profiles:
+    active: dev
 server:
   port: 8080
   servlet:
     context-path: /pep/restaurant/bff
-keycloak:
-  realm: ${KEYCLOAK_REALM:peprestaurant}
-  auth-server-url: ${KEYCLOAK_SERVER_URL:http://localhost:8081/auth}
-  ssl-required: external
-  resource: ${KEYCLOAK_CLIENT_ID:peprestaurant}
-  credentials:
-    secret: ${KEYCLOAK_CLIENT_SECRET:afb48af0-a6b9-44b7-ba43-328f3e5a6555}
-  use-resource-role-mappings: true
 
 application:
   keycloak:

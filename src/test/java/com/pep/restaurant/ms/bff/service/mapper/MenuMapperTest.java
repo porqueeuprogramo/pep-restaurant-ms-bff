@@ -1,18 +1,18 @@
 package com.pep.restaurant.ms.bff.service.mapper;
 
-import com.pep.restaurant.ms.bff.ApplicationDataProvider;
 import com.pep.restaurant.ms.bff.domain.Menu;
+import com.pep.restaurant.ms.bff.provider.ApplicationDataProvider;
 import com.pep.restaurant.ms.bff.web.api.model.MenuDTO;
-import org.junit.Assert;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
-import org.mockito.junit.MockitoJUnitRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.Collections;
 import java.util.List;
 
-@RunWith(MockitoJUnitRunner.class)
+@ExtendWith(SpringExtension.class)
 public class MenuMapperTest {
 
     @InjectMocks
@@ -29,14 +29,14 @@ public class MenuMapperTest {
         List<MenuDTO> menuDTOResultList = menuMapper.mapMenuListToMenuDTOList(menuGivenList);
 
         //Then
-        Assert.assertEquals(menuGivenList.get(0).getId(), menuDTOResultList.get(0).getId().longValue());
-        Assert.assertEquals(menuGivenList.get(0).getLanguage(), menuDTOResultList.get(0).getLanguage());
+        Assertions.assertEquals(menuGivenList.get(0).getId(), menuDTOResultList.get(0).getId().longValue());
+        Assertions.assertEquals(menuGivenList.get(0).getLanguage(), menuDTOResultList.get(0).getLanguage());
 
     }
 
     @Test
     public void passingAnMenuListNull_checkThatMenuDTOListIsNull() {
-        Assert.assertNull(menuMapper.mapMenuListToMenuDTOList(null));
+        Assertions.assertNull(menuMapper.mapMenuListToMenuDTOList(null));
     }
 
     @Test
@@ -48,13 +48,13 @@ public class MenuMapperTest {
         MenuDTO menuDTOResult = menuMapper.mapMenuToMenuDTO(menuGiven);
 
         //Then
-        Assert.assertEquals(menuGiven.getId(), menuDTOResult.getId().longValue());
-        Assert.assertEquals(menuGiven.getLanguage(), menuDTOResult.getLanguage());
+        Assertions.assertEquals(menuGiven.getId(), menuDTOResult.getId().longValue());
+        Assertions.assertEquals(menuGiven.getLanguage(), menuDTOResult.getLanguage());
     }
 
     @Test
     public void passingAnMenuNull_checkThatMenuDTOIsNull() {
-        Assert.assertNull(menuMapper.mapMenuToMenuDTO(null));
+        Assertions.assertNull(menuMapper.mapMenuToMenuDTO(null));
     }
 
     @Test
@@ -66,13 +66,13 @@ public class MenuMapperTest {
         Menu menuResult = menuMapper.mapMenuDTOToMenu(menuDTOGiven);
 
         //Then
-        Assert.assertEquals(menuDTOGiven.getId().longValue(), menuResult.getId());
-        Assert.assertEquals(menuDTOGiven.getLanguage(), menuResult.getLanguage());
+        Assertions.assertEquals(menuDTOGiven.getId().longValue(), menuResult.getId());
+        Assertions.assertEquals(menuDTOGiven.getLanguage(), menuResult.getLanguage());
     }
 
     @Test
     public void passingAnMenuDTONull_checkThatMenuIsNull() {
-        Assert.assertNull(menuMapper.mapMenuDTOToMenu(null));
+        Assertions.assertNull(menuMapper.mapMenuDTOToMenu(null));
     }
 
     @Test
@@ -84,14 +84,14 @@ public class MenuMapperTest {
         List<Menu> menuResultList = menuMapper.mapMenuDTOListToMenuList(menuGivenListDTO);
 
         //Then
-        Assert.assertEquals(menuGivenListDTO.get(0).getId().longValue(), menuResultList.get(0).getId());
-        Assert.assertEquals(menuGivenListDTO.get(0).getLanguage(), menuResultList.get(0).getLanguage());
+        Assertions.assertEquals(menuGivenListDTO.get(0).getId().longValue(), menuResultList.get(0).getId());
+        Assertions.assertEquals(menuGivenListDTO.get(0).getLanguage(), menuResultList.get(0).getLanguage());
 
     }
 
     @Test
     public void passingAnMenuDTOListNull_checkThatMenuListIsNull() {
-        Assert.assertNull(menuMapper.mapMenuDTOListToMenuList(null));
+        Assertions.assertNull(menuMapper.mapMenuDTOListToMenuList(null));
     }
 
 }
