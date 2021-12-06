@@ -106,7 +106,7 @@ public class RestaurantClientTest {
 
         //Then
         Assertions.assertEquals("[CLIENT, RESTAURANTS, RETRIEVED] Restaurant id not found",
-                logsList.get(0).getMessage());
+                logsList.get(1).getMessage());
     }
 
 
@@ -167,7 +167,7 @@ public class RestaurantClientTest {
 
         //Then
         Assertions.assertEquals("[CLIENT, RESTAURANTS, PERSISTED] Restaurant was not created!!",
-                logsList.get(0).getMessage());
+                logsList.get(1).getMessage());
 
     }
 
@@ -228,7 +228,7 @@ public class RestaurantClientTest {
 
         //Then
         Assertions.assertEquals("[CLIENT, RESTAURANTS, EDITED] Restaurant was not edited!!",
-                logsList.get(0).getMessage());
+                logsList.get(1).getMessage());
     }
 
     @Test
@@ -288,7 +288,7 @@ public class RestaurantClientTest {
 
         //Then
         Assertions.assertEquals("[CLIENT, RESTAURANTS, EDITED] Employee was not added to Restaurant!!",
-                logsList.get(0).getMessage());
+                logsList.get(1).getMessage());
     }
 
     @Test
@@ -348,7 +348,7 @@ public class RestaurantClientTest {
 
         //Then
         Assertions.assertEquals("[CLIENT, RESTAURANTS, EDITED] Employee was not removed from Restaurant!!",
-                logsList.get(0).getMessage());
+                logsList.get(1).getMessage());
     }
 
     @Test
@@ -408,7 +408,7 @@ public class RestaurantClientTest {
 
         //Then
         Assertions.assertEquals("[CLIENT, RESTAURANTS, DELETED] Restaurant id not found",
-                logsList.get(0).getMessage());
+                logsList.get(1).getMessage());
 
     }
 
@@ -470,7 +470,7 @@ public class RestaurantClientTest {
 
         //Then
         Assertions.assertEquals("[CLIENT, RESTAURANTS, RETRIEVED] Restaurant list not found",
-                logsList.get(0).getMessage());
+                logsList.get(1).getMessage());
 
     }
 

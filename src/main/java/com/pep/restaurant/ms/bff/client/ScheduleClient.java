@@ -22,6 +22,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 
 @Component
@@ -54,14 +55,19 @@ public class ScheduleClient {
      */
     public Schedule getSchedule(final long scheduleId){
         final String url =  applicationProperties.getMsManager().getUrl().concat(SCHEDULE_SCHEDULE_ID);
+        final String correlationId = UUID.randomUUID().toString();
         ScheduleDTO scheduleDTO = null;
 
         final HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
+        headers.set("Correlation-Id", correlationId);
 
         final HttpEntity requestGetScheduleId = new HttpEntity(headers);
         final Map<String, String> params = new HashMap<>();
         params.put("scheduleId", String.valueOf(scheduleId));
+
+        LOGGER.info(correlationId, Arrays.asList(LogTag.CLIENT, LogTag.SCHEDULES, LogTag.RETRIEVED),
+                "Get Schedule by id: " + scheduleId);
 
         try{
             final ResponseEntity<ScheduleDTO> responseSchedule = restTemplate.exchange(url, HttpMethod.GET,
@@ -86,14 +92,19 @@ public class ScheduleClient {
      */
     public Schedule createSchedule(final Schedule schedule){
         final String url =  applicationProperties.getMsManager().getUrl().concat(SCHEDULE);
+        final String correlationId = UUID.randomUUID().toString();
         ScheduleDTO scheduleDTO = null;
 
         final ScheduleDTO requestScheduleDTO = scheduleMapper.mapScheduleToScheduleDTO(schedule);
 
         final HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
+        headers.set("Correlation-Id", correlationId);
 
         final HttpEntity<ScheduleDTO> requestCreateScheduleClient = new HttpEntity(requestScheduleDTO ,headers);
+
+        LOGGER.info(correlationId, Arrays.asList(LogTag.CLIENT, LogTag.SCHEDULES, LogTag.PERSISTED),
+                "Create Schedule: " + schedule.toString());
 
         try{
             final ResponseEntity<ScheduleDTO> responseScheduleCreated = restTemplate.exchange(url, HttpMethod.POST,
@@ -117,16 +128,21 @@ public class ScheduleClient {
      */
     public Schedule editSchedule(final long scheduleId, final Schedule schedule){
         final String url =  applicationProperties.getMsManager().getUrl().concat(SCHEDULE_SCHEDULE_ID);
+        final String correlationId = UUID.randomUUID().toString();
         ScheduleDTO scheduleDTO = null;
 
         final ScheduleDTO requestScheduleDTO = scheduleMapper.mapScheduleToScheduleDTO(schedule);
 
         final HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
+        headers.set("Correlation-Id", correlationId);
 
         final HttpEntity<ScheduleDTO> requestEditScheduleClient = new HttpEntity(requestScheduleDTO ,headers);
         final Map<String, String> params = new HashMap<>();
         params.put("scheduleId", String.valueOf(scheduleId));
+
+        LOGGER.info(correlationId, Arrays.asList(LogTag.CLIENT, LogTag.SCHEDULES, LogTag.EDITED),
+                "Edit Schedule by id " + scheduleId);
 
         try{
             final ResponseEntity<ScheduleDTO> responseScheduleEdited = restTemplate.exchange(url, HttpMethod.PUT,
@@ -151,15 +167,20 @@ public class ScheduleClient {
     public Schedule addEmployee(final Long scheduleId, final Long employeeId) {
         final String url =  applicationProperties.getMsManager().getUrl()
                 .concat(SCHEDULE_ADD_EMPLOYEE_SCHEDULE_ID_EMPLOYEE_ID);
+        final String correlationId = UUID.randomUUID().toString();
         ScheduleDTO scheduleDTO = null;
 
         final HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
+        headers.set("Correlation-Id", correlationId);
 
         final HttpEntity requestAddEmployeeToScheduleClient = new HttpEntity(headers);
         final Map<String, String> params = new HashMap<>();
         params.put("scheduleId", String.valueOf(scheduleId));
         params.put("employeeId", String.valueOf(employeeId));
+
+        LOGGER.info(correlationId, Arrays.asList(LogTag.CLIENT, LogTag.SCHEDULES, LogTag.EDITED),
+                "Add Employee with id: " + employeeId + " to Schedule with id: " + scheduleId);
 
         try{
             final ResponseEntity<ScheduleDTO> responseScheduleWithEmployeeAdded = restTemplate.exchange(url,
@@ -186,15 +207,20 @@ public class ScheduleClient {
     public Schedule removeEmployee(final Long scheduleId, final Long employeeId) {
         final String url =  applicationProperties.getMsManager().getUrl()
                 .concat(SCHEDULE_REMOVE_EMPLOYEE_SCHEDULE_ID_EMPLOYEE_ID);
+        final String correlationId = UUID.randomUUID().toString();
         ScheduleDTO scheduleDTO = null;
 
         final HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
+        headers.set("Correlation-Id", correlationId);
 
         final HttpEntity requestAddEmployeeToScheduleClient = new HttpEntity(headers);
         final Map<String, String> params = new HashMap<>();
         params.put("scheduleId", String.valueOf(scheduleId));
         params.put("employeeId", String.valueOf(employeeId));
+
+        LOGGER.info(correlationId, Arrays.asList(LogTag.CLIENT, LogTag.SCHEDULES, LogTag.EDITED),
+                "Remove Employee with id: " + employeeId + " from Schedule with id: " + scheduleId);
 
         try{
             final ResponseEntity<ScheduleDTO> responseScheduleWithEmployeeAdded = restTemplate.exchange(url,
@@ -219,6 +245,7 @@ public class ScheduleClient {
      */
     public Schedule deleteSchedule(final Long scheduleId) {
         final String url =  applicationProperties.getMsManager().getUrl().concat(SCHEDULE_SCHEDULE_ID);
+        final String correlationId = UUID.randomUUID().toString();
         ScheduleDTO scheduleDTO = null;
 
         final HttpHeaders headers = new HttpHeaders();
@@ -227,6 +254,10 @@ public class ScheduleClient {
         final HttpEntity requestGetScheduleId = new HttpEntity(headers);
         final Map<String, String> params = new HashMap<>();
         params.put("scheduleId", String.valueOf(scheduleId));
+        headers.set("Correlation-Id", correlationId);
+
+        LOGGER.info(correlationId, Arrays.asList(LogTag.CLIENT, LogTag.SCHEDULES, LogTag.DELETED),
+                "Delete Schedule by id: " + scheduleId);
 
         try{
             final ResponseEntity<ScheduleDTO> responseSchedule = restTemplate.exchange(url, HttpMethod.DELETE,
@@ -250,12 +281,17 @@ public class ScheduleClient {
      */
     public List<Schedule> getAllSchedules() {
         final String url =  applicationProperties.getMsManager().getUrl().concat(SCHEDULE);
+        final String correlationId = UUID.randomUUID().toString();
         List<ScheduleDTO> scheduleDTOList = null;
 
         final HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
+        headers.set("Correlation-Id", correlationId);
 
         final HttpEntity requestGetScheduleId = new HttpEntity(headers);
+
+        LOGGER.info(correlationId, Arrays.asList(LogTag.CLIENT, LogTag.SCHEDULES, LogTag.RETRIEVED),
+                "Get All Schedules list");
 
         try{
             final ResponseEntity<List<ScheduleDTO>> responseSchedule = restTemplate.exchange(url, HttpMethod.GET,

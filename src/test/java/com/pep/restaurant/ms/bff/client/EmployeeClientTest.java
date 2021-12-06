@@ -105,7 +105,7 @@ public class EmployeeClientTest {
 
         //Then
         Assertions.assertEquals("[CLIENT, EMPLOYEES, RETRIEVED] Employee id not found",
-                logsList.get(0).getMessage());
+                logsList.get(1).getMessage());
 
     }
 
@@ -164,7 +164,7 @@ public class EmployeeClientTest {
         Employee employeeResult = employeeClient.createEmployee(employee);
 
         //Then
-        Assertions.assertEquals("[CLIENT, EMPLOYEES, PERSISTED] Employee was not created!!", logsList.get(0).getMessage());
+        Assertions.assertEquals("[CLIENT, EMPLOYEES, PERSISTED] Employee was not created!!", logsList.get(1).getMessage());
 
     }
 
@@ -224,7 +224,7 @@ public class EmployeeClientTest {
 
         //Then
         Assertions.assertEquals("[CLIENT, EMPLOYEES, EDITED] Employee was not edited!!",
-                logsList.get(0).getMessage());
+                logsList.get(1).getMessage());
 
     }
 
@@ -284,7 +284,7 @@ public class EmployeeClientTest {
 
         //Then
         Assertions.assertEquals("[CLIENT, EMPLOYEES, EDITED] Employee was not added to Employee!!",
-                logsList.get(0).getMessage());
+                logsList.get(1).getMessage());
 
     }
 
@@ -344,7 +344,7 @@ public class EmployeeClientTest {
 
         //Then
         Assertions.assertEquals("[CLIENT, EMPLOYEES, EDITED] Employee was not removed from Employee!!",
-                logsList.get(0).getMessage());
+                logsList.get(1).getMessage());
 
     }
 
@@ -404,7 +404,7 @@ public class EmployeeClientTest {
 
         //Then
         Assertions.assertEquals("[CLIENT, EMPLOYEES, DELETED] Employee id not found",
-                logsList.get(0).getMessage());
+                logsList.get(1).getMessage());
 
     }
 
@@ -465,7 +465,7 @@ public class EmployeeClientTest {
 
         //Then
         Assertions.assertEquals("[CLIENT, EMPLOYEES, RETRIEVED] Employee list not found",
-                logsList.get(0).getMessage());
+                logsList.get(1).getMessage());
 
 
     }

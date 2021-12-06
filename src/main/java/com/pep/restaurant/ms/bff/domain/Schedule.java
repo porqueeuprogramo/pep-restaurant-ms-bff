@@ -109,6 +109,14 @@ public class Schedule {
         employee.setSchedule(null);
     }
 
+    @Override
+    public String toString() {
+        return "Schedule{" +
+                "id=" + id +
+                ", type=" + type +
+                ", employeeList=" + employeeList +
+                '}';
+    }
 }
 
 

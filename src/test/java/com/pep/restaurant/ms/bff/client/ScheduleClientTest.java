@@ -104,7 +104,7 @@ public class ScheduleClientTest {
 
         //Then
         Assertions.assertEquals("[CLIENT, SCHEDULES, RETRIEVED] Schedule id not found",
-                logsList.get(0).getMessage());
+                logsList.get(1).getMessage());
 
     }
 
@@ -163,7 +163,7 @@ public class ScheduleClientTest {
 
         //Then
         Assertions.assertEquals("[CLIENT, SCHEDULES, PERSISTED] Schedule was not created!!",
-                logsList.get(0).getMessage());
+                logsList.get(1).getMessage());
 
     }
 
@@ -223,7 +223,7 @@ public class ScheduleClientTest {
 
         //Then
         Assertions.assertEquals("[CLIENT, SCHEDULES, EDITED] Schedule was not edited!!",
-                logsList.get(0).getMessage());
+                logsList.get(1).getMessage());
 
     }
 
@@ -282,7 +282,7 @@ public class ScheduleClientTest {
 
         //Then
         Assertions.assertEquals("[CLIENT, SCHEDULES, EDITED] Employee was not added to Schedule!!",
-                logsList.get(0).getMessage());
+                logsList.get(1).getMessage());
 
     }
 
@@ -341,7 +341,7 @@ public class ScheduleClientTest {
 
         //Then
         Assertions.assertEquals("[CLIENT, SCHEDULES, EDITED] Employee was not removed from Schedule!!",
-                logsList.get(0).getMessage());
+                logsList.get(1).getMessage());
 
     }
 
@@ -400,7 +400,7 @@ public class ScheduleClientTest {
 
         //Then
         Assertions.assertEquals("[CLIENT, SCHEDULES, DELETED] Schedule id not found",
-                logsList.get(0).getMessage());
+                logsList.get(1).getMessage());
 
     }
 
@@ -460,7 +460,7 @@ public class ScheduleClientTest {
 
         //Then
         Assertions.assertEquals("[CLIENT, SCHEDULES, RETRIEVED] Schedule list not found",
-                logsList.get(0).getMessage());
+                logsList.get(1).getMessage());
 
     }
 

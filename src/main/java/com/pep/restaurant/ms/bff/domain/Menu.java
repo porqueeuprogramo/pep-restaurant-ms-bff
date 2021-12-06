@@ -55,4 +55,12 @@ public class Menu {
         this.language = language;
         return this;
     }
+
+    @Override
+    public String toString() {
+        return "Menu{" +
+                "id=" + id +
+                ", language='" + language + '\'' +
+                '}';
+    }
 }

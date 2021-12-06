@@ -22,6 +22,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 
 @Component
@@ -54,14 +55,19 @@ public class RestaurantClient {
      */
     public Restaurant getRestaurant(final long restaurantId){
         final String url =  applicationProperties.getMsManager().getUrl().concat(RESTAURANT_RESTAURANT_ID);
+        final String correlationId = UUID.randomUUID().toString();
         RestaurantDTO restaurantDTO = null;
 
         final HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
+        headers.set("Correlation-Id", correlationId);
 
         final HttpEntity requestGetRestaurantId = new HttpEntity(headers);
         final Map<String, String> params = new HashMap<>();
         params.put("restaurantId", String.valueOf(restaurantId));
+
+        LOGGER.info(correlationId, Arrays.asList(LogTag.CLIENT, LogTag.RESTAURANTS, LogTag.RETRIEVED),
+                "Get Restaurant by id: " + restaurantId);
 
         try{
             final ResponseEntity<RestaurantDTO> responseRestaurant = restTemplate.exchange(url, HttpMethod.GET,
@@ -86,14 +92,19 @@ public class RestaurantClient {
      */
     public Restaurant createRestaurant(final Restaurant restaurant){
         final String url =  applicationProperties.getMsManager().getUrl().concat(RESTAURANT);
+        final String correlationId = UUID.randomUUID().toString();
         RestaurantDTO restaurantDTO = null;
 
         final RestaurantDTO requestRestaurantDTO = restaurantMapper.mapRestaurantToRestaurantDTO(restaurant);
 
         final HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
+        headers.set("Correlation-Id", correlationId);
 
         final HttpEntity<RestaurantDTO> requestCreateRestaurantClient = new HttpEntity(requestRestaurantDTO ,headers);
+
+        LOGGER.info(correlationId, Arrays.asList(LogTag.CLIENT, LogTag.RESTAURANTS, LogTag.PERSISTED),
+                "Create Restaurant: " + restaurant.toString());
 
         try{
             final ResponseEntity<RestaurantDTO> responseRestaurantCreated = restTemplate.exchange(url, HttpMethod.POST,
@@ -117,16 +128,21 @@ public class RestaurantClient {
      */
     public Restaurant editRestaurant(final long restaurantId, final Restaurant restaurant){
         final String url =  applicationProperties.getMsManager().getUrl().concat(RESTAURANT_RESTAURANT_ID);
+        final String correlationId = UUID.randomUUID().toString();
         RestaurantDTO restaurantDTO = null;
 
         final RestaurantDTO requestRestaurantDTO = restaurantMapper.mapRestaurantToRestaurantDTO(restaurant);
 
         final HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
+        headers.set("Correlation-Id", correlationId);
 
         final HttpEntity<RestaurantDTO> requestEditRestaurantClient = new HttpEntity(requestRestaurantDTO ,headers);
         final Map<String, String> params = new HashMap<>();
         params.put("restaurantId", String.valueOf(restaurantId));
+
+        LOGGER.info(correlationId, Arrays.asList(LogTag.CLIENT, LogTag.RESTAURANTS, LogTag.EDITED),
+                "Edit Restaurant by id " + restaurantId);
 
         try{
             final ResponseEntity<RestaurantDTO> responseRestaurantEdited = restTemplate.exchange(url, HttpMethod.PUT,
@@ -151,15 +167,20 @@ public class RestaurantClient {
     public Restaurant addEmployee(final Long restaurantId, final Long employeeId) {
         final String url =  applicationProperties.getMsManager().getUrl()
                 .concat(RESTAURANT_ADD_EMPLOYEE_RESTAURANT_ID_EMPLOYEE_ID);
+        final String correlationId = UUID.randomUUID().toString();
         RestaurantDTO restaurantDTO = null;
 
         final HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
+        headers.set("Correlation-Id", correlationId);
 
         final HttpEntity requestAddEmployeeToRestaurantClient = new HttpEntity(headers);
         final Map<String, String> params = new HashMap<>();
         params.put("restaurantId", String.valueOf(restaurantId));
         params.put("employeeId", String.valueOf(employeeId));
+
+        LOGGER.info(correlationId, Arrays.asList(LogTag.CLIENT, LogTag.RESTAURANTS, LogTag.EDITED),
+                "Add Employee with id: " + employeeId + " to Restaurant with id: " + restaurantId);
 
         try{
             final ResponseEntity<RestaurantDTO> responseRestaurantWithEmployeeAdded = restTemplate.exchange(url,
@@ -186,15 +207,20 @@ public class RestaurantClient {
     public Restaurant removeEmployee(final Long restaurantId, final Long employeeId) {
         final String url =  applicationProperties.getMsManager().getUrl()
                 .concat(RESTAURANT_REMOVE_EMPLOYEE_RESTAURANT_ID_EMPLOYEE_ID);
+        final String correlationId = UUID.randomUUID().toString();
         RestaurantDTO restaurantDTO = null;
 
         final HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
+        headers.set("Correlation-Id", correlationId);
 
         final HttpEntity requestAddEmployeeToRestaurantClient = new HttpEntity(headers);
         final Map<String, String> params = new HashMap<>();
         params.put("restaurantId", String.valueOf(restaurantId));
         params.put("employeeId", String.valueOf(employeeId));
+
+        LOGGER.info(correlationId, Arrays.asList(LogTag.CLIENT, LogTag.RESTAURANTS, LogTag.EDITED),
+                "Remove Employee with id: " + employeeId + " from Restaurant with id: " + restaurantId);
 
         try{
             final ResponseEntity<RestaurantDTO> responseRestaurantWithEmployeeAdded = restTemplate.exchange(url,
@@ -219,14 +245,19 @@ public class RestaurantClient {
      */
     public Restaurant deleteRestaurant(final Long restaurantId) {
         final String url =  applicationProperties.getMsManager().getUrl().concat(RESTAURANT_RESTAURANT_ID);
+        final String correlationId = UUID.randomUUID().toString();
         RestaurantDTO restaurantDTO = null;
 
         final HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
+        headers.set("Correlation-Id", correlationId);
 
         final HttpEntity requestGetRestaurantId = new HttpEntity(headers);
         final Map<String, String> params = new HashMap<>();
         params.put("restaurantId", String.valueOf(restaurantId));
+
+        LOGGER.info(correlationId, Arrays.asList(LogTag.CLIENT, LogTag.RESTAURANTS, LogTag.DELETED),
+                "Delete Restaurant by id: " + restaurantId);
 
         try{
             final ResponseEntity<RestaurantDTO> responseRestaurant = restTemplate.exchange(url, HttpMethod.DELETE,
@@ -250,12 +281,17 @@ public class RestaurantClient {
      */
     public List<Restaurant> getAllRestaurants() {
         final String url =  applicationProperties.getMsManager().getUrl().concat(RESTAURANT);
+        final String correlationId = UUID.randomUUID().toString();
         List<RestaurantDTO> restaurantDTOList = null;
 
         final HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
+        headers.set("Correlation-Id", correlationId);
 
         final HttpEntity requestGetRestaurantId = new HttpEntity(headers);
+
+        LOGGER.info(correlationId, Arrays.asList(LogTag.CLIENT, LogTag.RESTAURANTS, LogTag.RETRIEVED),
+                "Get All Restaurants list");
 
         try{
             final ResponseEntity<List<RestaurantDTO>> responseRestaurant = restTemplate.exchange(url, HttpMethod.GET,
