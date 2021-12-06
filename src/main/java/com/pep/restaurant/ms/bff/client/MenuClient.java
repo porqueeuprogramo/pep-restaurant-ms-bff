@@ -22,6 +22,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 
 @Component
@@ -50,6 +51,7 @@ public class MenuClient {
      */
     public Menu getMenu(final long menuId){
         final String url =  applicationProperties.getMsManager().getUrl().concat(MENU_MENU_ID);
+        final String correlationId = UUID.randomUUID().toString();
         MenuDTO menuDTO = null;
 
         final HttpHeaders headers = new HttpHeaders();
@@ -58,6 +60,10 @@ public class MenuClient {
         final HttpEntity requestGetMenuId = new HttpEntity(headers);
         final Map<String, String> params = new HashMap<>();
         params.put("menuId", String.valueOf(menuId));
+        headers.set("Correlation-Id", correlationId);
+
+        LOGGER.info(correlationId, Arrays.asList(LogTag.CLIENT, LogTag.MENUS, LogTag.RETRIEVED),
+                "Get Menu by id: " + menuId);
 
         try{
             final ResponseEntity<MenuDTO> responseMenu = restTemplate.exchange(url, HttpMethod.GET, requestGetMenuId,
@@ -81,14 +87,19 @@ public class MenuClient {
      */
     public Menu createMenu(final Menu menu){
         final String url =  applicationProperties.getMsManager().getUrl().concat(MENU);
+        final String correlationId = UUID.randomUUID().toString();
         MenuDTO menuDTO = null;
 
         final MenuDTO requestMenuDTO = menuMapper.mapMenuToMenuDTO(menu);
 
         final HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
+        headers.set("Correlation-Id", correlationId);
 
         final HttpEntity<MenuDTO> requestCreateMenuClient = new HttpEntity(requestMenuDTO ,headers);
+
+        LOGGER.info(correlationId, Arrays.asList(LogTag.CLIENT, LogTag.MENUS, LogTag.PERSISTED),
+                "Create Menu: " + menu.toString());
 
         try{
             final ResponseEntity<MenuDTO> responseMenuCreated = restTemplate.exchange(url, HttpMethod.POST,
@@ -112,16 +123,21 @@ public class MenuClient {
      */
     public Menu editMenu(final long menuId, final Menu menu){
         final String url =  applicationProperties.getMsManager().getUrl().concat(MENU_MENU_ID);
+        final String correlationId = UUID.randomUUID().toString();
         MenuDTO menuDTO = null;
 
         final MenuDTO requestMenuDTO = menuMapper.mapMenuToMenuDTO(menu);
 
         final HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
+        headers.set("Correlation-Id", correlationId);
 
         final HttpEntity<MenuDTO> requestEditMenuClient = new HttpEntity(requestMenuDTO ,headers);
         final Map<String, String> params = new HashMap<>();
         params.put("menuId", String.valueOf(menuId));
+
+        LOGGER.info(correlationId, Arrays.asList(LogTag.CLIENT, LogTag.MENUS, LogTag.EDITED),
+                "Edit Menu by id " + menuId);
 
         try{
             final ResponseEntity<MenuDTO> responseMenuEdited = restTemplate.exchange(url, HttpMethod.PUT,
@@ -144,14 +160,19 @@ public class MenuClient {
      */
     public Menu deleteMenu(final Long menuId) {
         final String url =  applicationProperties.getMsManager().getUrl().concat(MENU_MENU_ID);
+        final String correlationId = UUID.randomUUID().toString();
         MenuDTO menuDTO = null;
 
         final HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
+        headers.set("Correlation-Id", correlationId);
 
         final HttpEntity requestGetMenuId = new HttpEntity(headers);
         final Map<String, String> params = new HashMap<>();
         params.put("menuId", String.valueOf(menuId));
+
+        LOGGER.info(correlationId, Arrays.asList(LogTag.CLIENT, LogTag.MENUS, LogTag.DELETED),
+                "Delete Menu by id: " + menuId);
 
         try{
             final ResponseEntity<MenuDTO> responseMenu = restTemplate.exchange(url, HttpMethod.DELETE, requestGetMenuId,
@@ -174,12 +195,17 @@ public class MenuClient {
      */
     public List<Menu> getAllMenus() {
         final String url =  applicationProperties.getMsManager().getUrl().concat(MENU);
+        final String correlationId = UUID.randomUUID().toString();
         List<MenuDTO> menuDTOList = null;
 
         final HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
+        headers.set("Correlation-Id", correlationId);
 
         final HttpEntity requestGetMenuId = new HttpEntity(headers);
+
+        LOGGER.info(correlationId, Arrays.asList(LogTag.CLIENT, LogTag.MENUS, LogTag.DELETED),
+                "Get All Menus");
 
         try{
             final ResponseEntity<List<MenuDTO>> responseMenu = restTemplate.exchange(url, HttpMethod.GET,

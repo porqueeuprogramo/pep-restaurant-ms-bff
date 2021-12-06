@@ -103,7 +103,7 @@ public class MenuClientTest {
 
         //Then
         Assertions.assertEquals("[CLIENT, MENUS, RETRIEVED] Menu id not found",
-                logsList.get(0).getMessage());
+                logsList.get(1).getMessage());
 
     }
 
@@ -161,7 +161,7 @@ public class MenuClientTest {
 
         //Then
         Assertions.assertEquals("[CLIENT, MENUS, PERSISTED] Menu was not created!!",
-                logsList.get(0).getMessage());
+                logsList.get(1).getMessage());
 
     }
 
@@ -219,7 +219,7 @@ public class MenuClientTest {
 
         //Then
         Assertions.assertEquals("[CLIENT, MENUS, EDITED] Menu was not edited!!",
-                logsList.get(0).getMessage());
+                logsList.get(1).getMessage());
 
     }
 
@@ -277,7 +277,7 @@ public class MenuClientTest {
 
         //Then
         Assertions.assertEquals("[CLIENT, MENUS, DELETED] Menu id not found",
-                logsList.get(0).getMessage());
+                logsList.get(1).getMessage());
 
     }
 
@@ -336,7 +336,7 @@ public class MenuClientTest {
 
         //Then
         Assertions.assertEquals("[CLIENT, MENUS, RETRIEVED] Menu list not found",
-                logsList.get(0).getMessage());
+                logsList.get(1).getMessage());
 
     }
 
