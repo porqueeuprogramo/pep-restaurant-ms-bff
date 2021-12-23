@@ -9,6 +9,11 @@ spring:
     default-property-inclusion: NON_NULL
   profiles:
     active: dev
+  logging:
+    level:
+      org:
+        springframework:
+          security: DEBUG
 server:
   port: 8080
   servlet:
@@ -19,16 +24,16 @@ keycloak:
   ssl-required: external
   resource: ${KEYCLOAK_CLIENT_ID:peprestaurant}
   credentials:
-    secret: ${KEYCLOAK_CLIENT_SECRET:afb48af0-a6b9-44b7-ba43-328f3e5a6555}
+    secret: ${KEYCLOAK_CLIENT_SECRET:7daab491-6470-4db1-9caa-183af7d78e8d}
   use-resource-role-mappings: true
 
 application:
   keycloak:
     serverUrl: ${KEYCLOAK_SERVER_URL:http://localhost:8081/auth}
     realm: ${KEYCLOAK_REALM:peprestaurant}
-    username: ${KEYCLOAK_USERNAME:pepuser}
+    username: ${KEYCLOAK_USER:pepuser}
     password: ${KEYCLOAK_PASSWORD:1234}
     clientId: ${KEYCLOAK_CLIENT_ID:peprestaurant}
-    clientSecret: ${KEYCLOAK_CLIENT_SECRET:afb48af0-a6b9-44b7-ba43-328f3e5a6555}
+    clientSecret: ${KEYCLOAK_CLIENT_SECRET:7daab491-6470-4db1-9caa-183af7d78e8d}
   msManager:
-    url: http://localhost:8082/pep/restaurant/manager
+    url: ${PEP_RESTAURANT_MS_MANAGER_URL:http://localhost:8082/pep/restaurant/manager}
