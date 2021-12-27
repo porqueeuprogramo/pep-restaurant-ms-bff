@@ -24,7 +24,7 @@ keycloak:
   ssl-required: external
   resource: ${KEYCLOAK_CLIENT_ID:peprestaurant}
   credentials:
-    secret: ${KEYCLOAK_CLIENT_SECRET:7daab491-6470-4db1-9caa-183af7d78e8d}
+    secret: ${KEYCLOAK_CLIENT_SECRET:df27d934-e5b9-4a1a-8185-9e67e733f771}
   use-resource-role-mappings: true
 
 application:
@@ -34,6 +34,6 @@ application:
     username: ${KEYCLOAK_USER:pepuser}
     password: ${KEYCLOAK_PASSWORD:1234}
     clientId: ${KEYCLOAK_CLIENT_ID:peprestaurant}
-    clientSecret: ${KEYCLOAK_CLIENT_SECRET:7daab491-6470-4db1-9caa-183af7d78e8d}
+    clientSecret: ${KEYCLOAK_CLIENT_SECRET:df27d934-e5b9-4a1a-8185-9e67e733f771}
   msManager:
     url: ${PEP_RESTAURANT_MS_MANAGER_URL:http://localhost:8082/pep/restaurant/manager}
