@@ -19,21 +19,26 @@ server:
   servlet:
     context-path: /pep/restaurant/bff
 keycloak:
-  realm: ${KEYCLOAK_REALM:peprestaurant}
-  auth-server-url: ${KEYCLOAK_SERVER_URL:http://localhost:8081/auth}
+  realm: ${KEYCLOAK_REALM}
+  auth-server-url: ${KEYCLOAK_SERVER_URL}
   ssl-required: external
-  resource: ${KEYCLOAK_CLIENT_ID:peprestaurant}
+  resource: ${KEYCLOAK_CLIENT_ID}
   credentials:
-    secret: ${KEYCLOAK_CLIENT_SECRET:df27d934-e5b9-4a1a-8185-9e67e733f771}
+    secret: ${KEYCLOAK_CLIENT_SECRET}
   use-resource-role-mappings: true
 
 application:
   keycloak:
-    serverUrl: ${KEYCLOAK_SERVER_URL:http://localhost:8081/auth}
-    realm: ${KEYCLOAK_REALM:peprestaurant}
-    username: ${KEYCLOAK_USER:pepuser}
-    password: ${KEYCLOAK_PASSWORD:1234}
-    clientId: ${KEYCLOAK_CLIENT_ID:peprestaurant}
-    clientSecret: ${KEYCLOAK_CLIENT_SECRET:df27d934-e5b9-4a1a-8185-9e67e733f771}
+    serverUrl: ${KEYCLOAK_SERVER_URL}
+    realm: ${KEYCLOAK_REALM}
+    username: ${KEYCLOAK_USER}
+    password: ${KEYCLOAK_PASSWORD}
+    clientId: ${KEYCLOAK_CLIENT_ID}
+    clientSecret: ${KEYCLOAK_CLIENT_SECRET}
   msManager:
-    url: ${PEP_RESTAURANT_MS_MANAGER_URL:http://localhost:8082/pep/restaurant/manager}
+    url: ${PEP_RESTAURANT_MS_MANAGER_URL}
+  here:
+    accessKeyId: ${HERE_ACCESS_KEY_ID}
+    accessKeySecret: ${HERE_ACCESS_KEY_SECRET}
+    tokenEndpointUrl: ${HERE_TOKEN_ENDPOINT_URL}
+    herePlacesApiUrl: ${HERE_PLACES_API_URL}

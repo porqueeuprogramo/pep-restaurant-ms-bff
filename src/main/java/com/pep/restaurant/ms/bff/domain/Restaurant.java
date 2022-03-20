@@ -6,22 +6,24 @@ import java.util.Set;
 public class Restaurant {
     private long id;
     private String name;
-    private String location;
+    private String hereId;
+    private Location location;
     private int capacity;
     private Menu menu;
+    private ScheduleRoutine schedule;
     private Set<Employee> employeeList = new HashSet<>();
 
     /**
-     * Get Restaurant id.
-     * @return restaurant id.
+     * Method to get a Restaurant id.
+     * @return id.
      */
     public long getId() {
         return id;
     }
 
     /**
-     * Set Restaurant Id.
-     * @param id restaurant id.
+     * Method to set a Restaurant id.
+     * @param id to be set.
      */
     public void setId(final long id) {
         this.id = id;
@@ -38,16 +40,42 @@ public class Restaurant {
     }
 
     /**
-     * Get Restaurant name.
-     * @return restaurant name.
+     * Get Restaurant here id.
+     * @return restaurant here id.
+     */
+    public String getHereId() {
+        return hereId;
+    }
+
+    /**
+     * Set Restaurant here id.
+     * @param hereId restaurant id.
+     */
+    public void setHereId(final String hereId) {
+        this.hereId = hereId;
+    }
+
+    /**
+     * Builder Restaurant for here id.
+     * @param hereId here id to build.
+     * @return restaurant with id.
+     */
+    public Restaurant hereId(final String hereId){
+        this.hereId = hereId;
+        return this;
+    }
+
+    /**
+     * Method to get a Restaurant name.
+     * @return name.
      */
     public String getName() {
         return name;
     }
 
     /**
-     * Set Restaurant name.
-     * @param name restaurant name.
+     * Method to set a Restaurant name.
+     * @param name name to be set.
      */
     public void setName(final String name) {
         this.name = name;
@@ -64,18 +92,18 @@ public class Restaurant {
     }
 
     /**
-     * Get Restaurant Location.
-     * @return restaurant location.
+     * Method to get a Restaurant Location.
+     * @return location.
      */
-    public String getLocation() {
+    public Location getLocation() {
         return location;
     }
 
     /**
-     * Set Restaurant Location.
-     * @param location restaurant location.
+     * Method to set a Restaurant location.
+     * @param location location to be set.
      */
-    public void setLocation(final String location) {
+    public void setLocation(final Location location) {
         this.location = location;
     }
 
@@ -84,29 +112,55 @@ public class Restaurant {
      * @param location location to build.
      * @return restaurant with location.
      */
-    public Restaurant location(final String location){
+    public Restaurant location(final Location location){
         this.location = location;
         return this;
     }
 
     /**
-     * Get restaurant capacity.
-     * @return restaurant capacity.
+     * Method to get a Restaurant Schedule.
+     * @return schedule.
+     */
+    public ScheduleRoutine getSchedule() {
+        return schedule;
+    }
+
+    /**
+     * Method to set a Restaurant schedule.
+     * @param schedule schedule to be set.
+     */
+    public void setSchedule(final ScheduleRoutine schedule) {
+        this.schedule = schedule;
+    }
+
+    /**
+     * Builder Restaurant for schedule
+     * @param schedule schedule to build.
+     * @return restaurant with schedule.
+     */
+    public Restaurant schedule(final ScheduleRoutine schedule){
+        this.schedule = schedule;
+        return this;
+    }
+
+    /**
+     * Method to get Restaurant capacity.
+     * @return capacity.
      */
     public int getCapacity() {
         return capacity;
     }
 
     /**
-     * Set restaurant capacity.
-     * @param capacity restaurant capacity.
+     * Method to set Restaurant capacity.
+     * @param capacity to be set.
      */
     public void setCapacity(final int capacity) {
         this.capacity = capacity;
     }
 
     /**
-     * Builder for restaurant capacity.
+     * Builder Restaurant for capacity.
      * @param capacity capacity to build.
      * @return restaurant with capacity.
      */
@@ -116,7 +170,7 @@ public class Restaurant {
     }
 
     /**
-     * Get restaurant menu.
+     * Method to get Restaurant menu.
      * @return menu.
      */
     public Menu getMenu() {
@@ -124,8 +178,8 @@ public class Restaurant {
     }
 
     /**
-     * Set restaurant menu
-     * @param menu restaurant menu.
+     * Method to set Restaurant menu.
+     * @param menu to be set.
      */
     public void setMenu(final Menu menu) {
         this.menu = menu;
@@ -167,32 +221,16 @@ public class Restaurant {
         return this;
     }
 
-    /**
-     * Method to add Employee to Restaurant.
-     * @param employee employee.
-     */
-    public void addEmployee(final Employee employee) {
-        this.employeeList.add(employee);
-        employee.getRestaurantList().add(this);
-    }
-
-    /**
-     * Method to remove Employee from Restaurant.
-     * @param employee employee.
-     */
-    public void removeEmployee(final Employee employee) {
-        this.employeeList.remove(employee);
-        employee.getRestaurantList().remove(this);
-    }
-
     @Override
     public String toString() {
         return "Restaurant{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", location='" + location + '\'' +
+                ", hereId='" + hereId + '\'' +
+                ", location=" + location +
                 ", capacity=" + capacity +
                 ", menu=" + menu +
+                ", schedule=" + schedule +
                 ", employeeList=" + employeeList +
                 '}';
     }

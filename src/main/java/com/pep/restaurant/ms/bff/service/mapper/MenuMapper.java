@@ -26,12 +26,12 @@ public class MenuMapper {
 
     /**
      * Map menu DTO list to menu list.
-     * @param menuList menu DTO list.
+     * @param menuDTOList menu DTO list.
      * @return Menu List.
      */
-    public List<Menu> mapMenuDTOListToMenuList(final List<MenuDTO> menuList) {
-        return menuList != null
-                ? menuList
+    public List<Menu> mapMenuDTOListToMenuList(final List<MenuDTO> menuDTOList) {
+        return menuDTOList != null
+                ? menuDTOList
                 .stream()
                 .map(this::mapMenuDTOToMenu)
                 .collect(Collectors.toList())
@@ -59,7 +59,7 @@ public class MenuMapper {
     public Menu mapMenuDTOToMenu(final MenuDTO menuDTO) {
         return menuDTO != null ?
                 new Menu()
-                        .id(menuDTO.getId() == null ? 0 : menuDTO.getId() )
+                        .id(menuDTO.getId())
                         .language(menuDTO.getLanguage())
                 : null;
     }

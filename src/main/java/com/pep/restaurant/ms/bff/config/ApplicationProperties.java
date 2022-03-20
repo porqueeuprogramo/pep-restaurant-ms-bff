@@ -7,6 +7,8 @@ import org.springframework.context.annotation.Configuration;
 @ConfigurationProperties(prefix = "application")
 public class ApplicationProperties {
 
+    private final Here here = new Here();
+
     private final Keycloak keycloak = new Keycloak();
 
     private final MsManager msManager = new MsManager();
@@ -16,6 +18,8 @@ public class ApplicationProperties {
     }
 
     public MsManager getMsManager(){ return msManager; }
+
+    public Here getHere(){ return here; }
 
     public static class Keycloak{
 
@@ -147,6 +151,83 @@ public class ApplicationProperties {
         public void setUrl(final String url) {
             this.url = url;
         }
+
+    }
+
+    public static class Here{
+
+        private String accessKeyId;
+
+        private String accessKeySecret;
+
+        private String tokenEndpointUrl;
+
+        private String herePlacesApiUrl = "https://places.ls.hereapi.com/places/v1/discover/here/";
+
+        /**
+         * Get Here Access Key Id.
+         * @return Here Access Key Id.
+         */
+        public String getAccessKeyId() {
+            return accessKeyId;
+        }
+
+        /**
+         * Set Here Access Key Id.
+         * @param accessKeyId Here Access Key Id.
+         */
+        public void setAccessKeyId(final String accessKeyId) {
+            this.accessKeyId = accessKeyId;
+        }
+
+        /**
+         * Get Here Access Key Secret.
+         * @return Here Access Key Secret.
+         */
+        public String getAccessKeySecret() {
+            return accessKeySecret;
+        }
+
+        /**
+         * Set Here Access Key Secret.
+         * @param accessKeySecret Here Access Key Secret.
+         */
+        public void setAccessKeySecret(final String accessKeySecret) {
+            this.accessKeySecret = accessKeySecret;
+        }
+
+        /**
+         * Get Here Token Endpoint Url.
+         * @return Here Token Endpoint Url.
+         */
+        public String getTokenEndpointUrl() {
+            return tokenEndpointUrl;
+        }
+
+        /**
+         * Set Here Token Endpoint Url.
+         * @param tokenEndpointUrl Here Token Endpoint Url.
+         */
+        public void setTokenEndpointUrl(final String tokenEndpointUrl) {
+            this.tokenEndpointUrl = tokenEndpointUrl;
+        }
+
+        /**
+         * Get Here Places Api Url.
+         * @return Here Places Api Url.
+         */
+        public String getHerePlacesApiUrl() {
+            return herePlacesApiUrl;
+        }
+
+        /**
+         * Set Here Places Api Url.
+         * @param herePlacesApiUrl Here Places Api Url.
+         */
+        public void setHerePlacesApiUrl(final String herePlacesApiUrl) {
+            this.herePlacesApiUrl = herePlacesApiUrl;
+        }
+
 
     }
 
