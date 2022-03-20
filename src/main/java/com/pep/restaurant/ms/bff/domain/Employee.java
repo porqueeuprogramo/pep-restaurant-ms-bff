@@ -7,7 +7,7 @@ public class Employee {
     private long id;
     private String role;
     private Set<Restaurant> restaurantList = new HashSet<>();
-    private Schedule schedule;
+    private ScheduleRoutine schedule;
 
     /**
      * Get id employee.
@@ -62,42 +62,16 @@ public class Employee {
     }
 
     /**
-     * Get employee restaurant.
-     * @return employee restaurant.
-     */
-    public Schedule getSchedule() {
-        return schedule;
-    }
-
-    /**
-     * Set employee schedule.
-     * @param schedule employee schedule.
-     */
-    public void setSchedule(final Schedule schedule) {
-        this.schedule = schedule;
-    }
-
-    /**
-     * Builder Employee for schedule.
-     * @param schedule schedule to build.
-     * @return employee with schedule.
-     */
-    public Employee schedule(final Schedule schedule){
-        this.schedule = schedule;
-        return this;
-    }
-
-    /**
-     * Get employee restaurant list.
-     * @return employee restaurant List.
+     * Get employee restaurantDTO list.
+     * @return employee restaurantDTO List.
      */
     public Set<Restaurant> getRestaurantList() {
         return restaurantList;
     }
 
     /**
-     * Set employee restaurant list.
-     * @param restaurantList employee restaurant list.
+     * Set employee restaurantDTO list.
+     * @param restaurantList employee restaurantDTO list.
      */
     public void setRestaurantList(final Set<Restaurant> restaurantList) {
         this.restaurantList = restaurantList;
@@ -114,21 +88,29 @@ public class Employee {
     }
 
     /**
-     * Method to add Restaurant to Employee.
-     * @param restaurant restaurant.
+     * Get employee schedule.
+     * @return employee schedule.
      */
-    public void addRestaurant(final Restaurant restaurant) {
-        this.restaurantList.add(restaurant);
-        restaurant.getEmployeeList().add(this);
+    public ScheduleRoutine getSchedule() {
+        return schedule;
     }
 
     /**
-     * Method to remove Restaurant from Employee.
-     * @param restaurant restaurant.
+     * Set employee schedule.
+     * @param schedule employee schedule.
      */
-    public void removeRestaurant(final Restaurant restaurant) {
-        this.restaurantList.remove(restaurant);
-        restaurant.getEmployeeList().remove(this);
+    public void setSchedule(final ScheduleRoutine schedule) {
+        this.schedule = schedule;
+    }
+
+    /**
+     * Builder Employee for schedule.
+     * @param schedule schedule to build.
+     * @return employee with schedule.
+     */
+    public Employee schedule(final ScheduleRoutine schedule){
+        this.schedule = schedule;
+        return this;
     }
 
     @Override

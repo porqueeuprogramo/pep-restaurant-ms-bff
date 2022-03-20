@@ -35,6 +35,8 @@
         <spring-test.version>5.3.9</spring-test.version>
         <jackson-databind-nullable.version>0.1.0</jackson-databind-nullable.version>
         <openapi-generator-maven-plugin.version>4.3.1</openapi-generator-maven-plugin.version>
+        <here-oauth-client.version>0.4.19</here-oauth-client.version>
+        <json.version>20211205</json.version>
 
 
     </properties>
@@ -114,6 +116,18 @@
             <artifactId>lombok</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>com.here.account</groupId>
+            <artifactId>here-oauth-client</artifactId>
+            <version>${here-oauth-client.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.json</groupId>
+            <artifactId>json</artifactId>
+            <version>${json.version}</version>
+        </dependency>
+
     </dependencies>
 
     <dependencyManagement>
@@ -152,9 +166,13 @@
                             <generatorName>spring</generatorName>
                             <apiPackage>com.pep.restaurant.ms.bff.web.api</apiPackage>
                             <modelPackage>com.pep.restaurant.ms.bff.web.api.model</modelPackage>
+                            <typeMappings>
+                                <mapping>daysScheduleMap=java.util.List&lt;ScheduleTimeDTO&gt;</mapping>
+                            </typeMappings>
                             <importMappings>
-                                <importMapping>setOfEmployeeDTO=java.util.Set&lt;EmployeeDTO></importMapping>
+                                <importMapping>setOfEmployeeDTO=java.util.Set&lt;EmployeeDTO&gt;</importMapping>
                                 <importMapping>setOfRestaurantDTO=java.util.Set&lt;RestaurantDTO&gt;</importMapping>
+                                <importMapping>localTime=java.time.LocalTime</importMapping>
                             </importMappings>
                             <configOptions>
                                 <sourceFolder>src/java/main</sourceFolder>

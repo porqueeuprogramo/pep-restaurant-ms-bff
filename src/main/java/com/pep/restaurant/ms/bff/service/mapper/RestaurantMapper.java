@@ -1,16 +1,27 @@
 package com.pep.restaurant.ms.bff.service.mapper;
 
-import com.pep.restaurant.ms.bff.domain.Employee;
 import com.pep.restaurant.ms.bff.domain.Menu;
+import com.pep.restaurant.ms.bff.domain.Employee;
 import com.pep.restaurant.ms.bff.domain.Restaurant;
-import com.pep.restaurant.ms.bff.domain.Schedule;
-import com.pep.restaurant.ms.bff.web.api.model.EmployeeDTO;
+import com.pep.restaurant.ms.bff.domain.Location;
+import com.pep.restaurant.ms.bff.domain.ScheduleRoutine;
+import com.pep.restaurant.ms.bff.domain.ScheduleTime;
+import com.pep.restaurant.ms.bff.domain.Coordinate;
+import com.pep.restaurant.ms.bff.domain.Address;
 import com.pep.restaurant.ms.bff.web.api.model.MenuDTO;
+import com.pep.restaurant.ms.bff.web.api.model.EmployeeDTO;
 import com.pep.restaurant.ms.bff.web.api.model.RestaurantDTO;
-import com.pep.restaurant.ms.bff.web.api.model.ScheduleDTO;
+import com.pep.restaurant.ms.bff.web.api.model.LocationDTO;
+import com.pep.restaurant.ms.bff.web.api.model.ScheduleRoutineDTO;
+import com.pep.restaurant.ms.bff.web.api.model.ScheduleTimeDTO;
+import com.pep.restaurant.ms.bff.web.api.model.CoordinateDTO;
+import com.pep.restaurant.ms.bff.web.api.model.AddressDTO;
 import org.springframework.stereotype.Component;
 
+import java.time.DayOfWeek;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -19,52 +30,15 @@ public class RestaurantMapper {
 
     /**
      * Map Restaurant List to Restaurant List DTO.
-     *
      * @param restaurantList restaurant List.
      * @return Restaurant List DTO.
      */
     public List<RestaurantDTO> mapRestaurantListToRestaurantDTOList(final List<Restaurant> restaurantList) {
         return restaurantList != null
                 ? restaurantList
-                .stream()
-                .map(this::mapRestaurantToRestaurantDTO)
-                .collect(Collectors.toList())
-                : null;
-    }
-
-    /**
-     * Map Restaurant To Restaurant DTO.
-     *
-     * @param restaurant restaurant.
-     * @return Restaurant DTO.
-     */
-    public RestaurantDTO mapRestaurantToRestaurantDTO(final Restaurant restaurant) {
-        return restaurant != null ?
-                new RestaurantDTO()
-                        .id(restaurant.getId())
-                        .name(restaurant.getName())
-                        .location(restaurant.getLocation())
-                        .capacity(restaurant.getCapacity())
-                        .menu(mapMenuToMenuDTO(restaurant.getMenu()))
-                        .employeeList(mapEmployeeListToEmployeeDTOList(restaurant.getEmployeeList()))
-                : null;
-    }
-
-    /**
-     * Map Restaurant DTO to Restaurant.
-     *
-     * @param restaurantDTO restaurant DTO.
-     * @return Restaurant.
-     */
-    public Restaurant mapRestaurantDTOToRestaurant(final RestaurantDTO restaurantDTO) {
-        return restaurantDTO != null ?
-                new Restaurant()
-                        .id(restaurantDTO.getId() == null ? 0 : restaurantDTO.getId())
-                        .name(restaurantDTO.getName())
-                        .location(restaurantDTO.getLocation())
-                        .capacity(restaurantDTO.getCapacity())
-                        .menu(mapMenuDTOToMenu(restaurantDTO.getMenu()))
-                        .employeeList(mapEmployeeDTOListToEmployeeList(restaurantDTO.getEmployeeList()))
+                    .stream()
+                    .map(this::mapRestaurantToRestaurantDTO)
+                    .collect(Collectors.toList())
                 : null;
     }
 
@@ -82,21 +56,98 @@ public class RestaurantMapper {
                 : null;
     }
 
+    /**
+     * Map Restaurant To Restaurant DTO.
+     * @param restaurant restaurant.
+     * @return Restaurant DTO.
+     */
+    public RestaurantDTO mapRestaurantToRestaurantDTO(final Restaurant restaurant) {
+        return restaurant != null ?
+                new RestaurantDTO()
+                        .id(restaurant.getId())
+                        .name(restaurant.getName())
+                        .capacity(restaurant.getCapacity())
+                        .menu(mapMenuToMenuDTO(restaurant.getMenu()))
+                        .hereId(restaurant.getHereId())
+                        .location(mapLocationToLocationDTO(restaurant.getLocation()))
+                        .schedule(mapScheduleRoutineToScheduleRoutineDTO(restaurant.getSchedule()))
+                        .employeeList(mapEmployeeListToEmployeeDTOList(restaurant.getEmployeeList()))
+                : null;
+    }
+
+    /**
+     * Map Restaurant DTO to Restaurant.
+     * @param restaurantDTO restaurant DTO.
+     * @return Restaurant.
+     */
+    public Restaurant mapRestaurantDTOToRestaurant(final RestaurantDTO restaurantDTO) {
+        return restaurantDTO != null ?
+                new Restaurant()
+                        .id(restaurantDTO.getId())
+                        .name(restaurantDTO.getName())
+                        .capacity(restaurantDTO.getCapacity())
+                        .menu(mapMenuDTOToMenu(restaurantDTO.getMenu()))
+                        .hereId(restaurantDTO.getHereId())
+                        .location(mapLocationDTOToLocation(restaurantDTO.getLocation()))
+                        .schedule(mapScheduleRoutineDTOToScheduleRoutine(restaurantDTO.getSchedule()))
+                        .employeeList(mapEmployeeDTOListToEmployeeList(restaurantDTO.getEmployeeList()))
+                : null;
+    }
+
+    /**
+     * Map Schedule Routine to Schedule Routine DTO.
+     * @param scheduleRoutine schedule routine.
+     * @return Schedule Routine DTO.
+     */
+    public ScheduleRoutineDTO mapScheduleRoutineToScheduleRoutineDTO(final ScheduleRoutine scheduleRoutine) {
+        final Map<String, List<ScheduleTimeDTO>> scheduleRoutineDTOMap = new HashMap<>();
+        if(scheduleRoutine != null){
+            scheduleRoutine
+                    .getScheduleRoutine()
+                    .forEach((dayOfWeek, scheduleTimeMap) -> mapScheduleTimeMapToScheduleTimeDTOMap(
+                            dayOfWeek,
+                            scheduleTimeMap,
+                            scheduleRoutineDTOMap));
+            return new ScheduleRoutineDTO().daysScheduleMap(scheduleRoutineDTOMap);
+        }
+        return null;
+    }
+
+    /**
+     * Map Schedule Routine DTO to Schedule Routine.
+     * @param scheduleRoutineDTO schedule routine DTO.
+     * @return Schedule Routine.
+     */
+    public ScheduleRoutine mapScheduleRoutineDTOToScheduleRoutine(final ScheduleRoutineDTO scheduleRoutineDTO) {
+        final Map<DayOfWeek, List<ScheduleTime>> scheduleRoutineDTOMap = new HashMap<>();
+
+        if(scheduleRoutineDTO != null) {
+            scheduleRoutineDTO
+                    .getDaysScheduleMap()
+                    .forEach((dayOfWeek, scheduleTimeMap) -> mapScheduleTimeDTOMapToScheduleTimeMap(
+                            dayOfWeek,
+                            scheduleTimeMap,
+                            scheduleRoutineDTOMap));
+            return new ScheduleRoutine().daysScheduleMap(scheduleRoutineDTOMap);
+        }
+        return null;
+    }
+
     private Set<EmployeeDTO> mapEmployeeListToEmployeeDTOList(final Set<Employee> employeeList) {
         return employeeList != null
                 ? employeeList
-                .stream()
-                .map(this::mapEmployeeToEmployeeDTO)
-                .collect(Collectors.toSet())
+                    .stream()
+                    .map(this::mapEmployeeToEmployeeDTO)
+                    .collect(Collectors.toSet())
                 : null;
     }
 
     private Set<Employee> mapEmployeeDTOListToEmployeeList(final Set<EmployeeDTO> employeeDTOList) {
         return employeeDTOList != null
                 ? employeeDTOList
-                .stream()
-                .map(this::mapEmployeeDTOToEmployee)
-                .collect(Collectors.toSet())
+                    .stream()
+                    .map(this::mapEmployeeDTOToEmployee)
+                    .collect(Collectors.toSet())
                 : null;
     }
 
@@ -106,7 +157,6 @@ public class RestaurantMapper {
                         .id(employee.getId())
                         .role(employee.getRole())
                         .restaurantList(null)
-                        .schedule(mapScheduleToScheduleDTO(employee.getSchedule()))
                 : null;
     }
 
@@ -116,25 +166,6 @@ public class RestaurantMapper {
                         .id(employeeDTO.getId())
                         .role(employeeDTO.getRole())
                         .restaurantList(null)
-                        .schedule(mapScheduleDTOToSchedule(employeeDTO.getSchedule()))
-                : null;
-    }
-
-    private Schedule mapScheduleDTOToSchedule(final ScheduleDTO scheduleDTO) {
-        return scheduleDTO != null ?
-                new Schedule()
-                        .id(scheduleDTO.getId())
-                        .type(scheduleDTO.getType())
-                        .employeeList(null)
-                : null;
-    }
-
-    private ScheduleDTO mapScheduleToScheduleDTO(final Schedule schedule) {
-        return schedule != null ?
-                new ScheduleDTO()
-                        .id(schedule.getId())
-                        .type(schedule.getType())
-                        .employeeList(null)
                 : null;
     }
 
@@ -151,6 +182,104 @@ public class RestaurantMapper {
                 new Menu()
                         .id(menuDTO.getId())
                         .language(menuDTO.getLanguage())
+                : null;
+    }
+
+    private LocationDTO mapLocationToLocationDTO(final Location location) {
+        return location != null ?
+                new LocationDTO()
+                        .id(location.getId())
+                        .address(mapAddressToAddressDTO(location.getAddress()))
+                        .locationCoordinate(mapCoordinateToCoordinateDTO(location.getCoordinate()))
+                : null;
+    }
+
+    private Location mapLocationDTOToLocation(final LocationDTO locationDTO) {
+        return locationDTO != null ?
+                new Location()
+                        .id(locationDTO.getId())
+                        .address(mapAddressDTOToAddress(locationDTO.getAddress()))
+                        .coordinate(mapCoordinateDTOToCoordinate(locationDTO.getLocationCoordinate()))
+                : null;
+    }
+
+    private AddressDTO mapAddressToAddressDTO(final Address address) {
+        return address != null ?
+                new AddressDTO()
+                        .id(address.getId())
+                        .name(address.getName())
+                        .postalCode(address.getPostalCode())
+                        .city(address.getCity())
+                        .country(address.getCountry())
+                : null;
+    }
+
+    private Address mapAddressDTOToAddress(final AddressDTO addressDTO) {
+        return addressDTO != null ?
+                new Address()
+                        .id(addressDTO.getId())
+                        .name(addressDTO.getName())
+                        .postalCode(addressDTO.getPostalCode())
+                        .city(addressDTO.getCity())
+                        .country(addressDTO.getCountry())
+                : null;
+    }
+
+    private CoordinateDTO mapCoordinateToCoordinateDTO(final Coordinate coordinate) {
+        return coordinate != null ?
+                new CoordinateDTO()
+                        .latitude(coordinate.getLatitude())
+                        .longitude(coordinate.getLongitude())
+                : null;
+    }
+
+    private Coordinate mapCoordinateDTOToCoordinate(final CoordinateDTO coordinateDTO) {
+        return coordinateDTO != null ?
+                new Coordinate()
+                        .latitude(coordinateDTO.getLatitude())
+                        .longitude(coordinateDTO.getLongitude())
+                : null;
+    }
+
+    private void mapScheduleTimeMapToScheduleTimeDTOMap(final DayOfWeek dayOfWeek,
+                                                        final List<ScheduleTime> scheduleTimeList,
+                                                        final Map<String, List<ScheduleTimeDTO>>
+                                                                scheduleRoutineDTOMap) {
+        final List<ScheduleTimeDTO> scheduleTimeDTOList = scheduleTimeList
+                .stream()
+                .map(this::mapScheduleTimeToScheduleTimeDTO)
+                .collect(Collectors.toList());
+
+        scheduleRoutineDTOMap.put(dayOfWeek.name(), scheduleTimeDTOList);
+
+    }
+
+    private void mapScheduleTimeDTOMapToScheduleTimeMap(final String dayOfWeek,
+                                                        final List<ScheduleTimeDTO> scheduleTimeDTOList,
+                                                        final Map<DayOfWeek, List<ScheduleTime>>
+                                                                 scheduleRoutineMap) {
+        final List<ScheduleTime> scheduleTimeList = scheduleTimeDTOList
+                .stream()
+                .map(this::mapScheduleTimeDTOToScheduleTime)
+                .collect(Collectors.toList());
+
+        scheduleRoutineMap.put(DayOfWeek.valueOf(dayOfWeek), scheduleTimeList);
+
+    }
+
+    private ScheduleTimeDTO mapScheduleTimeToScheduleTimeDTO(final ScheduleTime scheduleTime) {
+        return scheduleTime != null ?
+                new ScheduleTimeDTO()
+                        .startTime(scheduleTime.getStartTime())
+                        .endTime(scheduleTime.getEndTime())
+                : null;
+    }
+
+    private ScheduleTime mapScheduleTimeDTOToScheduleTime(final ScheduleTimeDTO scheduleTimeDTO) {
+        return scheduleTimeDTO != null ?
+                new ScheduleTime()
+                        .startTime(scheduleTimeDTO.getStartTime())
+                        .endTime(scheduleTimeDTO.getEndTime())
                 : null;
     }
 

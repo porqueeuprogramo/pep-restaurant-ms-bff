@@ -81,4 +81,5 @@ public class RestaurantService {
     public List<Restaurant> getAllRestaurants() {
         return restaurantClient.getAllRestaurants();
     }
+
 }

@@ -202,6 +202,31 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/RestaurantDTO"
+  /restaurant/{lat}/{lng}:
+    get:
+      summary: Persist Restaurants Near the Coordinate.
+      description: Retrieves a restaurant list persisted after passing a latitude and a longitude.
+      operationId: persistRestaurantsNearTheCoordinate
+      parameters:
+        - name: lat
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: lng
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: "Restaurant List Near the coordinate."
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/RestaurantDTO"
   #EMPLOYEE API
   /employee/{employeeId}:
     get:
@@ -343,14 +368,14 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/EmployeeDTO"
-  # SCHEDULE API
-  /schedule/{scheduleId}:
+  # LOCATION API
+  /location/{locationId}:
     get:
-      summary: Get Schedule By id.
-      description: Retrieves a schedule by passing an id.
-      operationId: getSchedule
+      summary: Get Location By id.
+      description: Retrieves a location by passing an id.
+      operationId: getLocation
       parameters:
-        - name: scheduleId
+        - name: locationId
           in: path
           required: true
           schema:
@@ -358,17 +383,17 @@ paths:
             format: int64
       responses:
         "200":
-          description: "Schedule got."
+          description: "Location got."
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ScheduleDTO"
+                $ref: "#/components/schemas/LocationDTO"
     put:
-      summary: Edit Schedule By id.
-      description: Edit schedule by passing an id.
-      operationId: editSchedule
+      summary: Edit Location By id.
+      description: Edit location by passing an id.
+      operationId: editLocation
       parameters:
-        - name: scheduleId
+        - name: locationId
           in: path
           required: true
           schema:
@@ -378,20 +403,20 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/ScheduleDTO"
+              $ref: "#/components/schemas/LocationDTO"
       responses:
         "200":
-          description: "Schedule edited."
+          description: "Location edited."
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ScheduleDTO"
+                $ref: "#/components/schemas/LocationDTO"
     delete:
-      summary: Delete Schedule By id.
-      description: Retrieves the deleted schedule.
-      operationId: deleteSchedule
+      summary: Delete Location By id.
+      description: Retrieves the deleted location.
+      operationId: deleteLocation
       parameters:
-        - name: scheduleId
+        - name: locationId
           in: path
           required: true
           schema:
@@ -399,91 +424,41 @@ paths:
             format: int64
       responses:
         "200":
-          description: "Schedule deleted."
+          description: "Location deleted."
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ScheduleDTO"
-  /schedule:
+                $ref: "#/components/schemas/LocationDTO"
+  /location:
     post:
-      summary: Create Schedule.
-      description: Create Schedule.
-      operationId: createSchedule
+      summary: Create Location.
+      description: Create Location.
+      operationId: createLocation
       requestBody:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/ScheduleDTO"
+              $ref: "#/components/schemas/LocationDTO"
       responses:
         "200":
-          description: "Schedule created."
+          description: "Location created."
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ScheduleDTO"
+                $ref: "#/components/schemas/LocationDTO"
     get:
-      summary: Get All Schedule.
-      description: Get All Schedule.
-      operationId: getAllSchedules
+      summary: Get All Locations.
+      description: Get All Locations.
+      operationId: getAllLocations
       responses:
         "200":
-          description: "Schedules got."
+          description: "Locations got."
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: "#/components/schemas/ScheduleDTO"
-  /schedule/add/employee/{scheduleId}/{employeeId}:
-    put:
-      summary: Add Employee to Schedule.
-      description: Add Employee to Schedule.
-      operationId: addEmployeeToSchedule
-      parameters:
-        - name: scheduleId
-          in: path
-          required: true
-          schema:
-            type: integer
-            format: int64
-        - name: employeeId
-          in: path
-          required: true
-          schema:
-            type: integer
-            format: int64
-      responses:
-        "200":
-          description: "Schedule with employee added."
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ScheduleDTO"
-  /schedule/remove/employee/{scheduleId}/{employeeId}:
-    put:
-      summary: Remove Employee from Schedule.
-      description: Remove Employee from Schedule.
-      operationId: removeEmployeeFromSchedule
-      parameters:
-        - name: scheduleId
-          in: path
-          required: true
-          schema:
-            type: integer
-            format: int64
-        - name: employeeId
-          in: path
-          required: true
-          schema:
-            type: integer
-            format: int64
-      responses:
-        "200":
-          description: "Schedule with employee removed."
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ScheduleDTO"
+                  $ref: "#/components/schemas/LocationDTO"
   # MENU API
   /menu/{menuId}:
     get:
@@ -575,12 +550,136 @@ paths:
                 type: array
                 items:
                   $ref: "#/components/schemas/MenuDTO"
+  # ADDRESS API
+  /address/{addressId}:
+    get:
+      summary: Get Address By id.
+      description: Retrieves a address by passing an id.
+      operationId: getAddress
+      parameters:
+        - name: addressId
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        "200":
+          description: "Address got."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AddressDTO"
+    put:
+      summary: Edit Address By id.
+      description: Edit address by passing an id.
+      operationId: editAddress
+      parameters:
+        - name: addressId
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AddressDTO"
+      responses:
+        "200":
+          description: "Address edited."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AddressDTO"
+    delete:
+      summary: Delete Address By id.
+      description: Retrieves the deleted address.
+      operationId: deleteAddress
+      parameters:
+        - name: addressId
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        "200":
+          description: "Address deleted."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AddressDTO"
+  /address:
+    post:
+      summary: Create Address.
+      description: Create Address.
+      operationId: createAddress
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AddressDTO"
+      responses:
+        "200":
+          description: "Address created."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AddressDTO"
+    get:
+      summary: Get All Addresses.
+      description: Get All Addresses.
+      operationId: getAllAddresses
+      responses:
+        "200":
+          description: "Addresses got."
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/AddressDTO"
 
 servers:
   - url: http://localhost:8080/api
 
 components:
   schemas:
+    AddressDTO:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        postalCode:
+          type: string
+        city:
+          type: string
+        country:
+          type: string
+    CoordinateDTO:
+      type: object
+      properties:
+        latitude:
+          type: number
+          format: double
+        longitude:
+          type: number
+          format: double
+    LocationDTO:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        address:
+          $ref: "#/components/schemas/AddressDTO"
+        locationCoordinate:
+          $ref: "#/components/schemas/CoordinateDTO"
     MenuDTO:
       type: object
       properties:
@@ -589,19 +688,6 @@ components:
           format: int64
         language:
           type: string
-    ScheduleDTO:
-      type: object
-      properties:
-        id:
-          type: integer
-          format: int64
-        type:
-          $ref: "#/components/schemas/ScheduleType"
-        employeeList:
-          type: array
-          nullable: false
-          items:
-            $ref: "#/components/schemas/EmployeeDTO"
     ScheduleType:
       type: string
       enum:
@@ -619,23 +705,40 @@ components:
         restaurantList:
           type: setOfRestaurantDTO
         schedule:
-          $ref: "#/components/schemas/ScheduleDTO"
+          $ref: "#/components/schemas/ScheduleRoutineDTO"
     RestaurantDTO:
       type: object
       properties:
         id:
           type: integer
           format: int64
+        hereId:
+          type: string
         name:
           type: string
         location:
-          type: string
+          $ref: "#/components/schemas/LocationDTO"
         capacity:
           type: integer
         menu:
           $ref: "#/components/schemas/MenuDTO"
+        schedule:
+          $ref: "#/components/schemas/ScheduleRoutineDTO"
         employeeList:
           type: setOfEmployeeDTO
+    ScheduleRoutineDTO:
+      type: object
+      properties:
+        daysScheduleMap:
+          additionalProperties:
+            type: daysScheduleMap
+    ScheduleTimeDTO:
+      type: object
+      properties:
+        startTime:
+          type: localTime
+        endTime:
+          type: localTime
     UserDTO:
       type: object
       properties:

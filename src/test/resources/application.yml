@@ -6,21 +6,26 @@ spring:
   profiles:
     active: test
 keycloak:
-  realm: ${KEYCLOAK_REALM:peprestaurant}
-  auth-server-url: ${KEYCLOAK_SERVER_URL:http://localhost:8081/auth}
+  realm: ${KEYCLOAK_REALM}
+  auth-server-url: ${KEYCLOAK_SERVER_URL}
   ssl-required: external
-  resource: ${KEYCLOAK_CLIENT_ID:peprestaurant}
+  resource: ${KEYCLOAK_CLIENT_ID}
   credentials:
-    secret: ${KEYCLOAK_CLIENT_SECRET:afb48af0-a6b9-44b7-ba43-328f3e5a6555}
+    secret: ${KEYCLOAK_CLIENT_SECRET}
   use-resource-role-mappings: true
 
 application:
   keycloak:
-    serverUrl: ${KEYCLOAK_SERVER_URL:http://localhost:8081/auth}
-    realm: ${KEYCLOAK_REALM:peprestaurant}
-    username: ${KEYCLOAK_USERNAME:pepuser}
-    password: ${KEYCLOAK_PASSWORD:1234}
-    clientId: ${KEYCLOAK_CLIENT_ID:peprestaurant}
-    clientSecret: ${KEYCLOAK_CLIENT_SECRET:afb48af0-a6b9-44b7-ba43-328f3e5a6555}
+    serverUrl: ${KEYCLOAK_SERVER_URL}
+    realm: ${KEYCLOAK_REALM}
+    username: ${KEYCLOAK_USERNAME}
+    password: ${KEYCLOAK_PASSWORD}
+    clientId: ${KEYCLOAK_CLIENT_ID}
+    clientSecret: ${KEYCLOAK_CLIENT_SECRET}
   msManager:
     url: http://localhost:8082/pep/restaurant/manager
+  here:
+    accessKeyId: ${HERE_ACCESS_KEY_ID}
+    accessKeySecret: ${HERE_ACCESS_KEY_SECRET}
+    tokenEndpointUrl: ${HERE_TOKEN_ENDPOINT_URL}
+    herePlacesApiUrl: ${HERE_PLACES_API_URL}

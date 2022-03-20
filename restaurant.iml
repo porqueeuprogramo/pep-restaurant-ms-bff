@@ -195,5 +195,7 @@
     <orderEntry type="library" scope="TEST" name="Maven: org.springframework:spring-test:5.3.9" level="project" />
     <orderEntry type="library" name="Maven: org.openapitools:jackson-databind-nullable:0.1.0" level="project" />
     <orderEntry type="library" name="Maven: org.projectlombok:lombok:1.18.20" level="project" />
+    <orderEntry type="library" name="Maven: com.here.account:here-oauth-client:0.4.19" level="project" />
+    <orderEntry type="library" name="Maven: org.ini4j:ini4j:0.5.1" level="project" />
   </component>
 </module>
