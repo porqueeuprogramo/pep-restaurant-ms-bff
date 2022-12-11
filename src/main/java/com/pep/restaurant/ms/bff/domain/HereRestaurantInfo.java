@@ -165,4 +165,15 @@ public class HereRestaurantInfo {
         return this;
     }
 
+    @Override
+    public String toString() {
+        return "HereRestaurantInfo{" +
+                "hereId='" + hereId + '\'' +
+                ", searchLocation=" + searchLocation +
+                ", distance=" + distance +
+                ", name='" + name + '\'' +
+                ", schedule=" + schedule +
+                ", location=" + location +
+                '}';
+    }
 }
