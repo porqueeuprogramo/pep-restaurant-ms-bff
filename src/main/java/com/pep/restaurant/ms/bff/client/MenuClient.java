@@ -204,7 +204,7 @@ public class MenuClient {
 
         final HttpEntity requestGetMenuId = new HttpEntity(headers);
 
-        LOGGER.info(correlationId, Arrays.asList(LogTag.CLIENT, LogTag.MENUS, LogTag.DELETED),
+        LOGGER.info(correlationId, Arrays.asList(LogTag.CLIENT, LogTag.MENUS, LogTag.RETRIEVED),
                 "Get All Menus");
 
         try{
