@@ -439,10 +439,9 @@ public class HereUtil {
     }
 
     private DayOfWeek mapHereWeekDayToWeekDay(final String weekDay){
-        DayOfWeek dayOfWeek = null;
+        DayOfWeek dayOfWeek = DayOfWeek.MONDAY;
         switch(weekDay){
             case "Mon":
-                dayOfWeek = DayOfWeek.MONDAY;
                 break;
             case "Tue":
                 dayOfWeek = DayOfWeek.TUESDAY;
