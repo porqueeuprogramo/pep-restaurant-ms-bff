@@ -22,7 +22,7 @@ public class MenuService {
      * @param menuId menu id.
      * @return menu.
      */
-    public Menu getMenu(final long menuId) {
+    public Menu getMenu(final String menuId) {
         return menuClient.getMenu(menuId);
     }
 
@@ -41,7 +41,7 @@ public class MenuService {
      * @param menu menu to be edited
      * @return menu edited.
      */
-    public Menu editMenu(final Long menuId, final Menu menu) {
+    public Menu editMenu(final String menuId, final Menu menu) {
         return menuClient.editMenu(menuId, menu);
     }
 
@@ -50,7 +50,7 @@ public class MenuService {
      * @param menuId menu id.
      * @return Menu Deleted.
      */
-    public Menu deleteMenu(final Long menuId) {
+    public Menu deleteMenu(final String menuId) {
         return menuClient.deleteMenu(menuId);
     }
 

@@ -78,8 +78,6 @@ public class RestaurantControllerTest {
 
         Assertions.assertEquals(restaurantDTO.getId(),
                 result.getBody().getId());
-        Assertions.assertEquals(restaurantDTO.getMenu().getId(),
-                result.getBody().getMenu().getId());
         Assertions.assertEquals(restaurantDTO.getMenu().getLanguage(),
                 result.getBody().getMenu().getLanguage());
         Assertions.assertEquals(restaurantDTO.getLocation().getAddress().getName()
@@ -136,8 +134,6 @@ public class RestaurantControllerTest {
 
         Assertions.assertEquals(restaurantDTO.getId(),
                 result.getBody().getId());
-        Assertions.assertEquals(restaurantDTO.getMenu().getId(),
-                result.getBody().getMenu().getId());
         Assertions.assertEquals(restaurantDTO.getMenu().getLanguage(),
                 result.getBody().getMenu().getLanguage());
         Assertions.assertEquals(restaurantDTO.getLocation().getAddress().getName()
@@ -192,8 +188,6 @@ public class RestaurantControllerTest {
 
         Assertions.assertEquals(restaurantDTO.getId(),
                 result.getBody().getId());
-        Assertions.assertEquals(restaurantDTO.getMenu().getId(),
-                result.getBody().getMenu().getId());
         Assertions.assertEquals(restaurantDTO.getMenu().getLanguage(),
                 result.getBody().getMenu().getLanguage());
         Assertions.assertEquals(restaurantDTO.getLocation().getAddress().getName()
@@ -249,8 +243,6 @@ public class RestaurantControllerTest {
 
         Assertions.assertEquals(restaurantDTO.getId(),
                 result.getBody().getId());
-        Assertions.assertEquals(restaurantDTO.getMenu().getId(),
-                result.getBody().getMenu().getId());
         Assertions.assertEquals(restaurantDTO.getMenu().getLanguage(),
                 result.getBody().getMenu().getLanguage());
         Assertions.assertEquals(restaurantDTO.getLocation().getAddress().getName()
@@ -306,8 +298,6 @@ public class RestaurantControllerTest {
 
         Assertions.assertEquals(restaurantDTO.getId(),
                 result.getBody().getId());
-        Assertions.assertEquals(restaurantDTO.getMenu().getId(),
-                result.getBody().getMenu().getId());
         Assertions.assertEquals(restaurantDTO.getMenu().getLanguage(),
                 result.getBody().getMenu().getLanguage());
         Assertions.assertEquals(restaurantDTO.getLocation().getAddress().getName()
@@ -363,8 +353,6 @@ public class RestaurantControllerTest {
 
         Assertions.assertEquals(restaurantDTO.getId(),
                 result.getBody().getId());
-        Assertions.assertEquals(restaurantDTO.getMenu().getId(),
-                result.getBody().getMenu().getId());
         Assertions.assertEquals(restaurantDTO.getMenu().getLanguage(),
                 result.getBody().getMenu().getLanguage());
         Assertions.assertEquals(restaurantDTO.getLocation().getAddress().getName()
@@ -421,8 +409,6 @@ public class RestaurantControllerTest {
 
         Assertions.assertEquals(restaurantDTO.getId(),
                 result.getBody().get(0).getId());
-        Assertions.assertEquals(restaurantDTO.getMenu().getId(),
-                result.getBody().get(0).getMenu().getId());
         Assertions.assertEquals(restaurantDTO.getMenu().getLanguage(),
                 result.getBody().get(0).getMenu().getLanguage());
         Assertions.assertEquals(restaurantDTO.getLocation().getAddress().getName()

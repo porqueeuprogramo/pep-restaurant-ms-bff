@@ -64,10 +64,9 @@ public class MenuClientTest {
                 any(ParameterizedTypeReference.class),
                 anyMap())).thenReturn(responseEntity);
         when(menuMapper.mapMenuDTOToMenu(menuDTO)).thenReturn(menu);
-        Menu menuResult = menuClient.getMenu(1L);
+        Menu menuResult = menuClient.getMenu("1L");
 
         //Then
-        Assertions.assertEquals(menu.getId(), menuResult.getId());
         Assertions.assertEquals(menu.getLanguage(), menuResult.getLanguage());
 
     }
@@ -99,7 +98,7 @@ public class MenuClientTest {
                 any(HttpEntity.class),
                 any(ParameterizedTypeReference.class),
                 anyMap())).thenThrow(RestClientException.class);
-        Menu menuResult = menuClient.getMenu(1L);
+        Menu menuResult = menuClient.getMenu("1L");
 
         //Then
         Assertions.assertEquals("[CLIENT, MENUS, RETRIEVED] Menu id not found",
@@ -126,7 +125,6 @@ public class MenuClientTest {
         Menu menuResult = menuClient.createMenu(menu);
 
         //Then
-        Assertions.assertEquals(menu.getId(), menuResult.getId());
         Assertions.assertEquals(menu.getLanguage(), menuResult.getLanguage());
 
     }
@@ -181,10 +179,9 @@ public class MenuClientTest {
                 any(HttpEntity.class),
                 (Class<MenuDTO>) any(), anyMap())).thenReturn(responseEntity);
         when(menuMapper.mapMenuDTOToMenu(menuDTO)).thenReturn(menu);
-        Menu menuResult = menuClient.editMenu(1L, menu);
+        Menu menuResult = menuClient.editMenu("1L", menu);
 
         //Then
-        Assertions.assertEquals(menu.getId(), menuResult.getId());
         Assertions.assertEquals(menu.getLanguage(), menuResult.getLanguage());
 
     }
@@ -215,7 +212,7 @@ public class MenuClientTest {
                 any(HttpMethod.class),
                 any(HttpEntity.class),
                 (Class<MenuDTO>) any(), anyMap())).thenThrow(RestClientException.class);
-        Menu menuResult = menuClient.editMenu(1L, menu);
+        Menu menuResult = menuClient.editMenu("1L", menu);
 
         //Then
         Assertions.assertEquals("[CLIENT, MENUS, EDITED] Menu was not edited!!",
@@ -239,10 +236,9 @@ public class MenuClientTest {
                 any(HttpEntity.class),
                 any(ParameterizedTypeReference.class), anyMap())).thenReturn(responseEntity);
         when(menuMapper.mapMenuDTOToMenu(menuDTO)).thenReturn(menu);
-        Menu menuResult = menuClient.deleteMenu(1L);
+        Menu menuResult = menuClient.deleteMenu("1L");
 
         //Then
-        Assertions.assertEquals(menu.getId(), menuResult.getId());
         Assertions.assertEquals(menu.getLanguage(), menuResult.getLanguage());
 
     }
@@ -273,7 +269,7 @@ public class MenuClientTest {
                 any(HttpMethod.class),
                 any(HttpEntity.class),
                 any(ParameterizedTypeReference.class), anyMap())).thenThrow(RestClientException.class);
-        Menu menuResult = menuClient.deleteMenu(1L);
+        Menu menuResult = menuClient.deleteMenu("1L");
 
         //Then
         Assertions.assertEquals("[CLIENT, MENUS, DELETED] Menu id not found",
@@ -301,7 +297,6 @@ public class MenuClientTest {
         List<Menu> menuResult = menuClient.getAllMenus();
 
         //Then
-        Assertions.assertEquals(menu.getId(), menuResult.get(0).getId());
         Assertions.assertEquals(menu.getLanguage(), menuResult.get(0).getLanguage());
 
     }

@@ -33,11 +33,11 @@ public class MenuServiceTest {
         Menu menuGiven = applicationDataProvider.getMenu();
 
         //When
-        when(menuClient.getMenu(0L)).thenReturn(menuGiven);
-        Menu menu = menuService.getMenu(0L);
+        when(menuClient.getMenu("0L")).thenReturn(menuGiven);
+        Menu menu = menuService.getMenu("0L");
 
         //Then
-        verify(menuClient, Mockito.times(1)).getMenu(0L);
+        verify(menuClient, Mockito.times(1)).getMenu("0L");
     }
 
     @Test
@@ -59,11 +59,11 @@ public class MenuServiceTest {
         Menu menuGiven = applicationDataProvider.getMenu();
 
         //When
-        when(menuClient.editMenu(0L, menuGiven)).thenReturn(menuGiven);
-        Menu menu = menuService.editMenu(0L, menuGiven);
+        when(menuClient.editMenu("0L", menuGiven)).thenReturn(menuGiven);
+        Menu menu = menuService.editMenu("0L", menuGiven);
 
         //Then
-        verify(menuClient, Mockito.times(1)).editMenu(0L, menuGiven);
+        verify(menuClient, Mockito.times(1)).editMenu("0L", menuGiven);
     }
 
     @Test
@@ -72,11 +72,11 @@ public class MenuServiceTest {
         Menu menuGiven = applicationDataProvider.getMenu();
 
         //When
-        when(menuClient.deleteMenu(0L)).thenReturn(menuGiven);
-        Menu menu = menuService.deleteMenu(0L);
+        when(menuClient.deleteMenu("0L")).thenReturn(menuGiven);
+        Menu menu = menuService.deleteMenu("0L");
 
         //Then
-        verify(menuClient, Mockito.times(1)).deleteMenu(0L);
+        verify(menuClient, Mockito.times(1)).deleteMenu("0L");
     }
 
     @Test

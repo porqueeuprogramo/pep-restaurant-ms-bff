@@ -177,7 +177,7 @@ public class EmployeeMapper {
     private MenuDTO mapMenuToMenuDTO(final Menu menu) {
         return menu != null ?
                 new MenuDTO()
-                        .id(menu.getId())
+                        .uid(menu.getUid())
                         .language(menu.getLanguage())
                 : null;
     }
@@ -185,7 +185,7 @@ public class EmployeeMapper {
     private Menu mapMenuDTOToMenu(final MenuDTO menuDTO) {
         return menuDTO != null ?
                 new Menu()
-                        .id(menuDTO.getId())
+                        .uid(menuDTO.getUid())
                         .language(menuDTO.getLanguage())
                 : null;
     }
