@@ -470,8 +470,7 @@ paths:
           in: path
           required: true
           schema:
-            type: integer
-            format: int64
+            type: string
       responses:
         "200":
           description: "Menu got."
@@ -488,8 +487,7 @@ paths:
           in: path
           required: true
           schema:
-            type: integer
-            format: int64
+            type: string
       requestBody:
         content:
           application/json:
@@ -511,8 +509,7 @@ paths:
           in: path
           required: true
           schema:
-            type: integer
-            format: int64
+            type: string
       responses:
         "200":
           description: "Menu deleted."
@@ -683,10 +680,9 @@ components:
     MenuDTO:
       type: object
       properties:
-        id:
-          type: integer
-          format: int64
         language:
+          type: string
+        uid:
           type: string
     ScheduleType:
       type: string

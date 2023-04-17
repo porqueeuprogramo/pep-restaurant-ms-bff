@@ -49,7 +49,7 @@ public class MenuClient {
      * @param menuId menu id.
      * @return menu.
      */
-    public Menu getMenu(final long menuId){
+    public Menu getMenu(final String menuId){
         final String url =  applicationProperties.getMsManager().getUrl().concat(MENU_MENU_ID);
         final String correlationId = UUID.randomUUID().toString();
         MenuDTO menuDTO = null;
@@ -121,7 +121,7 @@ public class MenuClient {
      * @param menu menu.
      * @return menu.
      */
-    public Menu editMenu(final long menuId, final Menu menu){
+    public Menu editMenu(final String menuId, final Menu menu){
         final String url =  applicationProperties.getMsManager().getUrl().concat(MENU_MENU_ID);
         final String correlationId = UUID.randomUUID().toString();
         MenuDTO menuDTO = null;
@@ -134,7 +134,7 @@ public class MenuClient {
 
         final HttpEntity<MenuDTO> requestEditMenuClient = new HttpEntity(requestMenuDTO ,headers);
         final Map<String, String> params = new HashMap<>();
-        params.put("menuId", String.valueOf(menuId));
+        params.put("menuId", menuId);
 
         LOGGER.info(correlationId, Arrays.asList(LogTag.CLIENT, LogTag.MENUS, LogTag.EDITED),
                 "Edit Menu by id " + menuId);
@@ -158,7 +158,7 @@ public class MenuClient {
      * @param menuId menu id.
      * @return menu deleted.
      */
-    public Menu deleteMenu(final Long menuId) {
+    public Menu deleteMenu(final String menuId) {
         final String url =  applicationProperties.getMsManager().getUrl().concat(MENU_MENU_ID);
         final String correlationId = UUID.randomUUID().toString();
         MenuDTO menuDTO = null;
@@ -169,7 +169,7 @@ public class MenuClient {
 
         final HttpEntity requestGetMenuId = new HttpEntity(headers);
         final Map<String, String> params = new HashMap<>();
-        params.put("menuId", String.valueOf(menuId));
+        params.put("menuId", menuId);
 
         LOGGER.info(correlationId, Arrays.asList(LogTag.CLIENT, LogTag.MENUS, LogTag.DELETED),
                 "Delete Menu by id: " + menuId);

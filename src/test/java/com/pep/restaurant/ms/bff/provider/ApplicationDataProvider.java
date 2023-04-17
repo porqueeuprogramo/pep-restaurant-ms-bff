@@ -94,6 +94,7 @@ public class ApplicationDataProvider {
 
     public Menu getMenu(){
         return new Menu()
+                .uid("uid")
                 .language("PORTUGUESE");
     }
 
@@ -148,7 +149,7 @@ public class ApplicationDataProvider {
 
     public MenuDTO getMenuDTO(){
         return new MenuDTO()
-                .id(1L)
+                .uid("uid")
                 .language("PORTUGUESE");
     }
 

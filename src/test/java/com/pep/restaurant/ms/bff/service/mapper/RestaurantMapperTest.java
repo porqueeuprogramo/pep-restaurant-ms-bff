@@ -41,8 +41,6 @@ public class RestaurantMapperTest {
         //Then
         Assertions.assertEquals(restaurantGivenList.get(0).getId(),
                 restaurantDTOResultList.get(0).getId());
-        Assertions.assertEquals(restaurantGivenList.get(0).getMenu().getId(),
-                restaurantDTOResultList.get(0).getMenu().getId());
         Assertions.assertEquals(restaurantGivenList.get(0).getMenu().getLanguage(),
                 restaurantDTOResultList.get(0).getMenu().getLanguage());
         Assertions.assertEquals(restaurantGivenList.get(0).getLocation().getAddress().getName()
@@ -86,8 +84,6 @@ public class RestaurantMapperTest {
         //Then
         Assertions.assertEquals(restaurantGiven.getId(),
                 restaurantDTOResult.getId());
-        Assertions.assertEquals(restaurantGiven.getMenu().getId(),
-                restaurantDTOResult.getMenu().getId());
         Assertions.assertEquals(restaurantGiven.getMenu().getLanguage(),
                 restaurantDTOResult.getMenu().getLanguage());
         Assertions.assertEquals(restaurantGiven.getLocation().getAddress().getName()
@@ -130,8 +126,6 @@ public class RestaurantMapperTest {
         //Then
         Assertions.assertEquals(restaurantGivenDTO.getId(),
                 restaurantResult.getId());
-        Assertions.assertEquals(restaurantGivenDTO.getMenu().getId(),
-                restaurantResult.getMenu().getId());
         Assertions.assertEquals(restaurantGivenDTO.getMenu().getLanguage(),
                 restaurantResult.getMenu().getLanguage());
         Assertions.assertEquals(restaurantGivenDTO.getLocation().getAddress().getName()
@@ -178,8 +172,6 @@ public class RestaurantMapperTest {
         //Then
         Assertions.assertEquals(restaurantGivenListDTO.get(0).getId(),
                 restaurantResultList.get(0).getId());
-        Assertions.assertEquals(restaurantGivenListDTO.get(0).getMenu().getId(),
-                restaurantResultList.get(0).getMenu().getId());
         Assertions.assertEquals(restaurantGivenListDTO.get(0).getMenu().getLanguage(),
                 restaurantResultList.get(0).getMenu().getLanguage());
         Assertions.assertEquals(restaurantGivenListDTO.get(0).getLocation().getAddress().getName()

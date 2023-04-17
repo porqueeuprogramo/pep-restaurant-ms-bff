@@ -29,7 +29,6 @@ public class MenuMapperTest {
         List<MenuDTO> menuDTOResultList = menuMapper.mapMenuListToMenuDTOList(menuGivenList);
 
         //Then
-        Assertions.assertEquals(menuGivenList.get(0).getId(), menuDTOResultList.get(0).getId().longValue());
         Assertions.assertEquals(menuGivenList.get(0).getLanguage(), menuDTOResultList.get(0).getLanguage());
 
     }
@@ -48,7 +47,6 @@ public class MenuMapperTest {
         MenuDTO menuDTOResult = menuMapper.mapMenuToMenuDTO(menuGiven);
 
         //Then
-        Assertions.assertEquals(menuGiven.getId(), menuDTOResult.getId().longValue());
         Assertions.assertEquals(menuGiven.getLanguage(), menuDTOResult.getLanguage());
     }
 
@@ -66,7 +64,6 @@ public class MenuMapperTest {
         Menu menuResult = menuMapper.mapMenuDTOToMenu(menuDTOGiven);
 
         //Then
-        Assertions.assertEquals(menuDTOGiven.getId().longValue(), menuResult.getId());
         Assertions.assertEquals(menuDTOGiven.getLanguage(), menuResult.getLanguage());
     }
 
@@ -84,7 +81,6 @@ public class MenuMapperTest {
         List<Menu> menuResultList = menuMapper.mapMenuDTOListToMenuList(menuGivenListDTO);
 
         //Then
-        Assertions.assertEquals(menuGivenListDTO.get(0).getId().longValue(), menuResultList.get(0).getId());
         Assertions.assertEquals(menuGivenListDTO.get(0).getLanguage(), menuResultList.get(0).getLanguage());
 
     }

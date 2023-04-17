@@ -1,34 +1,9 @@
 package com.pep.restaurant.ms.bff.domain;
 
 public class Menu {
-    private long id;
     private String language;
 
-    /**
-     * Get Menu id.
-     * @return menu id.
-     */
-    public long getId() {
-        return id;
-    }
-
-    /**
-     * Set menu id.
-     * @param id id.
-     */
-    public void setId(final long id) {
-        this.id = id;
-    }
-
-    /**
-     * Builder Menu for id.
-     * @param id id to build.
-     * @return menu with id.
-     */
-    public Menu id(final long id){
-        this.id = id;
-        return this;
-    }
+    private String uid;
 
     /**
      * Get Menu language.
@@ -56,11 +31,37 @@ public class Menu {
         return this;
     }
 
+    /**
+     * Get Menu uid.
+     * @return menu uid.
+     */
+    public String getUid() {
+        return uid;
+    }
+
+    /**
+     * Set menu uid.
+     * @param uid uid.
+     */
+    public void setUid(final String uid) {
+        this.uid = uid;
+    }
+
+    /**
+     * Builder Menu for uid.
+     * @param uid uid to build.
+     * @return menu with uid.
+     */
+    public Menu uid(final String uid){
+        this.uid = uid;
+        return this;
+    }
+
     @Override
     public String toString() {
         return "Menu{" +
-                "id=" + id +
-                ", language='" + language + '\'' +
+                "language='" + language + '\'' +
+                ", uid='" + uid + '\'' +
                 '}';
     }
 }

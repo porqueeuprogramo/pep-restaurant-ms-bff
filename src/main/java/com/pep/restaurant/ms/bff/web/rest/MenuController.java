@@ -46,7 +46,7 @@ public class MenuController implements MenuApi, ApiController {
             produces = {"application/json"},
             consumes = {"application/json"})
     @Override
-    public ResponseEntity<MenuDTO> getMenu(final Long menuId) {
+    public ResponseEntity<MenuDTO> getMenu(final String menuId) {
         return ResponseEntity.ok(menuMapper.mapMenuToMenuDTO(
                 menuService.getMenu(menuId)));
     }
@@ -79,7 +79,7 @@ public class MenuController implements MenuApi, ApiController {
             produces = {"application/json"},
             consumes = {"application/json"})
     @Override
-    public ResponseEntity<MenuDTO> editMenu(final Long menuId,
+    public ResponseEntity<MenuDTO> editMenu(final String menuId,
                                                         @RequestBody final MenuDTO menuDTO) {
         return ResponseEntity.ok(menuMapper.mapMenuToMenuDTO(
                 menuService.editMenu(menuId,
@@ -97,7 +97,7 @@ public class MenuController implements MenuApi, ApiController {
             produces = {"application/json"},
             consumes = {"application/json"})
     @Override
-    public ResponseEntity<MenuDTO> deleteMenu(final Long menuId) {
+    public ResponseEntity<MenuDTO> deleteMenu(final String menuId) {
         return ResponseEntity.ok(menuMapper.mapMenuToMenuDTO(
                 menuService.deleteMenu(menuId)));
     }
