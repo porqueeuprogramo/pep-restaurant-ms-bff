@@ -30,16 +30,12 @@ public class HereUtilTest {
 
         //Then
         Assertions.assertEquals(hereRestaurantInfo.getHereId(), hereRestaurantInfoList.get(0).getHereId());
-        Assertions.assertEquals(hereRestaurantInfo.getSearchLocation().getId(), hereRestaurantInfoList.get(0).getSearchLocation().getId());
-        Assertions.assertEquals(hereRestaurantInfo.getSearchLocation().getAddress().getId(), hereRestaurantInfoList.get(0).getSearchLocation().getAddress().getId());
         Assertions.assertEquals(hereRestaurantInfo.getSearchLocation().getAddress().getCity(), hereRestaurantInfoList.get(0).getSearchLocation().getAddress().getCity());
         Assertions.assertEquals(hereRestaurantInfo.getSearchLocation().getAddress().getCountry(), hereRestaurantInfoList.get(0).getSearchLocation().getAddress().getCountry());
         Assertions.assertEquals(hereRestaurantInfo.getSearchLocation().getAddress().getPostalCode(), hereRestaurantInfoList.get(0).getSearchLocation().getAddress().getPostalCode());
         Assertions.assertEquals(hereRestaurantInfo.getSearchLocation().getAddress().getName(), hereRestaurantInfoList.get(0).getSearchLocation().getAddress().getName());
         Assertions.assertEquals(hereRestaurantInfo.getSearchLocation().getCoordinate().getLatitude(), hereRestaurantInfoList.get(0).getSearchLocation().getCoordinate().getLatitude());
         Assertions.assertEquals(hereRestaurantInfo.getSearchLocation().getCoordinate().getLongitude(), hereRestaurantInfoList.get(0).getSearchLocation().getCoordinate().getLongitude());
-        Assertions.assertEquals(hereRestaurantInfo.getLocation().getId(), hereRestaurantInfoList.get(0).getLocation().getId());
-        Assertions.assertEquals(hereRestaurantInfo.getLocation().getAddress().getId(), hereRestaurantInfoList.get(0).getLocation().getAddress().getId());
         Assertions.assertEquals(hereRestaurantInfo.getLocation().getAddress().getCity(), hereRestaurantInfoList.get(0).getLocation().getAddress().getCity());
         Assertions.assertEquals(hereRestaurantInfo.getLocation().getAddress().getCountry(), hereRestaurantInfoList.get(0).getLocation().getAddress().getCountry());
         Assertions.assertEquals(hereRestaurantInfo.getLocation().getAddress().getPostalCode(), hereRestaurantInfoList.get(0).getLocation().getAddress().getPostalCode());

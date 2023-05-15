@@ -14,6 +14,7 @@ import java.util.Collections;
 import java.util.List;
 
 import static org.mockito.ArgumentMatchers.anyLong;
+import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -35,11 +36,11 @@ public class RestaurantServiceTest {
         Restaurant restaurantGiven = applicationDataProvider.getRestaurant();
 
         //When
-        when(restaurantClient.getRestaurant(anyLong())).thenReturn(restaurantGiven);
-        Restaurant restaurant = restaurantService.getRestaurant(anyLong());
+        when(restaurantClient.getRestaurant(anyString())).thenReturn(restaurantGiven);
+        Restaurant restaurant = restaurantService.getRestaurant(anyString());
 
         //Then
-        verify(restaurantClient, Mockito.times(1)).getRestaurant(anyLong());
+        verify(restaurantClient, Mockito.times(1)).getRestaurant(anyString());
     }
 
     @Test
@@ -61,12 +62,12 @@ public class RestaurantServiceTest {
         Restaurant restaurantGiven = applicationDataProvider.getRestaurant();
 
         //When
-        when(restaurantClient.editRestaurant(1L, restaurantGiven)).thenReturn(restaurantGiven);
-        Restaurant restaurant = restaurantService.editRestaurant(1L, restaurantGiven);
+        when(restaurantClient.editRestaurant("1L", restaurantGiven)).thenReturn(restaurantGiven);
+        Restaurant restaurant = restaurantService.editRestaurant("1L", restaurantGiven);
 
         //Then
         verify(restaurantClient, Mockito.times(1))
-                .editRestaurant(1L, restaurantGiven);
+                .editRestaurant("1L", restaurantGiven);
     }
 
     @Test
@@ -75,12 +76,12 @@ public class RestaurantServiceTest {
         Restaurant restaurantGiven = applicationDataProvider.getRestaurant();
 
         //When
-        when(restaurantClient.addEmployee(1L, 1L)).thenReturn(restaurantGiven);
-        Restaurant restaurant = restaurantService.addEmployee(1L, 1L);
+        when(restaurantClient.addEmployee("1L", "1L")).thenReturn(restaurantGiven);
+        Restaurant restaurant = restaurantService.addEmployee("1L", "1L");
 
         //Then
         verify(restaurantClient, Mockito.times(1))
-                .addEmployee(1L, 1L);
+                .addEmployee("1L", "1L");
     }
 
     @Test
@@ -89,12 +90,12 @@ public class RestaurantServiceTest {
         Restaurant restaurantGiven = applicationDataProvider.getRestaurant();
 
         //When
-        when(restaurantClient.removeEmployee(1L, 1L)).thenReturn(restaurantGiven);
-        Restaurant restaurant = restaurantService.removeEmployee(1L, 1L);
+        when(restaurantClient.removeEmployee("1L", "1L")).thenReturn(restaurantGiven);
+        Restaurant restaurant = restaurantService.removeEmployee("1L", "1L");
 
         //Then
         verify(restaurantClient, Mockito.times(1))
-                .removeEmployee(1L, 1L);
+                .removeEmployee("1L", "1L");
     }
 
     @Test
@@ -103,12 +104,12 @@ public class RestaurantServiceTest {
         Restaurant restaurantGiven = applicationDataProvider.getRestaurant();
 
         //When
-        when(restaurantClient.deleteRestaurant(1L)).thenReturn(restaurantGiven);
-        Restaurant restaurant = restaurantService.deleteRestaurant(1L);
+        when(restaurantClient.deleteRestaurant("1L")).thenReturn(restaurantGiven);
+        Restaurant restaurant = restaurantService.deleteRestaurant("1L");
 
         //Then
         verify(restaurantClient, Mockito.times(1))
-                .deleteRestaurant(1L);
+                .deleteRestaurant("1L");
     }
 
     @Test

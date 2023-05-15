@@ -4,34 +4,34 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class Employee {
-    private long id;
+    private String uid;
     private String role;
     private Set<Restaurant> restaurantList = new HashSet<>();
     private ScheduleRoutine schedule;
 
     /**
-     * Get id employee.
-     * @return employee id.
+     * Get uid employee.
+     * @return employee uid.
      */
-    public long getId() {
-        return id;
+    public String getUid() {
+        return uid;
     }
 
     /**
      * Set id employee.
-     * @param id employee id.
+     * @param uid employee uid.
      */
-    public void setId(final long id) {
-        this.id = id;
+    public void setUid(final String uid) {
+        this.uid = uid;
     }
 
     /**
-     * Builder Employee for id.
-     * @param id id to build.
-     * @return employee with id.
+     * Builder Employee for uid.
+     * @param uid uid to build.
+     * @return employee with uid.
      */
-    public Employee id(final long id){
-        this.id = id;
+    public Employee uid(final String uid){
+        this.uid = uid;
         return this;
     }
 
@@ -116,7 +116,7 @@ public class Employee {
     @Override
     public String toString() {
         return "Employee{" +
-                "id=" + id +
+                "uid=" + uid +
                 ", role='" + role + '\'' +
                 ", restaurantList=" + restaurantList +
                 ", schedule=" + schedule +

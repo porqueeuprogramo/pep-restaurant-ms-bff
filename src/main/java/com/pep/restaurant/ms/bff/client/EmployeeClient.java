@@ -52,7 +52,7 @@ public class EmployeeClient {
      * @param employeeId employee id.
      * @return employee.
      */
-    public Employee getEmployee(final long employeeId){
+    public Employee getEmployee(final String employeeId){
         final String url =  applicationProperties.getMsManager().getUrl().concat(EMPLOYEE_EMPLOYEE_ID);
         final String correlationId = UUID.randomUUID().toString();
         EmployeeDTO employeeDTO = null;
@@ -66,7 +66,7 @@ public class EmployeeClient {
 
         final HttpEntity requestGetEmployeeId = new HttpEntity(headers);
         final Map<String, String> params = new HashMap<>();
-        params.put("employeeId", String.valueOf(employeeId));
+        params.put("employeeId", employeeId);
 
         try{
             final ResponseEntity<EmployeeDTO> responseEmployee = restTemplate.exchange(url, HttpMethod.GET,
@@ -125,7 +125,7 @@ public class EmployeeClient {
      * @param employee employee.
      * @return employee.
      */
-    public Employee editEmployee(final long employeeId, final Employee employee){
+    public Employee editEmployee(final String employeeId, final Employee employee){
         final String url =  applicationProperties.getMsManager().getUrl().concat(EMPLOYEE_EMPLOYEE_ID);
         final String correlationId = UUID.randomUUID().toString();
         EmployeeDTO employeeDTO = null;
@@ -138,7 +138,7 @@ public class EmployeeClient {
 
         final HttpEntity<EmployeeDTO> requestEditEmployeeClient = new HttpEntity(requestEmployeeDTO ,headers);
         final Map<String, String> params = new HashMap<>();
-        params.put("employeeId", String.valueOf(employeeId));
+        params.put("employeeId", employeeId);
 
         LOGGER.info(correlationId, Arrays.asList(LogTag.CLIENT, LogTag.EMPLOYEES, LogTag.EDITED),
                 "Edit Employee by id " + employeeId);
@@ -163,7 +163,7 @@ public class EmployeeClient {
      * @param restaurantId restaurant id.
      * @return employee.
      */
-    public Employee addRestaurant(final Long employeeId, final Long restaurantId) {
+    public Employee addRestaurant(final String employeeId, final String restaurantId) {
         final String url =  applicationProperties.getMsManager().getUrl()
                 .concat(EMPLOYEE_ADD_RESTAURANT_EMPLOYEE_ID_RESTAURANT_ID);
         final String correlationId = UUID.randomUUID().toString();
@@ -175,8 +175,8 @@ public class EmployeeClient {
 
         final HttpEntity requestAddEmployeeToEmployeeClient = new HttpEntity(headers);
         final Map<String, String> params = new HashMap<>();
-        params.put("employeeId", String.valueOf(employeeId));
-        params.put("restaurantId", String.valueOf(restaurantId));
+        params.put("employeeId", employeeId);
+        params.put("restaurantId", restaurantId);
 
         LOGGER.info(correlationId, Arrays.asList(LogTag.CLIENT, LogTag.EMPLOYEES, LogTag.EDITED),
                 "Add Restaurant with id: " + restaurantId + " to Employee with id: " + employeeId);
@@ -203,7 +203,7 @@ public class EmployeeClient {
      * @param restaurantId restaurant id.
      * @return employee.
      */
-    public Employee removeRestaurant(final Long employeeId, final Long restaurantId) {
+    public Employee removeRestaurant(final String employeeId, final String restaurantId) {
         final String url =  applicationProperties.getMsManager().getUrl()
                 .concat(EMPLOYEE_REMOVE_RESTAURANT_EMPLOYEE_ID_RESTAURANT_ID);
         final String correlationId = UUID.randomUUID().toString();
@@ -215,8 +215,8 @@ public class EmployeeClient {
 
         final HttpEntity requestAddEmployeeToEmployeeClient = new HttpEntity(headers);
         final Map<String, String> params = new HashMap<>();
-        params.put("employeeId", String.valueOf(employeeId));
-        params.put("restaurantId", String.valueOf(restaurantId));
+        params.put("employeeId", employeeId);
+        params.put("restaurantId", restaurantId);
 
         LOGGER.info(correlationId, Arrays.asList(LogTag.CLIENT, LogTag.EMPLOYEES, LogTag.EDITED),
                 "Remove Restaurant with id: " + restaurantId + " from Employee with id: " + employeeId);
@@ -242,7 +242,7 @@ public class EmployeeClient {
      * @param employeeId employee id.
      * @return employee deleted.
      */
-    public Employee deleteEmployee(final Long employeeId) {
+    public Employee deleteEmployee(final String employeeId) {
         final String url =  applicationProperties.getMsManager().getUrl().concat(EMPLOYEE_EMPLOYEE_ID);
         final String correlationId = UUID.randomUUID().toString();
         EmployeeDTO employeeDTO = null;
@@ -252,7 +252,7 @@ public class EmployeeClient {
 
         final HttpEntity requestGetEmployeeId = new HttpEntity(headers);
         final Map<String, String> params = new HashMap<>();
-        params.put("employeeId", String.valueOf(employeeId));
+        params.put("employeeId", employeeId);
         headers.set("Correlation-Id", correlationId);
 
         LOGGER.info(correlationId, Arrays.asList(LogTag.CLIENT, LogTag.EMPLOYEES, LogTag.DELETED),

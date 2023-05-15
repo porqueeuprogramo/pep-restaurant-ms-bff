@@ -1,35 +1,8 @@
 package com.pep.restaurant.ms.bff.domain;
 
 public class Location {
-    private long id;
     private Address address;
     private Coordinate coordinate;
-
-    /**
-     * Get Location id.
-     * @return location id.
-     */
-    public long getId() {
-        return id;
-    }
-
-    /**
-     * Set Restaurant Id.
-     * @param id restaurant id.
-     */
-    public void setId(final long id) {
-        this.id = id;
-    }
-
-    /**
-     * Builder Location for id.
-     * @param id id to build.
-     * @return location with id.
-     */
-    public Location id(final long id){
-        this.id = id;
-        return this;
-    }
 
     /**
      * Get Location Address.
@@ -86,7 +59,6 @@ public class Location {
     @Override
     public String toString() {
         return "Location{" +
-                "id=" + id +
                 ", address=" + address +
                 ", coordinate=" + coordinate +
                 '}';

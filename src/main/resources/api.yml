@@ -72,8 +72,7 @@ paths:
           in: path
           required: true
           schema:
-            type: integer
-            format: int64
+            type: string
       responses:
         "200":
           description: "Restaurant got."
@@ -90,8 +89,7 @@ paths:
           in: path
           required: true
           schema:
-            type: integer
-            format: int64
+            type: string
       requestBody:
         content:
           application/json:
@@ -113,8 +111,7 @@ paths:
           in: path
           required: true
           schema:
-            type: integer
-            format: int64
+            type: string
       responses:
         "200":
           description: "Restaurant deleted."
@@ -162,14 +159,12 @@ paths:
           in: path
           required: true
           schema:
-            type: integer
-            format: int64
+            type: string
         - name: employeeId
           in: path
           required: true
           schema:
-            type: integer
-            format: int64
+            type: string
       responses:
         "200":
           description: "Restaurant with employee added."
@@ -187,14 +182,12 @@ paths:
           in: path
           required: true
           schema:
-            type: integer
-            format: int64
+            type: string
         - name: employeeId
           in: path
           required: true
           schema:
-            type: integer
-            format: int64
+            type: string
       responses:
         "200":
           description: "Restaurant with employee removed."
@@ -238,8 +231,7 @@ paths:
           in: path
           required: true
           schema:
-            type: integer
-            format: int64
+            type: string
       responses:
         "200":
           description: "Employee got."
@@ -256,8 +248,7 @@ paths:
           in: path
           required: true
           schema:
-            type: integer
-            format: int64
+            type: string
       requestBody:
         content:
           application/json:
@@ -279,8 +270,7 @@ paths:
           in: path
           required: true
           schema:
-            type: integer
-            format: int64
+            type: string
       responses:
         "200":
           description: "Employee deleted."
@@ -328,14 +318,12 @@ paths:
           in: path
           required: true
           schema:
-            type: integer
-            format: int64
+            type: string
         - name: restaurantId
           in: path
           required: true
           schema:
-            type: integer
-            format: int64
+            type: string
       responses:
         "200":
           description: "Employee with restaurant added."
@@ -353,14 +341,12 @@ paths:
           in: path
           required: true
           schema:
-            type: integer
-            format: int64
+            type: string
         - name: restaurantId
           in: path
           required: true
           schema:
-            type: integer
-            format: int64
+            type: string
       responses:
         "200":
           description: "Employee with restaurant removed."
@@ -368,276 +354,6 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/EmployeeDTO"
-  # LOCATION API
-  /location/{locationId}:
-    get:
-      summary: Get Location By id.
-      description: Retrieves a location by passing an id.
-      operationId: getLocation
-      parameters:
-        - name: locationId
-          in: path
-          required: true
-          schema:
-            type: integer
-            format: int64
-      responses:
-        "200":
-          description: "Location got."
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/LocationDTO"
-    put:
-      summary: Edit Location By id.
-      description: Edit location by passing an id.
-      operationId: editLocation
-      parameters:
-        - name: locationId
-          in: path
-          required: true
-          schema:
-            type: integer
-            format: int64
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/LocationDTO"
-      responses:
-        "200":
-          description: "Location edited."
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/LocationDTO"
-    delete:
-      summary: Delete Location By id.
-      description: Retrieves the deleted location.
-      operationId: deleteLocation
-      parameters:
-        - name: locationId
-          in: path
-          required: true
-          schema:
-            type: integer
-            format: int64
-      responses:
-        "200":
-          description: "Location deleted."
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/LocationDTO"
-  /location:
-    post:
-      summary: Create Location.
-      description: Create Location.
-      operationId: createLocation
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/LocationDTO"
-      responses:
-        "200":
-          description: "Location created."
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/LocationDTO"
-    get:
-      summary: Get All Locations.
-      description: Get All Locations.
-      operationId: getAllLocations
-      responses:
-        "200":
-          description: "Locations got."
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: "#/components/schemas/LocationDTO"
-  # MENU API
-  /menu/{menuId}:
-    get:
-      summary: Get Menu By id.
-      description: Retrieves a menu by passing an id.
-      operationId: getMenu
-      parameters:
-        - name: menuId
-          in: path
-          required: true
-          schema:
-            type: string
-      responses:
-        "200":
-          description: "Menu got."
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/MenuDTO"
-    put:
-      summary: Edit Menu By id.
-      description: Edit menu by passing an id.
-      operationId: editMenu
-      parameters:
-        - name: menuId
-          in: path
-          required: true
-          schema:
-            type: string
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/MenuDTO"
-      responses:
-        "200":
-          description: "Menu edited."
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/MenuDTO"
-    delete:
-      summary: Delete Menu By id.
-      description: Retrieves the deleted menu.
-      operationId: deleteMenu
-      parameters:
-        - name: menuId
-          in: path
-          required: true
-          schema:
-            type: string
-      responses:
-        "200":
-          description: "Menu deleted."
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/MenuDTO"
-  /menu:
-    post:
-      summary: Create Menu.
-      description: Create Menu.
-      operationId: createMenu
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/MenuDTO"
-      responses:
-        "200":
-          description: "Menu created."
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/MenuDTO"
-    get:
-      summary: Get All Menu.
-      description: Get All Menu.
-      operationId: getAllMenus
-      responses:
-        "200":
-          description: "Menus got."
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: "#/components/schemas/MenuDTO"
-  # ADDRESS API
-  /address/{addressId}:
-    get:
-      summary: Get Address By id.
-      description: Retrieves a address by passing an id.
-      operationId: getAddress
-      parameters:
-        - name: addressId
-          in: path
-          required: true
-          schema:
-            type: integer
-            format: int64
-      responses:
-        "200":
-          description: "Address got."
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/AddressDTO"
-    put:
-      summary: Edit Address By id.
-      description: Edit address by passing an id.
-      operationId: editAddress
-      parameters:
-        - name: addressId
-          in: path
-          required: true
-          schema:
-            type: integer
-            format: int64
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/AddressDTO"
-      responses:
-        "200":
-          description: "Address edited."
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/AddressDTO"
-    delete:
-      summary: Delete Address By id.
-      description: Retrieves the deleted address.
-      operationId: deleteAddress
-      parameters:
-        - name: addressId
-          in: path
-          required: true
-          schema:
-            type: integer
-            format: int64
-      responses:
-        "200":
-          description: "Address deleted."
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/AddressDTO"
-  /address:
-    post:
-      summary: Create Address.
-      description: Create Address.
-      operationId: createAddress
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/AddressDTO"
-      responses:
-        "200":
-          description: "Address created."
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/AddressDTO"
-    get:
-      summary: Get All Addresses.
-      description: Get All Addresses.
-      operationId: getAllAddresses
-      responses:
-        "200":
-          description: "Addresses got."
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: "#/components/schemas/AddressDTO"
 
 servers:
   - url: http://localhost:8080/api
@@ -647,9 +363,6 @@ components:
     AddressDTO:
       type: object
       properties:
-        id:
-          type: integer
-          format: int64
         name:
           type: string
         postalCode:
@@ -670,9 +383,6 @@ components:
     LocationDTO:
       type: object
       properties:
-        id:
-          type: integer
-          format: int64
         address:
           $ref: "#/components/schemas/AddressDTO"
         locationCoordinate:
@@ -693,9 +403,8 @@ components:
     EmployeeDTO:
       type: object
       properties:
-        id:
-          type: integer
-          format: int64
+        uid:
+          type: string
         role:
           type: string
         restaurantList:
@@ -705,9 +414,8 @@ components:
     RestaurantDTO:
       type: object
       properties:
-        id:
-          type: integer
-          format: int64
+        uid:
+          type: string
         hereId:
           type: string
         name:

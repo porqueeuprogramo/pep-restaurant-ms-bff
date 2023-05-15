@@ -69,14 +69,14 @@ public class EmployeeClientTest {
                 any(ParameterizedTypeReference.class),
                 anyMap())).thenReturn(responseEntity);
         when(employeeMapper.mapEmployeeDTOToEmployee(employeeDTO)).thenReturn(employee);
-        Employee employeeResult = employeeClient.getEmployee(1L);
+        Employee employeeResult = employeeClient.getEmployee("1L");
         List<Restaurant> employeeResultRestaurantList =
                 new ArrayList<>(employeeResult.getRestaurantList());
 
         //Then
-        Assertions.assertEquals(employee.getId(), employeeResult.getId());
+        Assertions.assertEquals(employee.getUid(), employeeResult.getUid());
         Assertions.assertEquals(employee.getRole(), employeeResult.getRole());
-        Assertions.assertEquals(employeeGivenRestaurantListDTO.get(0).getId(), employeeResultRestaurantList.get(0).getId());
+        Assertions.assertEquals(employeeGivenRestaurantListDTO.get(0).getUid(), employeeResultRestaurantList.get(0).getUid());
         Assertions.assertEquals(employeeGivenRestaurantListDTO.get(0).getLocation().getAddress().getName()
                 , employeeResultRestaurantList.get(0).getLocation().getAddress().getName());
         Assertions.assertEquals(employeeGivenRestaurantListDTO.get(0).getLocation().getAddress().getCountry()
@@ -127,7 +127,7 @@ public class EmployeeClientTest {
                 any(HttpEntity.class),
                 any(ParameterizedTypeReference.class),
                 anyMap())).thenThrow(RestClientException.class);
-        Employee employeeResult = employeeClient.getEmployee(1L);
+        Employee employeeResult = employeeClient.getEmployee("1L");
 
         //Then
         Assertions.assertEquals("[CLIENT, EMPLOYEES, RETRIEVED] Employee id not found",
@@ -158,9 +158,9 @@ public class EmployeeClientTest {
                 new ArrayList<>(employeeResult.getRestaurantList());
 
         //Then
-        Assertions.assertEquals(employee.getId(), employeeResult.getId());
+        Assertions.assertEquals(employee.getUid(), employeeResult.getUid());
         Assertions.assertEquals(employee.getRole(), employeeResult.getRole());
-        Assertions.assertEquals(employeeGivenRestaurantListDTO.get(0).getId(), employeeResultRestaurantList.get(0).getId());
+        Assertions.assertEquals(employeeGivenRestaurantListDTO.get(0).getUid(), employeeResultRestaurantList.get(0).getUid());
         Assertions.assertEquals(employeeGivenRestaurantListDTO.get(0).getLocation().getAddress().getName()
                 , employeeResultRestaurantList.get(0).getLocation().getAddress().getName());
         Assertions.assertEquals(employeeGivenRestaurantListDTO.get(0).getLocation().getAddress().getCountry()
@@ -235,14 +235,14 @@ public class EmployeeClientTest {
                 any(HttpEntity.class),
                 (Class<EmployeeDTO>) any(), anyMap())).thenReturn(responseEntity);
         when(employeeMapper.mapEmployeeDTOToEmployee(employeeDTO)).thenReturn(employee);
-        Employee employeeResult = employeeClient.editEmployee(1L, employee);
+        Employee employeeResult = employeeClient.editEmployee("1L", employee);
         List<Restaurant> employeeResultRestaurantList =
                 new ArrayList<>(employeeResult.getRestaurantList());
 
         //Then
-        Assertions.assertEquals(employee.getId(), employeeResult.getId());
+        Assertions.assertEquals(employee.getUid(), employeeResult.getUid());
         Assertions.assertEquals(employee.getRole(), employeeResult.getRole());
-        Assertions.assertEquals(employeeGivenRestaurantListDTO.get(0).getId(), employeeResultRestaurantList.get(0).getId());
+        Assertions.assertEquals(employeeGivenRestaurantListDTO.get(0).getUid(), employeeResultRestaurantList.get(0).getUid());
         Assertions.assertEquals(employeeGivenRestaurantListDTO.get(0).getLocation().getAddress().getName()
                 , employeeResultRestaurantList.get(0).getLocation().getAddress().getName());
         Assertions.assertEquals(employeeGivenRestaurantListDTO.get(0).getLocation().getAddress().getCountry()
@@ -292,7 +292,7 @@ public class EmployeeClientTest {
                 any(HttpMethod.class),
                 any(HttpEntity.class),
                 (Class<EmployeeDTO>) any(), anyMap())).thenThrow(RestClientException.class);
-        Employee employeeResult = employeeClient.editEmployee(1L, employee);
+        Employee employeeResult = employeeClient.editEmployee("1L", employee);
 
         //Then
         Assertions.assertEquals("[CLIENT, EMPLOYEES, EDITED] Employee was not edited!!",
@@ -318,14 +318,14 @@ public class EmployeeClientTest {
                 any(HttpEntity.class),
                 any(ParameterizedTypeReference.class), anyMap())).thenReturn(responseEntity);
         when(employeeMapper.mapEmployeeDTOToEmployee(employeeDTO)).thenReturn(employee);
-        Employee employeeResult = employeeClient.addRestaurant(1L, 1L);
+        Employee employeeResult = employeeClient.addRestaurant("1L", "1L");
         List<Restaurant> employeeResultRestaurantList =
                 new ArrayList<>(employeeResult.getRestaurantList());
 
         //Then
-        Assertions.assertEquals(employee.getId(), employeeResult.getId());
+        Assertions.assertEquals(employee.getUid(), employeeResult.getUid());
         Assertions.assertEquals(employee.getRole(), employeeResult.getRole());
-        Assertions.assertEquals(employeeGivenRestaurantListDTO.get(0).getId(), employeeResultRestaurantList.get(0).getId());
+        Assertions.assertEquals(employeeGivenRestaurantListDTO.get(0).getUid(), employeeResultRestaurantList.get(0).getUid());
         Assertions.assertEquals(employeeGivenRestaurantListDTO.get(0).getLocation().getAddress().getName()
                 , employeeResultRestaurantList.get(0).getLocation().getAddress().getName());
         Assertions.assertEquals(employeeGivenRestaurantListDTO.get(0).getLocation().getAddress().getCountry()
@@ -375,7 +375,7 @@ public class EmployeeClientTest {
                 any(HttpMethod.class),
                 any(HttpEntity.class),
                 any(ParameterizedTypeReference.class), anyMap())).thenThrow(RestClientException.class);
-        Employee employeeResult = employeeClient.addRestaurant(1L, 1L);
+        Employee employeeResult = employeeClient.addRestaurant("1L", "1L");
 
         //Then
         Assertions.assertEquals("[CLIENT, EMPLOYEES, EDITED] Employee was not added to Employee!!",
@@ -399,10 +399,10 @@ public class EmployeeClientTest {
                 any(HttpEntity.class),
                 any(ParameterizedTypeReference.class), anyMap())).thenReturn(responseEntity);
         when(employeeMapper.mapEmployeeDTOToEmployee(employeeDTO)).thenReturn(employee);
-        Employee employeeResult = employeeClient.removeRestaurant(1L, 1L);
+        Employee employeeResult = employeeClient.removeRestaurant("1L", "1L");
 
         //Then
-        Assertions.assertEquals(employee.getId(), employeeResult.getId());
+        Assertions.assertEquals(employee.getUid(), employeeResult.getUid());
         Assertions.assertEquals(employee.getRole(), employeeResult.getRole());
         Assertions.assertEquals(0, employeeResult.getRestaurantList().size());
 
@@ -434,7 +434,7 @@ public class EmployeeClientTest {
                 any(HttpMethod.class),
                 any(HttpEntity.class),
                 any(ParameterizedTypeReference.class), anyMap())).thenThrow(RestClientException.class);
-        Employee employeeResult = employeeClient.removeRestaurant(1L, 1L);
+        Employee employeeResult = employeeClient.removeRestaurant("1L", "1L");
 
         //Then
         Assertions.assertEquals("[CLIENT, EMPLOYEES, EDITED] Employee was not removed from Employee!!",
@@ -460,14 +460,14 @@ public class EmployeeClientTest {
                 any(HttpEntity.class),
                 any(ParameterizedTypeReference.class), anyMap())).thenReturn(responseEntity);
         when(employeeMapper.mapEmployeeDTOToEmployee(employeeDTO)).thenReturn(employee);
-        Employee employeeResult = employeeClient.deleteEmployee(1L);
+        Employee employeeResult = employeeClient.deleteEmployee("1L");
         List<Restaurant> employeeResultRestaurantList =
                 new ArrayList<>(employeeResult.getRestaurantList());
 
         //Then
-        Assertions.assertEquals(employee.getId(), employeeResult.getId());
+        Assertions.assertEquals(employee.getUid(), employeeResult.getUid());
         Assertions.assertEquals(employee.getRole(), employeeResult.getRole());
-        Assertions.assertEquals(employeeGivenRestaurantListDTO.get(0).getId(), employeeResultRestaurantList.get(0).getId());
+        Assertions.assertEquals(employeeGivenRestaurantListDTO.get(0).getUid(), employeeResultRestaurantList.get(0).getUid());
         Assertions.assertEquals(employeeGivenRestaurantListDTO.get(0).getLocation().getAddress().getName()
                 , employeeResultRestaurantList.get(0).getLocation().getAddress().getName());
         Assertions.assertEquals(employeeGivenRestaurantListDTO.get(0).getLocation().getAddress().getCountry()
@@ -517,7 +517,7 @@ public class EmployeeClientTest {
                 any(HttpMethod.class),
                 any(HttpEntity.class),
                 any(ParameterizedTypeReference.class), anyMap())).thenThrow(RestClientException.class);
-        Employee employeeResult = employeeClient.deleteEmployee(1L);
+        Employee employeeResult = employeeClient.deleteEmployee("1L");
 
         //Then
         Assertions.assertEquals("[CLIENT, EMPLOYEES, DELETED] Employee id not found",
@@ -549,9 +549,9 @@ public class EmployeeClientTest {
                 new ArrayList<>(employeeResult.get(0).getRestaurantList());
 
         //Then
-        Assertions.assertEquals(employee.getId(), employeeResult.get(0).getId());
+        Assertions.assertEquals(employee.getUid(), employeeResult.get(0).getUid());
         Assertions.assertEquals(employee.getRole(), employeeResult.get(0).getRole());
-        Assertions.assertEquals(employeeGivenRestaurantListDTO.get(0).getId(), employeeResultRestaurantList.get(0).getId());
+        Assertions.assertEquals(employeeGivenRestaurantListDTO.get(0).getUid(), employeeResultRestaurantList.get(0).getUid());
         Assertions.assertEquals(employeeGivenRestaurantListDTO.get(0).getLocation().getAddress().getName()
                 , employeeResultRestaurantList.get(0).getLocation().getAddress().getName());
         Assertions.assertEquals(employeeGivenRestaurantListDTO.get(0).getLocation().getAddress().getCountry()

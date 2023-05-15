@@ -2,7 +2,6 @@ package com.pep.restaurant.ms.bff.domain;
 
 public class Menu {
     private String language;
-
     private String uid;
 
     /**

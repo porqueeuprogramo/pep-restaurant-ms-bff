@@ -4,8 +4,8 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class Restaurant {
-    private long id;
     private String name;
+    private String uid;
     private String hereId;
     private Location location;
     private int capacity;
@@ -14,28 +14,28 @@ public class Restaurant {
     private Set<Employee> employeeList = new HashSet<>();
 
     /**
-     * Method to get a Restaurant id.
-     * @return id.
+     * Get Restaurant uid.
+     * @return restaurant uid.
      */
-    public long getId() {
-        return id;
+    public String getUid() {
+        return uid;
     }
 
     /**
-     * Method to set a Restaurant id.
-     * @param id to be set.
+     * Set Restaurant Uid.
+     * @param uid restaurant uid.
      */
-    public void setId(final long id) {
-        this.id = id;
+    public void setUid(final String uid) {
+        this.uid = uid;
     }
 
     /**
-     * Builder Restaurant for id.
-     * @param id id to build.
-     * @return restaurant with id.
+     * Builder Restaurant for uid.
+     * @param uid uid to build.
+     * @return restaurant with uid.
      */
-    public Restaurant id(final long id){
-        this.id = id;
+    public Restaurant uid(final String uid){
+        this.uid = uid;
         return this;
     }
 
@@ -224,7 +224,7 @@ public class Restaurant {
     @Override
     public String toString() {
         return "Restaurant{" +
-                "id=" + id +
+                "uid=" + uid +
                 ", name='" + name + '\'' +
                 ", hereId='" + hereId + '\'' +
                 ", location=" + location +

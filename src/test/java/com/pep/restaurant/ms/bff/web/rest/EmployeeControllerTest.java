@@ -58,7 +58,7 @@ public class EmployeeControllerTest {
 
         try {
             mockServer.expect(ExpectedCount.once(),
-                    requestTo(new URI("http://localhost:8082/pep/restaurant/manager/api/employee/1")))
+                    requestTo(new URI("http://localhost:8082/pep/restaurant/manager/api/employee/1L")))
                     .andExpect(method(HttpMethod.GET))
                     .andRespond(withStatus(HttpStatus.OK)
                             .contentType(MediaType.APPLICATION_JSON)
@@ -71,13 +71,13 @@ public class EmployeeControllerTest {
             e.printStackTrace();
         }
 
-        ResponseEntity<EmployeeDTO> result = employeeController.getEmployee(1L);
+        ResponseEntity<EmployeeDTO> result = employeeController.getEmployee("1L");
         List<RestaurantDTO> employeeResultRestaurantList =
                 new ArrayList<>(result.getBody().getRestaurantList());
 
-        Assertions.assertEquals(employeeDTO.getId(), result.getBody().getId());
+        Assertions.assertEquals(employeeDTO.getUid(), result.getBody().getUid());
         Assertions.assertEquals(employeeDTO.getRole(), result.getBody().getRole());
-        Assertions.assertEquals(employeeGivenRestaurantList.get(0).getId(), employeeResultRestaurantList.get(0).getId());
+        Assertions.assertEquals(employeeGivenRestaurantList.get(0).getUid(), employeeResultRestaurantList.get(0).getUid());
         Assertions.assertEquals(employeeGivenRestaurantList.get(0).getLocation().getAddress().getName()
                 , employeeResultRestaurantList.get(0).getLocation().getAddress().getName());
         Assertions.assertEquals(employeeGivenRestaurantList.get(0).getLocation().getAddress().getCountry()
@@ -129,9 +129,9 @@ public class EmployeeControllerTest {
         List<RestaurantDTO> employeeResultRestaurantList =
                 new ArrayList<>(result.getBody().getRestaurantList());
 
-        Assertions.assertEquals(employeeDTO.getId(), result.getBody().getId());
+        Assertions.assertEquals(employeeDTO.getUid(), result.getBody().getUid());
         Assertions.assertEquals(employeeDTO.getRole(), result.getBody().getRole());
-        Assertions.assertEquals(employeeGivenRestaurantList.get(0).getId(), employeeResultRestaurantList.get(0).getId());
+        Assertions.assertEquals(employeeGivenRestaurantList.get(0).getUid(), employeeResultRestaurantList.get(0).getUid());
         Assertions.assertEquals(employeeGivenRestaurantList.get(0).getLocation().getAddress().getName()
                 , employeeResultRestaurantList.get(0).getLocation().getAddress().getName());
         Assertions.assertEquals(employeeGivenRestaurantList.get(0).getLocation().getAddress().getCountry()
@@ -165,7 +165,7 @@ public class EmployeeControllerTest {
 
         try {
             mockServer.expect(ExpectedCount.once(),
-                    requestTo(new URI("http://localhost:8082/pep/restaurant/manager/api/employee/1")))
+                    requestTo(new URI("http://localhost:8082/pep/restaurant/manager/api/employee/1L")))
                     .andExpect(method(HttpMethod.PUT))
                     .andRespond(withStatus(HttpStatus.OK)
                             .contentType(MediaType.APPLICATION_JSON)
@@ -178,13 +178,13 @@ public class EmployeeControllerTest {
             e.printStackTrace();
         }
 
-        ResponseEntity<EmployeeDTO> result = employeeController.editEmployee(1L, employeeDTO);
+        ResponseEntity<EmployeeDTO> result = employeeController.editEmployee("1L", employeeDTO);
         List<RestaurantDTO> employeeResultRestaurantList =
                 new ArrayList<>(result.getBody().getRestaurantList());
 
-        Assertions.assertEquals(employeeDTO.getId(), result.getBody().getId());
+        Assertions.assertEquals(employeeDTO.getUid(), result.getBody().getUid());
         Assertions.assertEquals(employeeDTO.getRole(), result.getBody().getRole());
-        Assertions.assertEquals(employeeGivenRestaurantList.get(0).getId(), employeeResultRestaurantList.get(0).getId());
+        Assertions.assertEquals(employeeGivenRestaurantList.get(0).getUid(), employeeResultRestaurantList.get(0).getUid());
         Assertions.assertEquals(employeeGivenRestaurantList.get(0).getLocation().getAddress().getName()
                 , employeeResultRestaurantList.get(0).getLocation().getAddress().getName());
         Assertions.assertEquals(employeeGivenRestaurantList.get(0).getLocation().getAddress().getCountry()
@@ -219,7 +219,7 @@ public class EmployeeControllerTest {
         try {
             mockServer.expect(ExpectedCount.once(),
                     requestTo(new URI(
-                            "http://localhost:8082/pep/restaurant/manager/api/employee/add/restaurant/1/1")))
+                            "http://localhost:8082/pep/restaurant/manager/api/employee/add/restaurant/1L/1L")))
                     .andExpect(method(HttpMethod.PUT))
                     .andRespond(withStatus(HttpStatus.OK)
                             .contentType(MediaType.APPLICATION_JSON)
@@ -232,13 +232,13 @@ public class EmployeeControllerTest {
             e.printStackTrace();
         }
 
-        ResponseEntity<EmployeeDTO> result = employeeController.addRestaurant(1L, 1L);
+        ResponseEntity<EmployeeDTO> result = employeeController.addRestaurant("1L", "1L");
         List<RestaurantDTO> employeeResultRestaurantList =
                 new ArrayList<>(result.getBody().getRestaurantList());
 
-        Assertions.assertEquals(employeeDTO.getId(), result.getBody().getId());
+        Assertions.assertEquals(employeeDTO.getUid(), result.getBody().getUid());
         Assertions.assertEquals(employeeDTO.getRole(), result.getBody().getRole());
-        Assertions.assertEquals(employeeGivenRestaurantList.get(0).getId(), employeeResultRestaurantList.get(0).getId());
+        Assertions.assertEquals(employeeGivenRestaurantList.get(0).getUid(), employeeResultRestaurantList.get(0).getUid());
         Assertions.assertEquals(employeeGivenRestaurantList.get(0).getLocation().getAddress().getName()
                 , employeeResultRestaurantList.get(0).getLocation().getAddress().getName());
         Assertions.assertEquals(employeeGivenRestaurantList.get(0).getLocation().getAddress().getCountry()
@@ -273,7 +273,7 @@ public class EmployeeControllerTest {
         try {
             mockServer.expect(ExpectedCount.once(),
                     requestTo(new URI(
-                            "http://localhost:8082/pep/restaurant/manager/api/employee/remove/restaurant/1/1")))
+                            "http://localhost:8082/pep/restaurant/manager/api/employee/remove/restaurant/1L/1L")))
                     .andExpect(method(HttpMethod.PUT))
                     .andRespond(withStatus(HttpStatus.OK)
                             .contentType(MediaType.APPLICATION_JSON)
@@ -286,13 +286,13 @@ public class EmployeeControllerTest {
             e.printStackTrace();
         }
 
-        ResponseEntity<EmployeeDTO> result = employeeController.removeRestaurant(1L, 1L);
+        ResponseEntity<EmployeeDTO> result = employeeController.removeRestaurant("1L", "1L");
         List<RestaurantDTO> employeeResultRestaurantList =
                 new ArrayList<>(result.getBody().getRestaurantList());
 
-        Assertions.assertEquals(employeeDTO.getId(), result.getBody().getId());
+        Assertions.assertEquals(employeeDTO.getUid(), result.getBody().getUid());
         Assertions.assertEquals(employeeDTO.getRole(), result.getBody().getRole());
-        Assertions.assertEquals(employeeGivenRestaurantList.get(0).getId(), employeeResultRestaurantList.get(0).getId());
+        Assertions.assertEquals(employeeGivenRestaurantList.get(0).getUid(), employeeResultRestaurantList.get(0).getUid());
         Assertions.assertEquals(employeeGivenRestaurantList.get(0).getLocation().getAddress().getName()
                 , employeeResultRestaurantList.get(0).getLocation().getAddress().getName());
         Assertions.assertEquals(employeeGivenRestaurantList.get(0).getLocation().getAddress().getCountry()
@@ -327,7 +327,7 @@ public class EmployeeControllerTest {
         try {
             mockServer.expect(ExpectedCount.once(),
                     requestTo(new URI(
-                            "http://localhost:8082/pep/restaurant/manager/api/employee/1")))
+                            "http://localhost:8082/pep/restaurant/manager/api/employee/1L")))
                     .andExpect(method(HttpMethod.DELETE))
                     .andRespond(withStatus(HttpStatus.OK)
                             .contentType(MediaType.APPLICATION_JSON)
@@ -340,13 +340,13 @@ public class EmployeeControllerTest {
             e.printStackTrace();
         }
 
-        ResponseEntity<EmployeeDTO> result = employeeController.deleteEmployee(1L);
+        ResponseEntity<EmployeeDTO> result = employeeController.deleteEmployee("1L");
         List<RestaurantDTO> employeeResultRestaurantList =
                 new ArrayList<>(result.getBody().getRestaurantList());
 
-        Assertions.assertEquals(employeeDTO.getId(), result.getBody().getId());
+        Assertions.assertEquals(employeeDTO.getUid(), result.getBody().getUid());
         Assertions.assertEquals(employeeDTO.getRole(), result.getBody().getRole());
-        Assertions.assertEquals(employeeGivenRestaurantList.get(0).getId(), employeeResultRestaurantList.get(0).getId());
+        Assertions.assertEquals(employeeGivenRestaurantList.get(0).getUid(), employeeResultRestaurantList.get(0).getUid());
         Assertions.assertEquals(employeeGivenRestaurantList.get(0).getLocation().getAddress().getName()
                 , employeeResultRestaurantList.get(0).getLocation().getAddress().getName());
         Assertions.assertEquals(employeeGivenRestaurantList.get(0).getLocation().getAddress().getCountry()
@@ -399,9 +399,9 @@ public class EmployeeControllerTest {
         List<RestaurantDTO> employeeResultRestaurantList =
                 new ArrayList<>(result.getBody().get(0).getRestaurantList());
 
-        Assertions.assertEquals(employeeDTO.getId(), result.getBody().get(0).getId());
+        Assertions.assertEquals(employeeDTO.getUid(), result.getBody().get(0).getUid());
         Assertions.assertEquals(employeeDTO.getRole(), result.getBody().get(0).getRole());
-        Assertions.assertEquals(employeeGivenRestaurantList.get(0).getId(), employeeResultRestaurantList.get(0).getId());
+        Assertions.assertEquals(employeeGivenRestaurantList.get(0).getUid(), employeeResultRestaurantList.get(0).getUid());
         Assertions.assertEquals(employeeGivenRestaurantList.get(0).getLocation().getAddress().getName()
                 , employeeResultRestaurantList.get(0).getLocation().getAddress().getName());
         Assertions.assertEquals(employeeGivenRestaurantList.get(0).getLocation().getAddress().getCountry()

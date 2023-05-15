@@ -33,11 +33,11 @@ public class EmployeeServiceTest {
         Employee employeeGiven = applicationDataProvider.getEmployee();
 
         //When
-        when(employeeClient.getEmployee(0L)).thenReturn(employeeGiven);
-        Employee employee = employeeService.getEmployee(0L);
+        when(employeeClient.getEmployee("0L")).thenReturn(employeeGiven);
+        Employee employee = employeeService.getEmployee("0L");
 
         //Then
-        verify(employeeClient, Mockito.times(1)).getEmployee(0L);
+        verify(employeeClient, Mockito.times(1)).getEmployee("0L");
     }
 
 
@@ -60,11 +60,11 @@ public class EmployeeServiceTest {
         Employee employeeGiven = applicationDataProvider.getEmployee();
 
         //When
-        when(employeeClient.editEmployee(0L, employeeGiven)).thenReturn(employeeGiven);
-        Employee employee = employeeService.editEmployee(0L, employeeGiven);
+        when(employeeClient.editEmployee("0L", employeeGiven)).thenReturn(employeeGiven);
+        Employee employee = employeeService.editEmployee("0L", employeeGiven);
 
         //Then
-        verify(employeeClient, Mockito.times(1)).editEmployee(0L, employeeGiven);
+        verify(employeeClient, Mockito.times(1)).editEmployee("0L", employeeGiven);
     }
 
 
@@ -74,11 +74,11 @@ public class EmployeeServiceTest {
         Employee employeeGiven = applicationDataProvider.getEmployee();
 
         //When
-        when(employeeClient.addRestaurant(0L, 0L)).thenReturn(employeeGiven);
-        Employee employee = employeeService.addRestaurant(0L, 0L);
+        when(employeeClient.addRestaurant("0L", "0L")).thenReturn(employeeGiven);
+        Employee employee = employeeService.addRestaurant("0L", "0L");
 
         //Then
-        verify(employeeClient, Mockito.times(1)).addRestaurant(0L, 0L);
+        verify(employeeClient, Mockito.times(1)).addRestaurant("0L", "0L");
     }
 
 
@@ -88,11 +88,11 @@ public class EmployeeServiceTest {
         Employee employeeGiven = applicationDataProvider.getEmployee();
 
         //When
-        when(employeeClient.removeRestaurant(0L, 0L)).thenReturn(employeeGiven);
-        Employee employee = employeeService.removeRestaurant(0L, 0L);
+        when(employeeClient.removeRestaurant("0L", "0L")).thenReturn(employeeGiven);
+        Employee employee = employeeService.removeRestaurant("0L", "0L");
 
         //Then
-        verify(employeeClient, Mockito.times(1)).removeRestaurant(0L, 0L);
+        verify(employeeClient, Mockito.times(1)).removeRestaurant("0L", "0L");
     }
 
 
@@ -102,11 +102,11 @@ public class EmployeeServiceTest {
         Employee employeeGiven = applicationDataProvider.getEmployee();
 
         //When
-        when(employeeClient.deleteEmployee(0L)).thenReturn(employeeGiven);
-        Employee employee = employeeService.deleteEmployee(0L);
+        when(employeeClient.deleteEmployee("0L")).thenReturn(employeeGiven);
+        Employee employee = employeeService.deleteEmployee("0L");
 
         //Then
-        verify(employeeClient, Mockito.times(1)).deleteEmployee(0L);
+        verify(employeeClient, Mockito.times(1)).deleteEmployee("0L");
     }
 
     @Test

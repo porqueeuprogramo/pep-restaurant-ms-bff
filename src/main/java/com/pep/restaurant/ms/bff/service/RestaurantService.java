@@ -22,7 +22,7 @@ public class RestaurantService {
      * @param restaurantId restaurant id.
      * @return restaurant.
      */
-    public Restaurant getRestaurant(final long restaurantId) {
+    public Restaurant getRestaurant(final String restaurantId) {
         return restaurantClient.getRestaurant(restaurantId);
     }
 
@@ -41,7 +41,7 @@ public class RestaurantService {
      * @param restaurant restaurant to be edited
      * @return restaurant edited.
      */
-    public Restaurant editRestaurant(final Long restaurantId, final Restaurant restaurant) {
+    public Restaurant editRestaurant(final String restaurantId, final Restaurant restaurant) {
         return restaurantClient.editRestaurant(restaurantId, restaurant);
     }
 
@@ -51,7 +51,7 @@ public class RestaurantService {
      * @param employeeId employee id.
      * @return restaurant with employee added.
      */
-    public Restaurant addEmployee(final Long restaurantId, final Long employeeId) {
+    public Restaurant addEmployee(final String restaurantId, final String employeeId) {
         return restaurantClient.addEmployee(restaurantId, employeeId);
     }
 
@@ -61,7 +61,7 @@ public class RestaurantService {
      * @param employeeId employee id.
      * @return restaurant with employee removed.
      */
-    public Restaurant removeEmployee(final Long restaurantId, final Long employeeId) {
+    public Restaurant removeEmployee(final String restaurantId, final String employeeId) {
         return restaurantClient.removeEmployee(restaurantId, employeeId);
     }
 
@@ -70,7 +70,7 @@ public class RestaurantService {
      * @param restaurantId restaurant id.
      * @return Restaurant Deleted.
      */
-    public Restaurant deleteRestaurant(final Long restaurantId) {
+    public Restaurant deleteRestaurant(final String restaurantId) {
         return restaurantClient.deleteRestaurant(restaurantId);
     }
 

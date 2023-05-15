@@ -1,37 +1,10 @@
 package com.pep.restaurant.ms.bff.domain;
 
 public class Address {
-    private long id;
     private String name;
     private String postalCode;
     private String city;
     private String country;
-
-    /**
-     * Get address id.
-     * @return address id.
-     */
-    public long getId() {
-        return id;
-    }
-
-    /**
-     * Set address Id.
-     * @param id address id.
-     */
-    public void setId(final long id) {
-        this.id = id;
-    }
-
-    /**
-     * Builder Address for id.
-     * @param id id to build.
-     * @return address with id.
-     */
-    public Address id(final long id){
-        this.id = id;
-        return this;
-    }
 
     /**
      * Get address name.
@@ -140,7 +113,6 @@ public class Address {
     @Override
     public String toString() {
         return "Address{" +
-                "id=" + id +
                 ", name='" + name + '\'' +
                 ", postalCode='" + postalCode + '\'' +
                 ", city='" + city + '\'' +
