@@ -59,7 +59,7 @@ public class RestaurantControllerTest {
 
         try {
             mockServer.expect(ExpectedCount.once(),
-                    requestTo(new URI("http://localhost:8082/pep/restaurant/manager/api/restaurant/1")))
+                    requestTo(new URI("http://localhost:8082/pep/restaurant/manager/api/restaurant/1L")))
                     .andExpect(method(HttpMethod.GET))
                     .andRespond(withStatus(HttpStatus.OK)
                             .contentType(MediaType.APPLICATION_JSON)
@@ -72,12 +72,12 @@ public class RestaurantControllerTest {
             e.printStackTrace();
         }
 
-        ResponseEntity<RestaurantDTO> result = restaurantController.getRestaurant(1L);
+        ResponseEntity<RestaurantDTO> result = restaurantController.getRestaurant("1L");
         List<EmployeeDTO> restaurantResultEmployeeDTO =
                 new ArrayList<>(Objects.requireNonNull(result.getBody()).getEmployeeList());
 
-        Assertions.assertEquals(restaurantDTO.getId(),
-                result.getBody().getId());
+        Assertions.assertEquals(restaurantDTO.getUid(),
+                result.getBody().getUid());
         Assertions.assertEquals(restaurantDTO.getMenu().getLanguage(),
                 result.getBody().getMenu().getLanguage());
         Assertions.assertEquals(restaurantDTO.getLocation().getAddress().getName()
@@ -97,7 +97,7 @@ public class RestaurantControllerTest {
         Assertions.assertEquals(restaurantDTO.getSchedule().getDaysScheduleMap().size(),
                 result.getBody().getSchedule().getDaysScheduleMap().size());
         Assertions.assertEquals(restaurantDTO.getCapacity(), result.getBody().getCapacity());
-        Assertions.assertEquals(restaurantGivenEmployeeDTO.get(0).getId(), restaurantResultEmployeeDTO.get(0).getId());
+        Assertions.assertEquals(restaurantGivenEmployeeDTO.get(0).getUid(), restaurantResultEmployeeDTO.get(0).getUid());
         Assertions.assertEquals(restaurantGivenEmployeeDTO.get(0).getRole(),
                 restaurantResultEmployeeDTO.get(0).getRole());
         
@@ -132,8 +132,8 @@ public class RestaurantControllerTest {
         List<EmployeeDTO> restaurantResultEmployeeDTO =
                 new ArrayList<>(Objects.requireNonNull(result.getBody()).getEmployeeList());
 
-        Assertions.assertEquals(restaurantDTO.getId(),
-                result.getBody().getId());
+        Assertions.assertEquals(restaurantDTO.getUid(),
+                result.getBody().getUid());
         Assertions.assertEquals(restaurantDTO.getMenu().getLanguage(),
                 result.getBody().getMenu().getLanguage());
         Assertions.assertEquals(restaurantDTO.getLocation().getAddress().getName()
@@ -153,7 +153,7 @@ public class RestaurantControllerTest {
         Assertions.assertEquals(restaurantDTO.getSchedule().getDaysScheduleMap().size(),
                 result.getBody().getSchedule().getDaysScheduleMap().size());
         Assertions.assertEquals(restaurantDTO.getCapacity(), result.getBody().getCapacity());
-        Assertions.assertEquals(restaurantGivenEmployeeDTO.get(0).getId(), restaurantResultEmployeeDTO.get(0).getId());
+        Assertions.assertEquals(restaurantGivenEmployeeDTO.get(0).getUid(), restaurantResultEmployeeDTO.get(0).getUid());
         Assertions.assertEquals(restaurantGivenEmployeeDTO.get(0).getRole(),
                 restaurantResultEmployeeDTO.get(0).getRole());
     }
@@ -169,7 +169,7 @@ public class RestaurantControllerTest {
 
         try {
             mockServer.expect(ExpectedCount.once(),
-                    requestTo(new URI("http://localhost:8082/pep/restaurant/manager/api/restaurant/1")))
+                    requestTo(new URI("http://localhost:8082/pep/restaurant/manager/api/restaurant/1L")))
                     .andExpect(method(HttpMethod.PUT))
                     .andRespond(withStatus(HttpStatus.OK)
                             .contentType(MediaType.APPLICATION_JSON)
@@ -182,12 +182,12 @@ public class RestaurantControllerTest {
             e.printStackTrace();
         }
 
-        ResponseEntity<RestaurantDTO> result = restaurantController.editRestaurant(1L, restaurantDTO);
+        ResponseEntity<RestaurantDTO> result = restaurantController.editRestaurant("1L", restaurantDTO);
         List<EmployeeDTO> restaurantResultEmployeeDTO =
                 new ArrayList<>(Objects.requireNonNull(result.getBody()).getEmployeeList());
 
-        Assertions.assertEquals(restaurantDTO.getId(),
-                result.getBody().getId());
+        Assertions.assertEquals(restaurantDTO.getUid(),
+                result.getBody().getUid());
         Assertions.assertEquals(restaurantDTO.getMenu().getLanguage(),
                 result.getBody().getMenu().getLanguage());
         Assertions.assertEquals(restaurantDTO.getLocation().getAddress().getName()
@@ -207,7 +207,7 @@ public class RestaurantControllerTest {
         Assertions.assertEquals(restaurantDTO.getSchedule().getDaysScheduleMap().size(),
                 result.getBody().getSchedule().getDaysScheduleMap().size());
         Assertions.assertEquals(restaurantDTO.getCapacity(), result.getBody().getCapacity());
-        Assertions.assertEquals(restaurantGivenEmployeeDTO.get(0).getId(), restaurantResultEmployeeDTO.get(0).getId());
+        Assertions.assertEquals(restaurantGivenEmployeeDTO.get(0).getUid(), restaurantResultEmployeeDTO.get(0).getUid());
         Assertions.assertEquals(restaurantGivenEmployeeDTO.get(0).getRole(),
                 restaurantResultEmployeeDTO.get(0).getRole());
     }
@@ -224,7 +224,7 @@ public class RestaurantControllerTest {
         try {
             mockServer.expect(ExpectedCount.once(),
                     requestTo(new URI(
-                            "http://localhost:8082/pep/restaurant/manager/api/restaurant/add/employee/1/1")))
+                            "http://localhost:8082/pep/restaurant/manager/api/restaurant/add/employee/1L/1L")))
                     .andExpect(method(HttpMethod.PUT))
                     .andRespond(withStatus(HttpStatus.OK)
                             .contentType(MediaType.APPLICATION_JSON)
@@ -237,12 +237,12 @@ public class RestaurantControllerTest {
             e.printStackTrace();
         }
 
-        ResponseEntity<RestaurantDTO> result = restaurantController.addEmployee(1L, 1L);
+        ResponseEntity<RestaurantDTO> result = restaurantController.addEmployee("1L", "1L");
         List<EmployeeDTO> restaurantResultEmployeeDTO =
                 new ArrayList<>(Objects.requireNonNull(result.getBody()).getEmployeeList());
 
-        Assertions.assertEquals(restaurantDTO.getId(),
-                result.getBody().getId());
+        Assertions.assertEquals(restaurantDTO.getUid(),
+                result.getBody().getUid());
         Assertions.assertEquals(restaurantDTO.getMenu().getLanguage(),
                 result.getBody().getMenu().getLanguage());
         Assertions.assertEquals(restaurantDTO.getLocation().getAddress().getName()
@@ -262,7 +262,7 @@ public class RestaurantControllerTest {
         Assertions.assertEquals(restaurantDTO.getSchedule().getDaysScheduleMap().size(),
                 result.getBody().getSchedule().getDaysScheduleMap().size());
         Assertions.assertEquals(restaurantDTO.getCapacity(), result.getBody().getCapacity());
-        Assertions.assertEquals(restaurantGivenEmployeeDTO.get(0).getId(), restaurantResultEmployeeDTO.get(0).getId());
+        Assertions.assertEquals(restaurantGivenEmployeeDTO.get(0).getUid(), restaurantResultEmployeeDTO.get(0).getUid());
         Assertions.assertEquals(restaurantGivenEmployeeDTO.get(0).getRole(),
                 restaurantResultEmployeeDTO.get(0).getRole());
     }
@@ -279,7 +279,7 @@ public class RestaurantControllerTest {
         try {
             mockServer.expect(ExpectedCount.once(),
                     requestTo(new URI(
-                            "http://localhost:8082/pep/restaurant/manager/api/restaurant/remove/employee/1/1")))
+                            "http://localhost:8082/pep/restaurant/manager/api/restaurant/remove/employee/1L/1L")))
                     .andExpect(method(HttpMethod.PUT))
                     .andRespond(withStatus(HttpStatus.OK)
                             .contentType(MediaType.APPLICATION_JSON)
@@ -292,12 +292,12 @@ public class RestaurantControllerTest {
             e.printStackTrace();
         }
 
-        ResponseEntity<RestaurantDTO> result = restaurantController.removeEmployee(1L, 1L);
+        ResponseEntity<RestaurantDTO> result = restaurantController.removeEmployee("1L", "1L");
         List<EmployeeDTO> restaurantResultEmployeeDTO =
                 new ArrayList<>(Objects.requireNonNull(result.getBody()).getEmployeeList());
 
-        Assertions.assertEquals(restaurantDTO.getId(),
-                result.getBody().getId());
+        Assertions.assertEquals(restaurantDTO.getUid(),
+                result.getBody().getUid());
         Assertions.assertEquals(restaurantDTO.getMenu().getLanguage(),
                 result.getBody().getMenu().getLanguage());
         Assertions.assertEquals(restaurantDTO.getLocation().getAddress().getName()
@@ -317,7 +317,7 @@ public class RestaurantControllerTest {
         Assertions.assertEquals(restaurantDTO.getSchedule().getDaysScheduleMap().size(),
                 result.getBody().getSchedule().getDaysScheduleMap().size());
         Assertions.assertEquals(restaurantDTO.getCapacity(), result.getBody().getCapacity());
-        Assertions.assertEquals(restaurantGivenEmployeeDTO.get(0).getId(), restaurantResultEmployeeDTO.get(0).getId());
+        Assertions.assertEquals(restaurantGivenEmployeeDTO.get(0).getUid(), restaurantResultEmployeeDTO.get(0).getUid());
         Assertions.assertEquals(restaurantGivenEmployeeDTO.get(0).getRole(),
                 restaurantResultEmployeeDTO.get(0).getRole());
     }
@@ -334,7 +334,7 @@ public class RestaurantControllerTest {
         try {
             mockServer.expect(ExpectedCount.once(),
                     requestTo(new URI(
-                            "http://localhost:8082/pep/restaurant/manager/api/restaurant/1")))
+                            "http://localhost:8082/pep/restaurant/manager/api/restaurant/1L")))
                     .andExpect(method(HttpMethod.DELETE))
                     .andRespond(withStatus(HttpStatus.OK)
                             .contentType(MediaType.APPLICATION_JSON)
@@ -347,12 +347,12 @@ public class RestaurantControllerTest {
             e.printStackTrace();
         }
 
-        ResponseEntity<RestaurantDTO> result = restaurantController.deleteRestaurant(1L);
+        ResponseEntity<RestaurantDTO> result = restaurantController.deleteRestaurant("1L");
         List<EmployeeDTO> restaurantResultEmployeeDTO =
                 new ArrayList<>(Objects.requireNonNull(result.getBody()).getEmployeeList());
 
-        Assertions.assertEquals(restaurantDTO.getId(),
-                result.getBody().getId());
+        Assertions.assertEquals(restaurantDTO.getUid(),
+                result.getBody().getUid());
         Assertions.assertEquals(restaurantDTO.getMenu().getLanguage(),
                 result.getBody().getMenu().getLanguage());
         Assertions.assertEquals(restaurantDTO.getLocation().getAddress().getName()
@@ -372,7 +372,7 @@ public class RestaurantControllerTest {
         Assertions.assertEquals(restaurantDTO.getSchedule().getDaysScheduleMap().size(),
                 result.getBody().getSchedule().getDaysScheduleMap().size());
         Assertions.assertEquals(restaurantDTO.getCapacity(), result.getBody().getCapacity());
-        Assertions.assertEquals(restaurantGivenEmployeeDTO.get(0).getId(), restaurantResultEmployeeDTO.get(0).getId());
+        Assertions.assertEquals(restaurantGivenEmployeeDTO.get(0).getUid(), restaurantResultEmployeeDTO.get(0).getUid());
         Assertions.assertEquals(restaurantGivenEmployeeDTO.get(0).getRole(),
                 restaurantResultEmployeeDTO.get(0).getRole());
     }
@@ -407,8 +407,8 @@ public class RestaurantControllerTest {
         List<EmployeeDTO> restaurantResultEmployeeDTO =
                 new ArrayList<>(Objects.requireNonNull(result.getBody()).get(0).getEmployeeList());
 
-        Assertions.assertEquals(restaurantDTO.getId(),
-                result.getBody().get(0).getId());
+        Assertions.assertEquals(restaurantDTO.getUid(),
+                result.getBody().get(0).getUid());
         Assertions.assertEquals(restaurantDTO.getMenu().getLanguage(),
                 result.getBody().get(0).getMenu().getLanguage());
         Assertions.assertEquals(restaurantDTO.getLocation().getAddress().getName()
@@ -428,7 +428,7 @@ public class RestaurantControllerTest {
         Assertions.assertEquals(restaurantDTO.getSchedule().getDaysScheduleMap().size(),
                 result.getBody().get(0).getSchedule().getDaysScheduleMap().size());
         Assertions.assertEquals(restaurantDTO.getCapacity(), result.getBody().get(0).getCapacity());
-        Assertions.assertEquals(restaurantGivenEmployeeDTO.get(0).getId(), restaurantResultEmployeeDTO.get(0).getId());
+        Assertions.assertEquals(restaurantGivenEmployeeDTO.get(0).getUid(), restaurantResultEmployeeDTO.get(0).getUid());
         Assertions.assertEquals(restaurantGivenEmployeeDTO.get(0).getRole(),
                 restaurantResultEmployeeDTO.get(0).getRole());
     }

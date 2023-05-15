@@ -51,7 +51,7 @@ public class EmployeeController implements EmployeeApi, ApiController {
             produces = {"application/json"},
             consumes = {"application/json"})
     @Override
-    public ResponseEntity<EmployeeDTO> getEmployee(final Long employeeId) {
+    public ResponseEntity<EmployeeDTO> getEmployee(final String employeeId) {
         return ResponseEntity.ok(employeeMapper.mapEmployeeToEmployeeDTO(
                 employeeService.getEmployee(employeeId)));
     }
@@ -84,7 +84,7 @@ public class EmployeeController implements EmployeeApi, ApiController {
             produces = {"application/json"},
             consumes = {"application/json"})
     @Override
-    public ResponseEntity<EmployeeDTO> editEmployee(final Long employeeId,
+    public ResponseEntity<EmployeeDTO> editEmployee(final String employeeId,
                                                         @RequestBody final EmployeeDTO employeeDTO) {
         return ResponseEntity.ok(employeeMapper.mapEmployeeToEmployeeDTO(
                 employeeService.editEmployee(employeeId,
@@ -104,7 +104,7 @@ public class EmployeeController implements EmployeeApi, ApiController {
             produces = {"application/json"},
             consumes = {"application/json"})
     @Override
-    public ResponseEntity<EmployeeDTO> addRestaurant(final Long employeeId, final Long restaurantId) {
+    public ResponseEntity<EmployeeDTO> addRestaurant(final String employeeId, final String restaurantId) {
         return ResponseEntity.ok(employeeMapper.mapEmployeeToEmployeeDTO(
                 employeeService.addRestaurant(employeeId, restaurantId)));
     }
@@ -121,7 +121,7 @@ public class EmployeeController implements EmployeeApi, ApiController {
             produces = {"application/json"},
             consumes = {"application/json"})
     @Override
-    public ResponseEntity<EmployeeDTO> removeRestaurant(final Long employeeId, final Long restaurantId) {
+    public ResponseEntity<EmployeeDTO> removeRestaurant(final String employeeId, final String restaurantId) {
         return ResponseEntity.ok(employeeMapper.mapEmployeeToEmployeeDTO(
                 employeeService.removeRestaurant(employeeId, restaurantId)));
     }
@@ -136,7 +136,7 @@ public class EmployeeController implements EmployeeApi, ApiController {
             produces = {"application/json"},
             consumes = {"application/json"})
     @Override
-    public ResponseEntity<EmployeeDTO> deleteEmployee(final Long employeeId) {
+    public ResponseEntity<EmployeeDTO> deleteEmployee(final String employeeId) {
         return ResponseEntity.ok(employeeMapper.mapEmployeeToEmployeeDTO(
                 employeeService.deleteEmployee(employeeId)));
     }

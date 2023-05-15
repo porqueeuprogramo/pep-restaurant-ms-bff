@@ -64,7 +64,7 @@ public class RestaurantMapper {
     public RestaurantDTO mapRestaurantToRestaurantDTO(final Restaurant restaurant) {
         return restaurant != null ?
                 new RestaurantDTO()
-                        .id(restaurant.getId())
+                        .uid(restaurant.getUid())
                         .name(restaurant.getName())
                         .capacity(restaurant.getCapacity())
                         .menu(mapMenuToMenuDTO(restaurant.getMenu()))
@@ -83,7 +83,7 @@ public class RestaurantMapper {
     public Restaurant mapRestaurantDTOToRestaurant(final RestaurantDTO restaurantDTO) {
         return restaurantDTO != null ?
                 new Restaurant()
-                        .id(restaurantDTO.getId())
+                        .uid(restaurantDTO.getUid())
                         .name(restaurantDTO.getName())
                         .capacity(restaurantDTO.getCapacity())
                         .menu(mapMenuDTOToMenu(restaurantDTO.getMenu()))
@@ -154,8 +154,9 @@ public class RestaurantMapper {
     private EmployeeDTO mapEmployeeToEmployeeDTO(final Employee employee) {
         return employee != null ?
                 new EmployeeDTO()
-                        .id(employee.getId())
+                        .uid(employee.getUid())
                         .role(employee.getRole())
+                        .schedule(mapScheduleRoutineToScheduleRoutineDTO(employee.getSchedule()))
                         .restaurantList(null)
                 : null;
     }
@@ -163,8 +164,9 @@ public class RestaurantMapper {
     private Employee mapEmployeeDTOToEmployee(final EmployeeDTO employeeDTO) {
         return employeeDTO != null ?
                 new Employee()
-                        .id(employeeDTO.getId())
+                        .uid(employeeDTO.getUid())
                         .role(employeeDTO.getRole())
+                        .schedule(mapScheduleRoutineDTOToScheduleRoutine(employeeDTO.getSchedule()))
                         .restaurantList(null)
                 : null;
     }
@@ -188,7 +190,6 @@ public class RestaurantMapper {
     private LocationDTO mapLocationToLocationDTO(final Location location) {
         return location != null ?
                 new LocationDTO()
-                        .id(location.getId())
                         .address(mapAddressToAddressDTO(location.getAddress()))
                         .locationCoordinate(mapCoordinateToCoordinateDTO(location.getCoordinate()))
                 : null;
@@ -197,7 +198,6 @@ public class RestaurantMapper {
     private Location mapLocationDTOToLocation(final LocationDTO locationDTO) {
         return locationDTO != null ?
                 new Location()
-                        .id(locationDTO.getId())
                         .address(mapAddressDTOToAddress(locationDTO.getAddress()))
                         .coordinate(mapCoordinateDTOToCoordinate(locationDTO.getLocationCoordinate()))
                 : null;
@@ -206,7 +206,6 @@ public class RestaurantMapper {
     private AddressDTO mapAddressToAddressDTO(final Address address) {
         return address != null ?
                 new AddressDTO()
-                        .id(address.getId())
                         .name(address.getName())
                         .postalCode(address.getPostalCode())
                         .city(address.getCity())
@@ -217,7 +216,6 @@ public class RestaurantMapper {
     private Address mapAddressDTOToAddress(final AddressDTO addressDTO) {
         return addressDTO != null ?
                 new Address()
-                        .id(addressDTO.getId())
                         .name(addressDTO.getName())
                         .postalCode(addressDTO.getPostalCode())
                         .city(addressDTO.getCity())

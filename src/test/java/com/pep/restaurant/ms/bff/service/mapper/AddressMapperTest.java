@@ -29,8 +29,6 @@ public class AddressMapperTest {
         List<AddressDTO> addressDTOResultList = addressMapper.mapAddressListToAddressDTOList(addressGivenList);
 
         //Then
-        Assertions.assertEquals(addressGivenList.get(0).getId()
-                , addressDTOResultList.get(0).getId());
         Assertions.assertEquals(addressGivenList.get(0).getName()
                 , addressDTOResultList.get(0).getName());
         Assertions.assertEquals(addressGivenList.get(0).getCountry()
@@ -56,8 +54,6 @@ public class AddressMapperTest {
         AddressDTO addressDTOResult = addressMapper.mapAddressToAddressDTO(addressGiven);
 
         //Then
-        Assertions.assertEquals(addressGiven.getId()
-                , addressDTOResult.getId());
         Assertions.assertEquals(addressGiven.getName()
                 , addressDTOResult.getName());
         Assertions.assertEquals(addressGiven.getCountry()
@@ -82,8 +78,6 @@ public class AddressMapperTest {
         Address addressResult = addressMapper.mapAddressDTOToAddress(addressDTOGiven);
 
         //Then
-        Assertions.assertEquals(addressDTOGiven.getId()
-                , addressResult.getId());
         Assertions.assertEquals(addressDTOGiven.getName()
                 , addressResult.getName());
         Assertions.assertEquals(addressDTOGiven.getCountry()
@@ -108,8 +102,6 @@ public class AddressMapperTest {
         List<Address> addressResultList = addressMapper.mapAddressListDTOToAddressList(addressGivenListDTO);
 
         //Then
-        Assertions.assertEquals(addressGivenListDTO.get(0).getId()
-                , addressResultList.get(0).getId());
         Assertions.assertEquals(addressGivenListDTO.get(0).getName()
                 , addressResultList.get(0).getName());
         Assertions.assertEquals(addressGivenListDTO.get(0).getCountry()

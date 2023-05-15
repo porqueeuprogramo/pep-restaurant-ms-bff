@@ -11,7 +11,7 @@ public class ApplicationDataProvider {
 
     public Restaurant getRestaurantWithEmployees(){
         return new Restaurant()
-                .id(1L)
+                .uid("1L")
                 .name("Francesinhas")
                 .capacity(100)
                 .menu(getMenu())
@@ -23,13 +23,13 @@ public class ApplicationDataProvider {
 
     public Employee getEmployeeWithId(){
         return new Employee()
-                .id(1L)
+                .uid("1L")
                 .role("CHEF");
     }
 
     public Employee getEmployeeWithRestaurant(){
         Employee employee = new Employee()
-                .id(1L)
+                .uid("1L")
                 .role("CHEF");
         employee.setRestaurantList(Set.of(getRestaurantWithEmployees()));
         return employee;
@@ -37,6 +37,7 @@ public class ApplicationDataProvider {
 
     public Restaurant getRestaurant() {
         return new Restaurant()
+                .uid("0L")
                 .name("Francesinhas")
                 .capacity(100)
                 .menu(getMenu())
@@ -59,7 +60,6 @@ public class ApplicationDataProvider {
 
     public Address getAddress(){
         return new Address()
-                .id(1L)
                 .name("Rua Teste")
                 .city("Porto")
                 .country("Portugal")
@@ -100,7 +100,7 @@ public class ApplicationDataProvider {
 
     public Employee getEmployee(){
         Employee employee = new Employee()
-                .id(0L)
+                .uid("0L")
                 .role("CHEF");
         employee.setRestaurantList(Set.of(getRestaurant()));
         return employee;
@@ -108,7 +108,7 @@ public class ApplicationDataProvider {
 
     public Employee getEmployeeWithIdOne(){
         Employee employee = new Employee()
-                .id(1L)
+                .uid("1L")
                 .role("CHEF");
         employee.setRestaurantList(Set.of(getRestaurant()));
         return employee;
@@ -116,7 +116,7 @@ public class ApplicationDataProvider {
 
     public RestaurantDTO getRestaurantDTO(){
         return new RestaurantDTO()
-                .id(1L)
+                .uid("1L")
                 .name("Francesinhas")
                 .capacity(100)
                 .menu(getMenuDTO())
@@ -127,14 +127,12 @@ public class ApplicationDataProvider {
 
     public LocationDTO getLocationDTO(){
         return new LocationDTO()
-                .id(1L)
                 .locationCoordinate(getCoordinateDTO())
                 .address(getAddressDTO());
     }
 
     public AddressDTO getAddressDTO(){
         return new AddressDTO()
-                .id(1L)
                 .name("Rua Teste")
                 .city("Porto")
                 .country("Portugal")
@@ -155,7 +153,7 @@ public class ApplicationDataProvider {
 
     public EmployeeDTO getEmployeeDTO(){
         EmployeeDTO employee = new EmployeeDTO()
-                .id(1L)
+                .uid("1L")
                 .role("CHEF");
         employee.setRestaurantList(Set.of(getRestaurantDTO()));
         return employee;
@@ -163,7 +161,7 @@ public class ApplicationDataProvider {
 
     public EmployeeDTO getEmployeeDTOWithRestaurantIdZero(){
         EmployeeDTO employee = new EmployeeDTO()
-                .id(1L)
+                .uid("1L")
                 .role("CHEF");
         employee.setRestaurantList(Set.of(getRestaurantDTOWithRestaurantIdZero()));
         return employee;
@@ -171,7 +169,7 @@ public class ApplicationDataProvider {
 
     public RestaurantDTO getRestaurantDTOWithRestaurantIdZero(){
         return new RestaurantDTO()
-                .id(0L)
+                .uid("0L")
                 .name("Francesinhas")
                 .capacity(100)
                 .menu(getMenuDTO())
@@ -204,19 +202,19 @@ public class ApplicationDataProvider {
 
     public Employee getEmployeeWithoutRestaurantList(){
         return new Employee()
-                .id(0L)
+                .uid("0L")
                 .role("CHEF");
     }
 
     public Employee getEmployeeWithoutRestaurantListWithId(){
         return new Employee()
-                .id(1L)
+                .uid("1L")
                 .role("CHEF");
     }
 
     public RestaurantDTO getRestaurantDTOWithEmployeeListDTO(){
         return new RestaurantDTO()
-                .id(1L)
+                .uid("1L")
                 .name("Francesinhas")
                 .capacity(100)
                 .menu(getMenuDTO())
@@ -228,9 +226,10 @@ public class ApplicationDataProvider {
 
     public EmployeeDTO getEmployeeDTOWithoutRestaurantListDTO(){
         return new EmployeeDTO()
-                .id(1L)
+                .uid("1L")
                 .schedule(new ScheduleRoutineDTO())
-                .role("CHEF");
+                .role("CHEF")
+                .schedule(getScheduleRoutineDTO());
     }
 
     public Employee getEmployeeWithoutSchedule(){
@@ -242,7 +241,7 @@ public class ApplicationDataProvider {
 
     public EmployeeDTO getEmployeeDTOWithoutScheduleDTO(){
         EmployeeDTO employeeDTO = new EmployeeDTO()
-                .id(1L)
+                .uid("1L")
                 .role("CHEF");
         employeeDTO.setRestaurantList(Set.of(getRestaurantDTO()));
         return employeeDTO;
@@ -267,9 +266,7 @@ public class ApplicationDataProvider {
         return new HereRestaurantInfo()
                 .hereId("620aabd1-28cfe099c787060e95c8c46d483f795c")
                 .searchLocation(new Location()
-                        .id(0L)
                         .address(new Address()
-                                .id(0L)
                                 .name("Rua Joaquim Lopes Pintor 178")
                                 .postalCode("4405-868")
                                 .city("Vila Nova de Gaia")
@@ -281,9 +278,7 @@ public class ApplicationDataProvider {
                 .name("Cafe Hamburgo")
                 .schedule(new ScheduleRoutine().daysScheduleMap(daysMap))
                 .location(new Location()
-                        .id(0L)
                         .address(new Address()
-                                .id(0L)
                                 .name("Rua Joaquim Lopes Pintor 176")
                                 .postalCode("4405-868")
                                 .city("Vila Nova de Gaia"))

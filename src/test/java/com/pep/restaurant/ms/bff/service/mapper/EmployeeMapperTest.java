@@ -36,9 +36,9 @@ public class EmployeeMapperTest {
                 new ArrayList<>(employeeDTOResultList.get(0).getRestaurantList());
 
         //Then
-        Assertions.assertEquals(employeeGivenList.get(0).getId(), employeeDTOResultList.get(0).getId());
+        Assertions.assertEquals(employeeGivenList.get(0).getUid(), employeeDTOResultList.get(0).getUid());
         Assertions.assertEquals(employeeGivenList.get(0).getRole(), employeeDTOResultList.get(0).getRole());
-        Assertions.assertEquals(employeeGivenRestaurantList.get(0).getId(), employeeResultRestaurantList.get(0).getId());
+        Assertions.assertEquals(employeeGivenRestaurantList.get(0).getUid(), employeeResultRestaurantList.get(0).getUid());
         Assertions.assertEquals(employeeGivenRestaurantList.get(0).getLocation().getAddress().getName()
                 , employeeResultRestaurantList.get(0).getLocation().getAddress().getName());
         Assertions.assertEquals(employeeGivenRestaurantList.get(0).getLocation().getAddress().getCountry()
@@ -80,9 +80,9 @@ public class EmployeeMapperTest {
         List<RestaurantDTO> employeeResultRestaurant = new ArrayList<>(employeeDTOResult.getRestaurantList());
 
         //Then
-        Assertions.assertEquals(employeeGiven.getId(), employeeDTOResult.getId());
+        Assertions.assertEquals(employeeGiven.getUid(), employeeDTOResult.getUid());
         Assertions.assertEquals(employeeGiven.getRole(), employeeDTOResult.getRole());
-        Assertions.assertEquals(employeeGivenRestaurantList.get(0).getId(), employeeResultRestaurant.get(0).getId());
+        Assertions.assertEquals(employeeGivenRestaurantList.get(0).getUid(), employeeResultRestaurant.get(0).getUid());
         Assertions.assertEquals(employeeGivenRestaurantList.get(0).getLocation().getAddress().getName()
                 , employeeResultRestaurant.get(0).getLocation().getAddress().getName());
         Assertions.assertEquals(employeeGivenRestaurantList.get(0).getLocation().getAddress().getCountry()
@@ -121,9 +121,9 @@ public class EmployeeMapperTest {
         List<Restaurant> employeeResultRestaurant = new ArrayList<>(employeeResult.getRestaurantList());
 
         //Then
-        Assertions.assertEquals(employeeDTOGiven.getId(), employeeResult.getId());
+        Assertions.assertEquals(employeeDTOGiven.getUid(), employeeResult.getUid());
         Assertions.assertEquals(employeeDTOGiven.getRole(), employeeResult.getRole());
-        Assertions.assertEquals(employeeGivenRestaurantList.get(0).getId(), employeeResultRestaurant.get(0).getId());
+        Assertions.assertEquals(employeeGivenRestaurantList.get(0).getUid(), employeeResultRestaurant.get(0).getUid());
         Assertions.assertEquals(employeeGivenRestaurantList.get(0).getLocation().getAddress().getName()
                 , employeeResultRestaurant.get(0).getLocation().getAddress().getName());
         Assertions.assertEquals(employeeGivenRestaurantList.get(0).getLocation().getAddress().getCountry()
@@ -159,9 +159,9 @@ public class EmployeeMapperTest {
                 new ArrayList<>(employeeResultList.get(0).getRestaurantList());
 
         //Then
-        Assertions.assertEquals(employeeGivenListDTO.get(0).getId(), employeeResultList.get(0).getId());
+        Assertions.assertEquals(employeeGivenListDTO.get(0).getUid(), employeeResultList.get(0).getUid());
         Assertions.assertEquals(employeeGivenListDTO.get(0).getRole(), employeeResultList.get(0).getRole());
-        Assertions.assertEquals(employeeGivenRestaurantListDTO.get(0).getId(), employeeResultRestaurantList.get(0).getId());
+        Assertions.assertEquals(employeeGivenRestaurantListDTO.get(0).getUid(), employeeResultRestaurantList.get(0).getUid());
         Assertions.assertEquals(employeeGivenRestaurantListDTO.get(0).getLocation().getAddress().getName()
                 , employeeResultRestaurantList.get(0).getLocation().getAddress().getName());
         Assertions.assertEquals(employeeGivenRestaurantListDTO.get(0).getLocation().getAddress().getCountry()

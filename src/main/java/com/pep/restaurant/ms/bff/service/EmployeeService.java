@@ -22,7 +22,7 @@ public class EmployeeService {
      * @param employeeId employee id.
      * @return employee.
      */
-    public Employee getEmployee(final long employeeId) {
+    public Employee getEmployee(final String employeeId) {
         return employeeClient.getEmployee(employeeId);
     }
 
@@ -41,7 +41,7 @@ public class EmployeeService {
      * @param employee employee to be edited
      * @return employee edited.
      */
-    public Employee editEmployee(final Long employeeId, final Employee employee) {
+    public Employee editEmployee(final String employeeId, final Employee employee) {
         return employeeClient.editEmployee(employeeId, employee);
     }
 
@@ -51,7 +51,7 @@ public class EmployeeService {
      * @param restaurantId restaurant id.
      * @return employee with restaurant added.
      */
-    public Employee addRestaurant(final Long employeeId, final Long restaurantId) {
+    public Employee addRestaurant(final String employeeId, final String restaurantId) {
         return employeeClient.addRestaurant(employeeId, restaurantId);
     }
 
@@ -61,7 +61,7 @@ public class EmployeeService {
      * @param restaurantId restaurant id.
      * @return employee with restaurant removed.
      */
-    public Employee removeRestaurant(final Long employeeId, final Long restaurantId) {
+    public Employee removeRestaurant(final String employeeId, final String restaurantId) {
         return employeeClient.removeRestaurant(employeeId, restaurantId);
     }
 
@@ -70,7 +70,7 @@ public class EmployeeService {
      * @param employeeId employee id.
      * @return Employee Deleted.
      */
-    public Employee deleteEmployee(final Long employeeId) {
+    public Employee deleteEmployee(final String employeeId) {
         return employeeClient.deleteEmployee(employeeId);
     }
 
