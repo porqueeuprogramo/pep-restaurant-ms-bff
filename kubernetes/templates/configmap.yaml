@@ -1,0 +1,42 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+    name: {{ .Chart.Name }}-configmap
+
+data:
+    application.yaml: |
+        server:
+            port: 8080
+            compression:
+                enabled: true
+                mime-types: text/html,text/xml,text/plain,text/css, application/javascript, application/json
+                min-response-size: 1024
+            servlet:
+                session:
+                    cookie:
+                        http-only: true
+                context-path: /pep/restaurant/bff
+        keycloak:
+            realm: peprestaurant
+            auth-server-url: http://host.docker.internal:8081/
+            ssl-required: external
+            resource: peprestaurant
+            credentials:
+                secret: nbH4sSavmupKJ4AsRa9EFAq0k8u9XmaU
+            use-resource-role-mappings: true
+        application:
+            keycloak:
+                serverUrl: http://host.docker.internal:8081/
+                realm: peprestaurant
+                username: admin
+                password: admin
+                clientId: peprestaurant
+                clientSecret: nbH4sSavmupKJ4AsRa9EFAq0k8u9XmaU
+            msManager:
+                url: http://localhost:8082/pep/restaurant/manager
+            here:
+                accessKeyId: c0HPuwhJN9Ws7U6Gje9V6w
+                accessKeySecret: rtwIH9Q7F9VOxh-YasfM3ffu5D5uKLZrbVk9DEJ6xIgVR_kh9ssU1RizN_k3-UEnYODts0oRzWmGYoli0xDqvw
+                tokenEndpointUrl: https://account.api.here.com/oauth2/token
+                herePlacesApiUrl: https://places.ls.hereapi.com/places/v1/discover/here
+
