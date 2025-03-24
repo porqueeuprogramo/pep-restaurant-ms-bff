@@ -23,10 +23,16 @@ app:
     arn_prefix: "arn:aws"
     multipart_max_size: "20MB"
     http_ssl_validation: "true"
-    db_url: "jdbc:postgresql://host.docker.internal:5432/postgres"
-    db_driver: "org.postgresql.Driver"
-    db_username: postgres
-    db_password: 1234
+    keycloak_realm: peprestaurant
+    keycloak_auth_server_url: http://host.docker.internal:8081/
+    keycloak_resource: peprestaurant
+    keycloak_secret: nbH4sSavmupKJ4AsRa9EFAq0k8u9XmaU
+    keycloak_username: admin
+    keycloak_password: admin
+    here_accessKeyId: c0HPuwhJN9Ws7U6Gje9V6w
+    here_accessKeySecret: rtwIH9Q7F9VOxh-YasfM3ffu5D5uKLZrbVk9DEJ6xIgVR_kh9ssU1RizN_k3-UEnYODts0oRzWmGYoli0xDqvw
+    here_tokenEndpointUrl: https://account.api.here.com/oauth2/token
+    here_herePlacesApiUrl: https://places.ls.hereapi.com/places/v1/discover/here
 
 
 imagePullSecrets: []

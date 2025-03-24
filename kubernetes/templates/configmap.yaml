@@ -17,26 +17,26 @@ data:
                         http-only: true
                 context-path: /pep/restaurant/bff
         keycloak:
-            realm: peprestaurant
-            auth-server-url: http://host.docker.internal:8081/
+            realm: "{{ .Values.app.properties.keycloak_realm}}"
+            auth-server-url: "{{ .Values.app.properties.keycloak_auth_server_url}}"
             ssl-required: external
-            resource: peprestaurant
+            resource: "{{ .Values.app.properties.keycloak_realm}}"
             credentials:
-                secret: nbH4sSavmupKJ4AsRa9EFAq0k8u9XmaU
+                secret: "{{ .Values.app.properties.keycloak_secret}}"
             use-resource-role-mappings: true
         application:
             keycloak:
-                serverUrl: http://host.docker.internal:8081/
-                realm: peprestaurant
-                username: admin
-                password: admin
-                clientId: peprestaurant
-                clientSecret: nbH4sSavmupKJ4AsRa9EFAq0k8u9XmaU
+                serverUrl: "{{ .Values.app.properties.keycloak_auth_server_url}}"
+                realm: "{{ .Values.app.properties.keycloak_realm}}"
+                username: "{{ .Values.app.properties.keycloak_username}}"
+                password: "{{ .Values.app.properties.keycloak_password}}"
+                clientId: "{{ .Values.app.properties.keycloak_realm}}"
+                clientSecret: "{{ .Values.app.properties.keycloak_secret}}"
             msManager:
                 url: http://pep-restaurant-ms-manager:80/pep/restaurant/manager
             here:
-                accessKeyId: c0HPuwhJN9Ws7U6Gje9V6w
-                accessKeySecret: rtwIH9Q7F9VOxh-YasfM3ffu5D5uKLZrbVk9DEJ6xIgVR_kh9ssU1RizN_k3-UEnYODts0oRzWmGYoli0xDqvw
-                tokenEndpointUrl: https://account.api.here.com/oauth2/token
-                herePlacesApiUrl: https://places.ls.hereapi.com/places/v1/discover/here
+                accessKeyId: "{{ .Values.app.properties.here_accessKeyId}}"
+                accessKeySecret: "{{ .Values.app.properties.here_accessKeySecret}}"
+                tokenEndpointUrl: "{{ .Values.app.properties.here_tokenEndpointUrl}}"
+                herePlacesApiUrl: "{{ .Values.app.properties.here_herePlacesApiUrl}}"
 
