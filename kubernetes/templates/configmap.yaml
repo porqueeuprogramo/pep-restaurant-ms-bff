@@ -33,7 +33,7 @@ data:
                 clientId: peprestaurant
                 clientSecret: nbH4sSavmupKJ4AsRa9EFAq0k8u9XmaU
             msManager:
-                url: http://localhost:8082/pep/restaurant/manager
+                url: http://pep-restaurant-ms-manager:80/pep/restaurant/manager
             here:
                 accessKeyId: c0HPuwhJN9Ws7U6Gje9V6w
                 accessKeySecret: rtwIH9Q7F9VOxh-YasfM3ffu5D5uKLZrbVk9DEJ6xIgVR_kh9ssU1RizN_k3-UEnYODts0oRzWmGYoli0xDqvw
